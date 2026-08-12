@@ -1,0 +1,12 @@
+# dev artifacts
+website/nginx.dev.conf
+website/docker-compose.dev.yml
+website/assets/.cache/
+.playwright-mcp/
+.env
+
+# sibling project (separate repo)
+blog/
+
+# IDE / OS
+.vscode/ .idea/ *.swp .DS_Store Thumbs.db

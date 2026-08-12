@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <title>Mirentia — Construimos agentes que ejecutan tu trabajo</title>
+  <meta name="description" content="Somos fundadores de Bailante, Findink y LitigIA. Llevamos 3 verticales a AI-native. Tu SME es el próximo." />
+  <meta property="og:title" content="Mirentia — Construimos agentes que ejecutan tu trabajo" />
+  <meta property="og:description" content="Somos fundadores de Bailante, Findink y LitigIA. Llevamos 3 verticales a AI-native. Tu SME es el próximo." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mirentia.com" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230a0a0a'/><text x='50' y='68' font-size='62' font-family='Inter,Helvetica,Arial,sans-serif' font-weight='900' text-anchor='middle' fill='%23FFD700'>M</text></svg>" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: #0a0a0a;
+      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+    .accent { color: #FFD700; }
+    .eyebrow {
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #FFD700;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: clamp(36px, 7vw, 64px);
+      line-height: 1.05;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin: 0 0 24px;
+    }
+    h2 {
+      font-size: clamp(28px, 5vw, 44px);
+      line-height: 1.1;
+      font-weight: 900;
+      letter-spacing: -0.015em;
+      margin: 0 0 32px;
+    }
+    h3 {
+      font-size: 22px;
+      font-weight: 800;
+      margin: 0 0 8px;
+      letter-spacing: -0.01em;
+    }
+    p { margin: 0 0 16px; }
+    .lead { font-size: clamp(18px, 2.4vw, 22px); color: #c9c9c9; margin-bottom: 32px; }
+    .section { padding: 80px 0; border-top: 1px solid #1a1a1a; }
+    .section--dark { background: #050505; }
+    .grid { display: grid; gap: 16px; }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    @media (max-width: 720px) {
+      .grid-3 { grid-template-columns: 1fr; }
+      .grid-4 { grid-template-columns: 1fr 1fr; }
+      .section { padding: 56px 0; }
+    }
+    .card {
+      background: #131313;
+      border: 1px solid #232323;
+      border-radius: 14px;
+      padding: 28px 24px;
+    }
+    .card--highlight { border-color: #FFD700; background: #1a1300; }
+    .card .price {
+      font-size: 28px;
+      font-weight: 900;
+      color: #FFD700;
+      margin-bottom: 8px;
+    }
+    .card .price-note {
+      font-size: 13px;
+      color: #888;
+      margin-bottom: 16px;
+    }
+    .card ul {
+      margin: 0 0 16px;
+      padding: 0 0 0 20px;
+      color: #c9c9c9;
+      font-size: 15px;
+    }
+    .card ul li { margin-bottom: 8px; }
+    .bul {
+      padding: 16px 0 16px 28px;
+      border-bottom: 1px solid #1a1a1a;
+      position: relative;
+      color: #e5e5e5;
+    }
+    .bul:last-child { border-bottom: 0; }
+    .bul::before {
+      content: "✗";
+      position: absolute;
+      left: 0;
+      top: 16px;
+      color: #ff5151;
+      font-weight: 800;
+    }
+    .num {
+      font-size: clamp(56px, 12vw, 96px);
+      line-height: 1;
+      font-weight: 900;
+      color: #FFD700;
+      letter-spacing: -0.04em;
+      margin: 0 0 8px;
+    }
+    .num-label { font-size: 18px; color: #e5e5e5; font-weight: 600; }
+    .cta {
+      display: inline-block;
+      background: #FFD700;
+      color: #0a0a0a;
+      padding: 22px 40px;
+      font-size: 20px;
+      font-weight: 800;
+      border-radius: 12px;
+      letter-spacing: 0.01em;
+      border: 0;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4);
+    }
+    .cta:hover, .cta:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px -8px rgba(255, 215, 0, 0.45);
+      outline: 0;
+    }
+    .cta--full { display: block; width: 100%; text-align: center; }
+    .cta--ghost {
+      background: transparent;
+      color: #FFD700;
+      border: 2px solid #FFD700;
+      box-shadow: none;
+    }
+    .cta--ghost:hover { background: #FFD700; color: #0a0a0a; }
+    .footer {
+      padding: 40px 0 60px;
+      color: #888;
+      font-size: 14px;
+      text-align: center;
+      border-top: 1px solid #1a1a1a;
+    }
+    .footer a { color: #FFD700; }
+    .pill {
+      display: inline-block;
+      padding: 6px 14px;
+      background: #1a1a1a;
+      border-radius: 999px;
+      font-size: 13px;
+      color: #c9c9c9;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+    .hero-meta {
+      margin-top: 28px;
+      color: #888;
+      font-size: 14px;
+    }
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    @media (max-width: 720px) {
+      .cta-row { flex-direction: column; align-items: stretch; }
+      .cta { width: 100%; text-align: center; }
+    }
+    .nav {
+      padding: 20px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    .brand { font-weight: 900; font-size: 20px; letter-spacing: -0.02em; }
+    .brand .dot { color: #FFD700; }
+    .nav-cta {
+      font-size: 14px;
+      color: #FFD700;
+      font-weight: 700;
+    }
+    .proof-meta { margin-top: 12px; font-size: 14px; color: #888; }
+    .guarantee {
+      border: 2px solid #FFD700;
+      border-radius: 16px;
+      padding: 36px 32px;
+      background: #131000;
+    }
+    .guarantee h2 { color: #FFD700; }
+    .small { font-size: 14px; color: #888; }
+    .cta-micro { color: #888; font-size: 13px; margin-top: 12px; }
+    .center { text-align: center; }
+    .hero-cta-wrap { margin-top: 24px; }
+    .arrow { font-weight: 900; }
+    .social-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+    .social-links a {
+      color: #FFD700;
+      font-weight: 700;
+      font-size: 15px;
+      border: 1px solid #FFD700;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .social-links a:hover { background: #FFD700; color: #0a0a0a; }
+    .proof-stats {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid #1a1a1a;
+    }
+    .proof-stats .stat { text-align: left; }
+    .proof-stats .stat-num {
+      font-size: 32px;
+      font-weight: 900;
+      color: #FFD700;
+      letter-spacing: -0.02em;
+    }
+    .proof-stats .stat-label { font-size: 13px; color: #888; margin-top: 2px; }
+    .card-meta { margin-top: 12px; font-size: 14px; color: #888; }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 700;
+      background: #FFD700;
+      color: #0a0a0a;
+    }
+    .badge--ghost { background: transparent; color: #FFD700; border: 1px solid #FFD700; }
+    .pricing-card { display: flex; flex-direction: column; }
+    .pricing-card .cta { margin-top: auto; }
+    .section-header { margin-bottom: 40px; }
+  </style>
+  <link rel="stylesheet" href="/assets/motion.css" />
+</head>
+<body>
+
+  <header class="wrap">
+    <nav class="nav">
+      <div class="brand brand-wipe" style="view-transition-name: mirentia-brand;">mirentia<span class="dot live-pulse"></span></div>
+      <a class="nav-cta" href="mailto:hola@mirentia.com">Diagnóstico →</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="wrap" style="padding: 72px 24px 64px;">
+      <h1 class="word-stagger">Construimos agentes que ejecutan tu trabajo — <span class="accent">no dashboards que tenés que aprender.</span></h1>
+      <div class="hero-stagger">
+        <div class="eyebrow">AI-native agency · Colombia</div>
+        <p class="lead">Somos fundadores de Bailante, Findink y LitigIA. Llevamos 3 verticales a AI-native en el último año. Tu SME es el próximo.</p>
+        <div class="hero-cta-wrap">
+          <a class="cta" href="mailto:hola@mirentia.com?subject=Diagn%C3%B3stico%20AI-Readiness&body=Hola%20Mirentia%2C%20quiero%20agendar%20un%20Mini-Diagn%C3%B3stico.">Diagnóstico AI-Readiness — $990 USD</a>
+          <a class="cta cta--ghost" href="https://wa.me/573000000000?text=Hola%20Mirentia%2C%20quiero%20agendar%20un%20Mini-Diagn%C3%B3stico." rel="noopener" style="margin-left: 12px;">WhatsApp</a>
+        </div>
+        <div class="hero-meta">
+          <span class="pill">Bailante · Findink · LitigIA</span>
+          <span class="pill">3 verticales AI-native</span>
+          <span class="pill">7 años de dev experience</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span class="highlight">AI-native agency · Colombia</span>
+        <span class="dot-sep">✦</span>
+        <span>3 verticales AI-native</span>
+        <span class="dot-sep">✦</span>
+        <span>Bailante · Findink · LitigIA</span>
+        <span class="dot-sep">✦</span>
+        <span>7 años dev experience</span>
+        <span class="dot-sep">✦</span>
+        <span class="highlight">Mini-Diagnóstico $990 USD</span>
+        <span class="dot-sep">✦</span>
+        <span>ROI en 90 días o devolución</span>
+        <span class="dot-sep">✦</span>
+        <span>0 LinkedIn thought leadership</span>
+        <span class="dot-sep">✦</span>
+        <span class="highlight">AI-native agency · Colombia</span>
+        <span class="dot-sep">✦</span>
+        <span>3 verticales AI-native</span>
+        <span class="dot-sep">✦</span>
+        <span>Bailante · Findink · LitigIA</span>
+        <span class="dot-sep">✦</span>
+        <span>7 años dev experience</span>
+        <span class="dot-sep">✦</span>
+        <span class="highlight">Mini-Diagnóstico $990 USD</span>
+        <span class="dot-sep">✦</span>
+        <span>ROI en 90 días o devolución</span>
+        <span class="dot-sep">✦</span>
+        <span>0 LinkedIn thought leadership</span>
+        <span class="dot-sep">✦</span>
+      </div>
+    </div>
+
+    <!-- PROBLEMA -->
+    <section class="section reveal">
+      <div class="wrap">
+        <div class="eyebrow">El problema</div>
+        <h2>Esto te suena familiar?</h2>
+        <div>
+          <div class="bul">Tu equipo copia datos entre Excel, WhatsApp y un CRM que nadie abre.</div>
+          <div class="bul">Cada nuevo cliente es más trabajo manual en vez de más revenue.</div>
+          <div class="bul">Querés usar IA pero no sabés por dónde, ni qué proceso mapear primero.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OUTCOMES -->
+    <section class="section section--dark reveal">
+      <div class="wrap">
+        <div class="eyebrow">Lo que cambia</div>
+        <h2>Outcomes concretos. Sin buzzwords.</h2>
+        <div class="grid grid-3">
+          <div class="card reveal">
+            <div class="num num-counter" data-count="990">990</div>
+            <div class="num-label" style="font-size: 15px; margin-bottom: 12px;">USD / 1 proceso / 7 días</div>
+            <p class="small" style="margin: 0;">El Mini-Diagnóstico</p>
+          </div>
+          <div class="card reveal">
+            <div class="num num-counter" data-count="20" data-suffix="+">20+</div>
+            <div class="num-label" style="font-size: 15px; margin-bottom: 12px;">horas/mes eliminadas</div>
+            <p class="small" style="margin: 0;">En el Sprint</p>
+          </div>
+          <div class="card reveal">
+            <div class="num num-counter" data-count="24" data-suffix="/7">24/7</div>
+            <div class="num-label" style="font-size: 15px; margin-bottom: 12px;">sin errores humanos</div>
+            <p class="small" style="margin: 0;">Sistema que corre solo</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BUILD IN PUBLIC -->
+    <section class="section reveal">
+      <div class="wrap">
+        <div class="eyebrow">Build in public</div>
+        <h2>Somos founders que muestran cómo se hace.</h2>
+        <p class="lead">Sin LinkedIn thought leadership hasta ahora. Sin cursos de productividad. Mostramos el trabajo real.</p>
+        <div class="social-links">
+          <a href="https://x.com/JodanLive" rel="noopener" target="_blank">X @JodanLive</a>
+          <a href="https://linkedin.com/in/jordanlanch" rel="noopener" target="_blank">LinkedIn</a>
+          <a href="https://github.com/jordanlanch" rel="noopener" target="_blank">GitHub</a>
+          <a href="https://blog.mirentia.com" rel="noopener" target="_blank">Blog (próximamente)</a>
+        </div>
+        <div class="proof-stats">
+          <div class="stat">
+            <div class="stat-num">4</div>
+            <div class="stat-label">repos públicos</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">3</div>
+            <div class="stat-label">productos en producción</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">7</div>
+            <div class="stat-label">años de dev experience</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">0</div>
+            <div class="stat-label">LinkedIn thought leadership — hasta ahora</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CASOS -->
+    <section class="section section--dark reveal">
+      <div class="wrap">
+        <div class="eyebrow">Ya lo hicimos</div>
+        <h2>3 productos propios en producción.</h2>
+        <div class="grid grid-3">
+          <div class="card reveal">
+            <div class="badge">Live</div>
+            <h3 style="margin-top: 14px;">Bailante</h3>
+            <p class="small" style="margin: 0 0 12px;">Academia de baile, Bogotá. Web + captación + agenda conectados. JSON-LD Speakable, AEO, schema LocalBusiness.</p>
+            <p class="card-meta">50% reducción admin.</p>
+            <a href="/cases/bailante/" class="accent" style="font-weight: 700; font-size: 14px;">Ver caso →</a>
+          </div>
+          <div class="card reveal">
+            <div class="badge">Live</div>
+            <h3 style="margin-top: 14px;">Findink</h3>
+            <p class="small" style="margin: 0 0 12px;">Marketplace de tatuajes. Founder + CTO. Producto cross-platform con foco en portfolio y booking.</p>
+            <p class="card-meta">En producción.</p>
+            <a href="/cases/findink/" class="accent" style="font-weight: 700; font-size: 14px;">Ver caso →</a>
+          </div>
+          <div class="card card--highlight reveal">
+            <div class="badge badge--ghost">Stealth</div>
+            <h3 style="margin-top: 14px;">LitigIA</h3>
+            <p class="small" style="margin: 0 0 12px;">AI para abogados litigantes en Colombia. Service-as-a-Software con agentes que ejecutan el trabajo, no herramientas que el abogado usa.</p>
+            <p class="card-meta">Próximamente.</p>
+            <a href="/cases/litigia/" class="accent" style="font-weight: 700; font-size: 14px;">Ver caso →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="section" id="pricing">
+      <div class="wrap">
+        <div class="eyebrow">Precios</div>
+        <h2>Simple. Sin sorpresas.</h2>
+        <div class="grid grid-4" style="gap: 20px;">
+          <div class="card pricing-card reveal">
+            <div class="eyebrow" style="margin-bottom: 8px;">Mini-Diagnóstico</div>
+            <div class="price">$990 USD</div>
+            <div class="price-note">~4M COP</div>
+            <ul>
+              <li>1 proceso mapeado</li>
+              <li>Blueprint con ROI projection</li>
+              <li>7 días</li>
+            </ul>
+            <a class="cta cta--full" href="mailto:hola@mirentia.com?subject=Mini-Diagn%C3%B3stico&body=Hola%20Mirentia%2C%20quiero%20agendar%20un%20Mini-Diagn%C3%B3stico.">Agendar →</a>
+          </div>
+          <div class="card pricing-card reveal">
+            <div class="eyebrow" style="margin-bottom: 8px;">Sprint</div>
+            <div class="price">$18-22K</div>
+            <div class="price-note">USD</div>
+            <ul>
+              <li>1 workflow AI-native completo</li>
+              <li>8–12 semanas</li>
+              <li>Integración a tu stack</li>
+            </ul>
+            <a class="cta cta--full cta--ghost" href="mailto:hola@mirentia.com?subject=Sprint&body=Hola%20Mirentia%2C%20quiero%20hablar%20de%20un%20Sprint.">Hablar →</a>
+          </div>
+          <div class="card pricing-card reveal">
+            <div class="eyebrow" style="margin-bottom: 8px;">Multi-Proceso</div>
+            <div class="price">$35-50K</div>
+            <div class="price-note">USD</div>
+            <ul>
+              <li>2–4 workflows</li>
+              <li>16–24 semanas</li>
+              <li>Integración completa</li>
+            </ul>
+            <a class="cta cta--full cta--ghost" href="mailto:hola@mirentia.com?subject=Multi-Proceso&body=Hola%20Mirentia%2C%20quiero%20hablar%20de%20Multi-Proceso.">Hablar →</a>
+          </div>
+          <div class="card pricing-card reveal">
+            <div class="eyebrow" style="margin-bottom: 8px;">Retainer</div>
+            <div class="price">$3.5-8K</div>
+            <div class="price-note">USD/mes</div>
+            <ul>
+              <li>Soporte + iteración</li>
+              <li>Upgrade de agentes</li>
+              <li>Mes a mes</li>
+            </ul>
+            <a class="cta cta--full cta--ghost" href="mailto:hola@mirentia.com?subject=Retainer&body=Hola%20Mirentia%2C%20quiero%20hablar%20de%20un%20Retainer.">Hablar →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GARANTÍA -->
+    <section class="section section--dark reveal">
+      <div class="wrap">
+        <div class="guarantee">
+          <div class="eyebrow">Garantía</div>
+          <h2>Si en el Mini-Diagnóstico no identificamos al menos 1 proceso automatizable que se pague solo en 90 días, te devolvemos el pago.</h2>
+          <p class="lead">Medimos lo que importa. Si el proceso no tiene ROI claro en 90 días, no merece tu dinero.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="section" id="contacto">
+      <div class="wrap center">
+        <div class="eyebrow">Próximo paso</div>
+        <h2>Un diagnóstico. Un proceso. Cero especulación.</h2>
+        <p class="lead">Mapeamos un proceso de tu negocio que hoy es manual. Si tiene ROI claro, te decimos cómo automatizarlo. Si no, te devolvemos el diagnóstico.</p>
+        <div class="cta-row" style="justify-content: center; margin-top: 32px;">
+          <a class="cta" href="mailto:hola@mirentia.com?subject=Diagn%C3%B3stico%20AI-Readiness&body=Hola%20Mirentia%2C%20quiero%20agendar%20un%20Mini-Diagn%C3%B3stico.">Agendar diagnóstico →</a>
+          <a class="cta cta--ghost" href="https://wa.me/573000000000?text=Hola%20Mirentia%2C%20quiero%20agendar%20un%20Mini-Diagn%C3%B3stico." rel="noopener" style="margin-left: 12px;">WhatsApp</a>
+        </div>
+        <p class="cta-micro">Respondemos en menos de 24h.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div>Mirentia · IA-native agency · Colombia</div>
+      <div style="margin-top: 8px;">
+        <a href="mailto:hola@mirentia.com">hola@mirentia.com</a> ·
+        <a href="https://github.com/jordanlanch" rel="noopener">github.com/jordanlanch</a> ·
+        <a href="https://x.com/JodanLive" rel="noopener">x.com/JodanLive</a> ·
+        <a href="https://linkedin.com/in/jordanlanch" rel="noopener">linkedin.com/in/jordanlanch</a>
+      </div>
+      <div style="margin-top: 16px;">© 2026 Jordan · Mirentia.</div>
+    </div>
+  </footer>
+
+  <!--
+  ============================================================
+  TASK-26 TODO: Newsletter signup form (Beehiiv)
+  ============================================================
+  Jordan needs to:
+    (a) Sign up at beehiiv.com (free tier ≤ 2.5k subs)
+    (b) Provide the publishable ID from Beehiiv dashboard
+    (c) Replace the placeholder below with the real embed form
+
+  Expected embed code (once Jordan provides PUB_ID):
+  <script async src="https://embeds.beehiiv.com/<PUB_ID>/subscribe.js"></script>
+  <iframe src="https://embeds.beehiiv.com/<PUB_ID>/subscribe"
+          data-test-id="beehiiv-embed" width="100%" height="320"
+          style="border: none;"></iframe>
+
+  Placement: Add inside <section id="contacto"> after the .cta-row div,
+  or in the footer below the social links.
+  ============================================================
+  -->
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+  <script src="/assets/motion.js" defer></script>
+</body>
+</html>

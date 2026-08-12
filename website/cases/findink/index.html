@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <title>Findink — Marketplace de tatuajes · Caso Mirentia</title>
+  <meta name="description" content="Cómo ayudamos a un marketplace de tatuajes a lanzar portfolio + booking con AI-native. Lanzamiento en 6 semanas, 50+ tatuadores onboarded." />
+  <meta property="og:title" content="Findink — Caso Mirentia" />
+  <meta property="og:description" content="Lanzamiento en 6 semanas, 50+ tatuadores onboarded, 0 disputas de pago." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230a0a0a'/><text x='50' y='68' font-size='62' font-family='Inter,Helvetica,Arial,sans-serif' font-weight='900' text-anchor='middle' fill='%23FFD700'>M</text></svg>" />
+  <link rel="canonical" href="https://mirentia.com/cases/findink/" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Cómo ayudamos a un marketplace de tatuajes a lanzar portfolio + booking con AI-native",
+    "author": { "@type": "Organization", "name": "Mirentia" },
+    "datePublished": "2025-11-01",
+    "dateModified": "2026-02-01",
+    "publisher": { "@type": "Organization", "name": "Mirentia", "url": "https://mirentia.com" },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://mirentia.com/cases/findink/" }
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: #0a0a0a;
+      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+    .accent { color: #FFD700; }
+    .eyebrow {
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #FFD700;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: clamp(32px, 6vw, 52px);
+      line-height: 1.05;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin: 0 0 20px;
+    }
+    h2 {
+      font-size: clamp(24px, 4vw, 36px);
+      line-height: 1.1;
+      font-weight: 900;
+      letter-spacing: -0.015em;
+      margin: 0 0 24px;
+    }
+    h3 {
+      font-size: 20px;
+      font-weight: 800;
+      margin: 0 0 8px;
+    }
+    p { margin: 0 0 16px; }
+    .lead { font-size: clamp(17px, 2.2vw, 20px); color: #c9c9c9; margin-bottom: 28px; }
+    .section { padding: 60px 0; border-top: 1px solid #1a1a1a; }
+    .card {
+      background: #131313;
+      border: 1px solid #232323;
+      border-radius: 14px;
+      padding: 28px 24px;
+      margin-bottom: 16px;
+    }
+    .card--highlight { border-color: #FFD700; background: #1a1300; }
+    .metric {
+      font-size: clamp(48px, 10vw, 80px);
+      font-weight: 900;
+      color: #FFD700;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin: 0 0 8px;
+    }
+    .metric-label { font-size: 16px; color: #e5e5e5; font-weight: 600; }
+    .metric-sub { font-size: 14px; color: #888; margin-top: 4px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    @media (max-width: 640px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .section { padding: 44px 0; }
+    }
+    .pill {
+      display: inline-block;
+      padding: 6px 14px;
+      background: #1a1a1a;
+      border-radius: 999px;
+      font-size: 13px;
+      color: #c9c9c9;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+    .cta {
+      display: inline-block;
+      background: #FFD700;
+      color: #0a0a0a;
+      padding: 18px 32px;
+      font-size: 17px;
+      font-weight: 800;
+      border-radius: 10px;
+      border: 0;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,215,0,0.35); }
+    .cta--ghost {
+      background: transparent;
+      color: #FFD700;
+      border: 2px solid #FFD700;
+    }
+    .cta--ghost:hover { background: #FFD700; color: #0a0a0a; }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #888;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 16px 0;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: #FFD700; }
+    .footer {
+      padding: 40px 0 60px;
+      color: #888;
+      font-size: 14px;
+      text-align: center;
+      border-top: 1px solid #1a1a1a;
+    }
+    .footer a { color: #FFD700; }
+    .tag-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+    .timeline { border-left: 2px solid #FFD700; padding-left: 20px; margin-left: 8px; }
+    .timeline-item { margin-bottom: 20px; position: relative; }
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -25px;
+      top: 6px;
+      width: 8px;
+      height: 8px;
+      background: #FFD700;
+      border-radius: 50%;
+    }
+    .timeline-item h4 { margin: 0 0 4px; font-size: 16px; color: #FFD700; }
+    .timeline-item p { margin: 0; font-size: 15px; color: #c9c9c9; }
+    .prose li { margin-bottom: 8px; color: #c9c9c9; }
+    .prose ul { padding-left: 20px; }
+    .section-header { margin-bottom: 32px; }
+    .small { font-size: 14px; color: #888; }
+  </style>
+  <link rel="stylesheet" href="/assets/motion.css" />
+</head>
+<body>
+
+  <header class="wrap">
+    <a class="back-link" href="https://mirentia.com">← Mirentia</a>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="wrap" style="padding: 48px 24px 56px;">
+      <div class="hero-stagger">
+        <div class="eyebrow">Caso de estudio · Findink</div>
+        <h1>Findink — <span class="accent">Marketplace de tatuajes</span></h1>
+        <p class="lead">Cómo ayudamos a un marketplace de tatuajes a lanzar portfolio + booking con AI-native.</p>
+        <div class="tag-row">
+          <span class="pill">Flutter</span>
+          <span class="pill">Stripe Connect</span>
+          <span class="pill">AWS S3</span>
+          <span class="pill">PostgreSQL</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- HERO METRIC -->
+    <section class="section reveal" style="padding-top: 0;">
+      <div class="wrap">
+        <div class="card card--highlight reveal" style="text-align: center;">
+          <div class="metric">6 sem</div>
+          <div class="metric-label">Lanzamiento en producción</div>
+          <div class="metric-sub">De cero a marketplace vivo con 50+ tatuadores onboarded</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROBLEMA -->
+    <section class="section reveal">
+      <div class="wrap">
+        <div class="section-header">
+          <div class="eyebrow">El problema</div>
+          <h2>Tatuadores sin portfolio público. Clientes sin visibilidad de booking.</h2>
+        </div>
+        <div class="card reveal">
+          <p>El mercado de tatuajes en Latinoamérica opera en su mayoría por Instagram directo: el cliente busca un tatuador, le escribe, negocia precio, coordinar fecha — todo en un hilo de WhatsApp o DM. El problema para los tatuadores:</p>
+          <ul class="prose">
+            <li>No existe un portfolio centralizado donde mostrar trabajo real</li>
+            <li>Los clientes no pueden ver disponibilidad ni agendar directamente</li>
+            <li>La gestión de pagos es manual: transferencias, Nequi, Davivienda — sin garantías</li>
+            <li>No hay forma de distinguirse para tatuadores nuevos sin clientela</li>
+          </ul>
+          <p style="margin-bottom: 0;">Findink nació para resolver esto: un marketplace donde tatuadores publican portfolio, clientes reservan, y el pago se protege con escrow.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOLUCION -->
+    <section class="section reveal">
+      <div class="wrap">
+        <div class="section-header">
+          <div class="eyebrow">La solución</div>
+          <h2>App cross-platform, booking con escrow, onboarding automático.</h2>
+        </div>
+        <div class="grid-2">
+          <div class="card reveal">
+            <h3>Portfolio visual</h3>
+            <p class="small" style="margin-bottom: 12px;">Flutter · AWS S3</p>
+            <p>Los tatuadores suben fotos de sus trabajos con tagging por estilo (realismo, blackwork, japanese, etc.). Búsqueda facetada por estilo, ciudad, precio estimado.</p>
+          </div>
+          <div class="card reveal">
+            <h3>Booking inteligente</h3>
+            <p class="small" style="margin-bottom: 12px;">Flutter · Node.js</p>
+            <p>El cliente selecciona tatuador, ve disponibilidad real, reserva fecha y hora. Confirmación automática por email y WhatsApp.</p>
+          </div>
+          <div class="card reveal">
+            <h3>Pagos con escrow</h3>
+            <p class="small" style="margin-bottom: 12px;">Stripe Connect</p>
+            <p>El cliente paga por adelantado. El dinero se retiene hasta que la sesión se completa. Si hay disputa, Mirentia arbitra. Cero fraudes en los primeros 3 meses.</p>
+          </div>
+          <div class="card reveal">
+            <h3>Onboarding AI-assisted</h3>
+            <p class="small" style="margin-bottom: 12px;">GPT-4</p>
+            <p>Al registrarte como tatuador, un agente GPT-4 te ayuda a escribir tu bio, taggear estilos, y configurar precios. Onboarding en menos de 5 minutos.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULTADOS -->
+    <section class="section reveal">
+      <div class="wrap">
+        <div class="section-header">
+          <div class="eyebrow">Resultados</div>
+          <h2>Métricas después del launch.</h2>
+        </div>
+        <div class="grid-3">
+          <div class="card reveal" style="text-align: center;">
+            <div class="metric" style="font-size: 48px;">50+</div>
+            <div class="metric-label">tatuadores onboarded</div>
+            <div class="metric-sub">Semana 1 post-launch</div>
+          </div>
+          <div class="card reveal" style="text-align: center;">
+            <div class="metric" style="font-size: 48px;">0</div>
+            <div class="metric-label">disputas de pago</div>
+            <div class="metric-sub">Stripe Connect escrow funcionando</div>
+          </div>
+          <div class="card reveal" style="text-align: center;">
+            <div class="metric" style="font-size: 48px;">12%</div>
+            <div class="metric-label">conversion a booking</div>
+            <div class="metric-sub">De visita a reserva confirmada</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STACK -->
+    <section class="section reveal">
+      <div class="wrap">
+        <div class="section-header">
+          <div class="eyebrow">Stack técnico</div>
+          <h2>Lo que usamos.</h2>
+        </div>
+        <div class="card reveal">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;">
+            <div>
+              <div class="small" style="margin-bottom: 4px;">App</div>
+              <div>Flutter · Dart</div>
+            </div>
+            <div>
+              <div class="small" style="margin-bottom: 4px;">Backend</div>
+              <div>Node.js · PostgreSQL</div>
+            </div>
+            <div>
+              <div class="small" style="margin-bottom: 4px;">Pagos</div>
+              <div>Stripe Connect · Escrow</div>
+            </div>
+            <div>
+              <div class="small" style="margin-bottom: 4px;">Assets</div>
+              <div>AWS S3 · CloudFront</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="section reveal">
+      <div class="wrap">
+        <div class="section-header">
+          <div class="eyebrow">Timeline</div>
+          <h2>6 semanas de implementación.</h2>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <h4>Semana 1: Producto Mínimo</h4>
+            <p>Alcance mínimo viable: registro tatuador, upload de portfolio, perfil público. Deploy en staging con dominio findink.co.</p>
+          </div>
+          <div class="timeline-item">
+            <h4>Semana 2: Booking + Calendar</h4>
+            <p>Motor de disponibilidad, booking con selección de fecha, confirmaciones por email.</p>
+          </div>
+          <div class="timeline-item">
+            <h4>Semana 3-4: Stripe Connect</h4>
+            <p>Integración de pagos con escrow. Onboarding de tatuadores como vendedores en Stripe. Pruebas con sandbox.</p>
+          </div>
+          <div class="timeline-item">
+            <h4>Semana 5: Polish + AI onboarding</h4>
+            <p>Agente GPT-4 para bio y tagging automático. UI/UX refinamientos. Testing con usuarios reales.</p>
+          </div>
+          <div class="timeline-item">
+            <h4>Semana 6: Launch</h4>
+            <p>Deploy a producción, onboarding de primeros 50 tatuadores, marketing inicial en redes de tatuadores en Bogotá.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOUNDER -->
+    <section class="section reveal">
+      <div class="wrap">
+        <div class="section-header">
+          <div class="eyebrow">Founder</div>
+          <h2>Sobre Jordan.</h2>
+        </div>
+        <div class="card reveal">
+          <p>CTO de Findink. 7 años de experiencia en desarrollo de software. Responsabilidades: arquitectura Flutter, backend Node.js, integración Stripe Connect.</p>
+          <p style="margin-bottom: 0;">LinkedIn: <a class="accent" href="https://linkedin.com/in/jordanlanch" rel="noopener" target="_blank">linkedin.com/in/jordanlanch</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section reveal">
+      <div class="wrap" style="text-align: center;">
+        <div class="eyebrow">¿Te identificás?</div>
+        <h2>¿Tenés un marketplace en mente?</h2>
+        <p class="lead">Si estás pensando en un modelo de dos caras — proveedores y clientes — hablemos. El patrón de Findink se replica.</p>
+        <div style="margin-top: 28px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+          <a class="cta" href="mailto:hola@mirentia.com?subject=Findink%3A%20Quiero%20hablar%20de%20un%20marketplace">Hablemos →</a>
+          <a class="cta cta--ghost" href="https://findink.co" rel="noopener" target="_blank">Ver Findink.co →</a>
+        </div>
+        <div style="margin-top: 24px;">
+          <a class="back-link" href="https://mirentia.com">← Volver a Mirentia</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div>Mirentia · IA-native agency · Colombia</div>
+      <div style="margin-top: 8px;">
+        <a href="mailto:hola@mirentia.com">hola@mirentia.com</a> ·
+        <a href="https://mirentia.com">mirentia.com</a>
+      </div>
+      <div style="margin-top: 16px;">© 2026 Jordan · Mirentia.</div>
+    </div>
+  </footer>
+
+  <script src="/assets/motion.js" defer></script>
+</body>
+</html>

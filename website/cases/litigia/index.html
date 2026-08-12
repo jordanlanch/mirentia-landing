@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <title>LitigIA — AI para abogados litigantes · Mirentia</title>
+  <meta name="description" content="Service-as-a-Software. Los agentes ejecutan el trabajo, el abogado revisa. Lanzamiento 2026." />
+  <meta property="og:title" content="LitigIA — Caso Mirentia" />
+  <meta property="og:description" content="Service-as-a-Software para abogados litigantes en Colombia. Lanzamiento 2026." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230a0a0a'/><text x='50' y='68' font-size='62' font-family='Inter,Helvetica,Arial,sans-serif' font-weight='900' text-anchor='middle' fill='%23FFD700'>M</text></svg>" />
+  <link rel="canonical" href="https://mirentia.com/cases/litigia/" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: #0a0a0a;
+      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+    .accent { color: #FFD700; }
+    .eyebrow {
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #FFD700;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: clamp(32px, 6vw, 52px);
+      line-height: 1.05;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin: 0 0 20px;
+    }
+    h2 {
+      font-size: clamp(24px, 4vw, 36px);
+      line-height: 1.1;
+      font-weight: 900;
+      letter-spacing: -0.015em;
+      margin: 0 0 24px;
+    }
+    h3 {
+      font-size: 20px;
+      font-weight: 800;
+      margin: 0 0 8px;
+    }
+    p { margin: 0 0 16px; }
+    .lead { font-size: clamp(17px, 2.2vw, 20px); color: #c9c9c9; margin-bottom: 28px; }
+    .section { padding: 60px 0; border-top: 1px solid #1a1a1a; }
+    .card {
+      background: #131313;
+      border: 1px solid #232323;
+      border-radius: 14px;
+      padding: 28px 24px;
+      margin-bottom: 16px;
+    }
+    .card--highlight { border-color: #FFD700; background: #1a1300; }
+    .metric {
+      font-size: clamp(48px, 10vw, 80px);
+      font-weight: 900;
+      color: #FFD700;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin: 0 0 8px;
+    }
+    .metric-label { font-size: 16px; color: #e5e5e5; font-weight: 600; }
+    .metric-sub { font-size: 14px; color: #888; margin-top: 4px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    @media (max-width: 640px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .section { padding: 44px 0; }
+    }
+    .pill {
+      display: inline-block;
+      padding: 6px 14px;
+      background: #1a1a1a;
+      border-radius: 999px;
+      font-size: 13px;
+      color: #c9c9c9;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+    .cta {
+      display: inline-block;
+      background: #FFD700;
+      color: #0a0a0a;
+      padding: 18px 32px;
+      font-size: 17px;
+      font-weight: 800;
+      border-radius: 10px;
+      border: 0;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,215,0,0.35); }
+    .cta--ghost {
+      background: transparent;
+      color: #FFD700;
+      border: 2px solid #FFD700;
+    }
+    .cta--ghost:hover { background: #FFD700; color: #0a0a0a; }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #888;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 16px 0;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: #FFD700; }
+    .footer {
+      padding: 40px 0 60px;
+      color: #888;
+      font-size: 14px;
+      text-align: center;
+      border-top: 1px solid #1a1a1a;
+    }
+    .footer a { color: #FFD700; }
+    .tag-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+    .stealth-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #1a1300;
+      border: 1px solid #FFD700;
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 13px;
+      color: #FFD700;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .section-header { margin-bottom: 32px; }
+    .small { font-size: 14px; color: #888; }
+    .nda-note {
+      background: #131313;
+      border-left: 3px solid #FFD700;
+      padding: 16px 20px;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #888;
+    }
+    .nda-note strong { color: #FFD700; }
+  </style>
+  <link rel="stylesheet" href="/assets/motion.css" />
+</head>
+<body>
+
+  <header class="wrap">
+    <a class="back-link" href="https://mirentia.com">← Mirentia</a>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="wrap" style="padding: 48px 24px 56px;">
+      <div class="hero-stagger">
+        <div class="eyebrow">Caso de estudio · LitigIA</div>
+        <div style="margin-bottom: 12px;">
+          <span class="stealth-badge">🔒 Stealth · NDA</span>
+        </div>
+        <h1>LitigIA — <span class="accent">AI para abogados litigantes en Colombia</span></h1>
+        <p class="lead">Service-as-a-Software. Los agentes ejecutan el trabajo, el abogado revisa.</p>
+        <div class="tag-row">
+          <span class="pill">Multi-agent orchestration</span>
+          <span class="pill">FastAPI</span>
+          <span class="pill">PostgreSQL</span>
+          <span class="pill">Latam-GPT sovereign layer</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- HERO METRIC -->
+    <section class="section reveal" style="padding-top: 0;">
+      <div class="wrap">
+        <div class="card card--highlight reveal" style="text-align: center;">
+          <div class="metric">2026</div>
+          <div class="metric-label">Lanzamiento</div>
+          <div class="metric-sub">Próximamente</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROBLEMA -->
+    <section class="section reveal">
+      <div class="wrap">
+        <div class="section-header">
+          <div class="eyebrow">El problema</div>
+          <h2>200K+ abogados en Colombia. 70% del trabajo es repetitivo.</h2>
+        </div>
+        <div class="card reveal">
+          <p>Un abogado litigante en Colombia dedica una cantidad absurda de horas a tareas que no requieren criterio legal:</p>
+          <ul style="padding-left: 20px; color: #c9c9c9;">
+            <li><strong>Búsqueda de jurisprudencia</strong> — buscar providencias similares en jurisprudencia COLDATA, rastreo manual de jurisprudencia aplicable.</li>
+            <li><strong>Lectura de providencias</strong> — revisar Autos interlocutorios, sentencias de inhibitory, cartas de abogados adversarios.</li>
+            <li><strong>Drafting de escritos</strong> — memoriales, excepciones, respuestas a traslado,一切都重复格式。</li>
+          </ul>
+          <p style="margin-bottom: 0;">Herramientas como vLex, Legis, y Word/legal templates existen pero requieren que el abogado <strong>aprenda y opere la herramienta</strong>. El abogado no es el usuario — el trabajo es el usuario.</p>
+          <div class="nda-note">
+            <strong>Nota NDA:</strong> No podemos revelar el nombre del estudio de abogados piloto ni detalles de implementación hasta el lanzamiento. Esta página es un teaser público del enfoque.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOLUCION -->
+    <section class="section reveal">
+      <div class="wrap">
+        <div class="section-header">
+          <div class="eyebrow">La solución</div>
+          <h2>Multi-agent orchestration. Agentes que hacen el trabajo.</h2>
+        </div>
+        <div class="grid-2">
+          <div class="card reveal">
+            <h3>Agentes que ejecutan</h3>
+            <p class="small" style="margin-bottom: 12px;">No herramientas que el abogado aprende</p>
+            <p>En vez de darle al abogado un motor de búsqueda mejorado, el sistema recibe una instrucción de negocio: "Encontrá toda la jurisprudencia sobre Acción de tutela contra desalojo en Bogotá 2023-2024" y retorna el memo listo para revisar.</p>
+          </div>
+          <div class="card reveal">
+            <h3>Orquestación multi-agente</h3>
+            <p class="small" style="margin-bottom: 12px;">Python · FastAPI · LangGraph</p>
+            <p>Múltiples agentes especializados: uno busca jurisprudencia, otro analiza providencias, otro draft. Se comunican entre sí y entregan un resultado cohesivo al abogado para revisión final.</p>
+          </div>
+          <div class="card reveal">
+            <h3>Sovereign AI layer</h3>
+            <p class="small" style="margin-bottom: 12px;">Latam-GPT · OpenAI / Anthropic</p>
+            <p>Modelo entrenado con jurisprudencia colombiana y contexto legal local. Más preciso que GPT-4 genérico para tareas de derecho colombiano. Cumplimiento con políticas de datos sensibles.</p>
+          </div>
+          <div class="card reveal">
+            <h3>Revisión del abogado</h3>
+            <p class="small" style="margin-bottom: 12px;">El humano firma, siempre</p>
+            <p>El output del agente es un borrador de calidad — no es el documento final. El abogado revisa, ajusta, firma. El trabajo pesado lo hace la máquina.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULTADOS ESPERADOS -->
+    <section class="section reveal">
+      <div class="wrap">
+        <div class="section-header">
+          <div class="eyebrow">Resultado esperado</div>
+          <h2>80% reducción en tiempo de trabajo repetitivo.</h2>
+        </div>
+        <div class="grid-3">
+          <div class="card reveal" style="text-align: center;">
+            <div class="metric" style="font-size: 48px;">80%</div>
+            <div class="metric-label">menos trabajo repetitivo</div>
+            <div class="metric-sub">Búsqueda, lectura, drafting</div>
+          </div>
+          <div class="card reveal" style="text-align: center;">
+            <div class="metric" style="font-size: 48px;">1hr</div>
+            <div class="metric-label">por jurisprudencia</div>
+            <div class="metric-sub">vs 4-6 horas manual</div>
+          </div>
+          <div class="card reveal" style="text-align: center;">
+            <div class="metric" style="font-size: 48px;">2026</div>
+            <div class="metric-label">lanzamiento</div>
+            <div class="metric-sub">En stealth hasta entonces</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STACK -->
+    <section class="section reveal">
+      <div class="wrap">
+        <div class="section-header">
+          <div class="eyebrow">Stack técnico</div>
+          <h2>Lo que usamos.</h2>
+        </div>
+        <div class="card reveal">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;">
+            <div>
+              <div class="small" style="margin-bottom: 4px;">Core</div>
+              <div>Python · FastAPI</div>
+            </div>
+            <div>
+              <div class="small" style="margin-bottom: 4px;">Agents</div>
+              <div>LangGraph · OpenAI · Anthropic</div>
+            </div>
+            <div>
+              <div class="small" style="margin-bottom: 4px;">Datos</div>
+              <div>PostgreSQL · Jurisprudencia COLDATA</div>
+            </div>
+            <div>
+              <div class="small" style="margin-bottom: 4px;">Sovereign layer</div>
+              <div>Latam-GPT fine-tune</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOUNDER -->
+    <section class="section reveal">
+      <div class="wrap">
+        <div class="section-header">
+          <div class="eyebrow">Founder</div>
+          <h2>Sobre Jordan.</h2>
+        </div>
+        <div class="card reveal">
+          <p>Founder 100% de LitigIA. 7 años de experiencia en desarrollo de software. Responsabilidades: arquitectura multi-agente, prompt engineering legal, integración jurisprudencia.</p>
+          <p style="margin-bottom: 0;">LinkedIn: <a class="accent" href="https://linkedin.com/in/jordanlanch" rel="noopener" target="_blank">linkedin.com/in/jordanlanch</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section reveal">
+      <div class="wrap" style="text-align: center;">
+        <div class="eyebrow">¿Querés enterarte cuando lancemos?</div>
+        <h2>Suscribite a la newsletter.</h2>
+        <p class="lead">Cuando LitigIA esté listo para beta testers, vas a ser de los primeros en saber.</p>
+        <div style="margin-top: 28px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+          <a class="cta" href="https://mirentia.com#newsletter" rel="noopener">Suscribite a la newsletter →</a>
+          <a class="cta cta--ghost" href="https://litigia.co" rel="noopener" target="_blank">Ver LitigIA.co →</a>
+        </div>
+        <div style="margin-top: 24px;">
+          <a class="back-link" href="https://mirentia.com">← Volver a Mirentia</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div>Mirentia · IA-native agency · Colombia</div>
+      <div style="margin-top: 8px;">
+        <a href="mailto:hola@mirentia.com">hola@mirentia.com</a> ·
+        <a href="https://mirentia.com">mirentia.com</a>
+      </div>
+      <div style="margin-top: 16px;">© 2026 Jordan · Mirentia.</div>
+    </div>
+  </footer>
+
+  <script src="/assets/motion.js" defer></script>
+</body>
+</html>

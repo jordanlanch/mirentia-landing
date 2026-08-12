@@ -1,0 +1,21 @@
+networks:
+  dokploy-network:
+    external: true
+
+services:
+  landing:
+    image: jordanlanch/mirentia-landing:latest
+    pull_policy: always
+    networks:
+      - dokploy-network
+    labels:
+      - traefik.enable=true
+    deploy:
+      restart_policy:
+        condition: any
+        delay: 5s
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
+# ponytail: single static page, no CMS. Add CMS when copy needs to change weekly.
