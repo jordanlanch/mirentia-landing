@@ -232,14 +232,19 @@ function bootScene() {
     cta.addEventListener('pointerleave', () => { beamTargetOpacity.value = 0; });
   });
 
-  // Scroll-driven orb scale.
+  // Scroll-driven orb scale + fade out once past the hero. CSS handles the
+  // opacity transition via .is-faded; we just toggle the class here.
   let scrollScale = 1;
   const heroEl = document.querySelector('main > section:first-of-type');
-  const nextEl = heroEl ? heroEl.nextElementSibling : null;
   function updateScroll() {
     if (!heroEl) return;
     const heroBottom = heroEl.getBoundingClientRect().bottom;
-    const nextTop = nextEl ? nextEl.getBoundingClientRect().top : window.innerHeight;
+    // Fade once the hero is mostly out of view (bottom above 5% of viewport).
+    const isFaded = heroBottom < window.innerHeight * 0.05;
+    canvas.classList.toggle('is-faded', isFaded);
+    // Scale 1.0 -> 0.7 across the hero scroll-out.
+    const nextSection = heroEl.nextElementSibling;
+    const nextTop = nextSection ? nextSection.getBoundingClientRect().top : window.innerHeight;
     const t = Math.min(Math.max((nextTop - heroBottom) / (window.innerHeight || 1), 0), 1);
     scrollScale = 1 - 0.3 * t;
   }
