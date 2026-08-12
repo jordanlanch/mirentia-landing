@@ -95,17 +95,19 @@
     const text = el.textContent;
     el.innerHTML = '';
     const words = text.split(/\s+/).filter(Boolean);
-    words.forEach((word, i) => {
-      const span = document.createElement('span');
-      span.className = 'word';
-      span.style.animationDelay = `${100 + i * 70}ms`;
-      if (accentText && i === words.length - 1 && word.includes(accentText)) {
-        const plainWord = word.replace(accentText, '');
-        span.innerHTML = plainWord + ' ' + accentHTML;
-      } else {
-        span.textContent = word + ' ';
-      }
-      el.appendChild(span);
-    });
+words.forEach((word, i) => {
+    const span = document.createElement('span');
+    span.className = 'word';
+    span.style.animationDelay = `${100 + i * 70}ms`;
+    // Inline margin-right for word spacing — CSS rule parsing was unreliable.
+    if (i < words.length - 1) span.style.marginRight = '0.22em';
+    if (accentText && i === words.length - 1 && word.includes(accentText)) {
+      const plainWord = word.replace(accentText, '');
+      span.innerHTML = plainWord + ' ' + accentHTML;
+    } else {
+      span.textContent = word + ' ';
+    }
+    el.appendChild(span);
+  });
   });
 })();
