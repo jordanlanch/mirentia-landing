@@ -1,0 +1,255 @@
+/* mirentia — conversion form. 3 steps, vanilla, no deps.
+   Reuses --gold, --bg, --bg-card, --bg-input, --border, --warn from base.css. */
+
+.form-section {
+  padding: 80px 0;
+  border-top: 1px solid var(--bg-input);
+  background: var(--bg);
+}
+.form-wrap {
+  max-width: 640px;
+  margin: 0 auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 40px 36px;
+}
+.form-wrap h2 { font-size: clamp(24px, 4vw, 32px); margin-bottom: 12px; }
+.form-intro { color: var(--text-muted); font-size: 16px; margin-bottom: 24px; }
+
+/* ---- Stepper indicator ---- */
+.form-stepper {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 28px;
+  list-style: none;
+  padding: 0;
+}
+.form-stepper li {
+  flex: 1;
+  height: 4px;
+  background: var(--bg-input);
+  border-radius: 999px;
+  transition: background 0.3s ease;
+}
+.form-stepper li.is-active { background: var(--gold); }
+.form-stepper li.is-done { background: var(--gold-soft); opacity: 0.6; }
+
+/* ---- Step container with transitions ---- */
+.form-step {
+  display: none;
+}
+.form-step.is-active {
+  display: block;
+  animation: form-step-enter 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes form-step-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .form-step.is-active { animation: none; }
+  .form-stepper li { transition: none; }
+}
+
+/* ---- Field ---- */
+.field { margin-bottom: 18px; }
+.field-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-faint);
+  margin-bottom: 6px;
+}
+.field-label .req {
+  color: var(--gold);
+  margin-left: 4px;
+}
+.field-input,
+.field-select,
+.field-textarea {
+  width: 100%;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  color: var(--text);
+  font-size: 16px;
+  font-family: var(--font-sans);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.field-input:focus,
+.field-select:focus,
+.field-textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.18);
+}
+.field-textarea { min-height: 96px; resize: vertical; }
+.field-select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--gold) 50%),
+                    linear-gradient(135deg, var(--gold) 50%, transparent 50%);
+  background-position: calc(100% - 22px) 50%, calc(100% - 14px) 50%;
+  background-size: 8px 8px, 8px 8px;
+  background-repeat: no-repeat;
+  padding-right: 40px;
+}
+
+.field.is-error .field-input,
+.field.is-error .field-select,
+.field.is-error .field-textarea {
+  border-color: var(--warn);
+  box-shadow: 0 0 0 3px rgba(255, 81, 81, 0.15);
+}
+.field.is-success .field-input,
+.field.is-success .field-select {
+  border-color: var(--gold);
+}
+.field-error {
+  display: none;
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--warn);
+}
+.field.is-error .field-error { display: block; }
+
+/* ---- Honeypot (hidden, off-screen, not visually-hidden) ---- */
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---- Submit / nav buttons ---- */
+.form-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 8px;
+}
+.btn-submit {
+  background: var(--gold);
+  color: var(--bg);
+  border: 0;
+  border-radius: var(--radius);
+  padding: 16px 24px;
+  font-size: 16px;
+  font-weight: 800;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+  letter-spacing: 0.01em;
+}
+.btn-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -6px rgba(255, 215, 0, 0.4);
+}
+.btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+.btn-submit.is-loading::after {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--bg);
+  border-top-color: transparent;
+  border-radius: 50%;
+  margin-left: 10px;
+  vertical-align: middle;
+  animation: btn-spin 0.8s linear infinite;
+}
+@keyframes btn-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .btn-submit.is-loading::after { animation: none; }
+}
+.btn-back {
+  background: transparent;
+  color: var(--text-muted);
+  border: 0;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 8px 12px;
+  font-family: var(--font-sans);
+}
+.btn-back:hover { color: var(--gold); }
+
+/* ---- Tier badge (shown after step 2) ---- */
+.tier-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 18px;
+  border: 1px solid;
+}
+.tier-badge .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.tier-badge[data-tier="cualificado"] {
+  color: var(--gold);
+  background: var(--gold-bg-soft);
+  border-color: var(--gold);
+}
+.tier-badge[data-tier="tibio"] {
+  color: #ffae42;
+  background: rgba(255, 174, 66, 0.08);
+  border-color: rgba(255, 174, 66, 0.4);
+}
+.tier-badge[data-tier="frio"] {
+  color: var(--text-muted);
+  background: var(--bg-input);
+  border-color: var(--border);
+}
+
+/* ---- Result panels ---- */
+.form-result {
+  display: none;
+  padding: 28px;
+  border-radius: var(--radius);
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.6;
+}
+.form-result.is-visible { display: block; }
+.form-result--success {
+  background: var(--gold-bg-soft);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+}
+.form-result--error {
+  background: rgba(255, 81, 81, 0.08);
+  border: 1px solid var(--warn);
+  color: var(--warn);
+}
+.form-result a { color: inherit; text-decoration: underline; }
+
+/* ---- Live region (announce errors to screen readers) ---- */
+.form-live {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* ---- Mobile-first responsive ---- */
+@media (max-width: 600px) {
+  .form-wrap { padding: 28px 20px; }
+  .form-actions { flex-direction: column; align-items: stretch; }
+  .btn-submit { width: 100%; }
+  .btn-back { width: 100%; text-align: center; }
+}

@@ -492,3 +492,41 @@ p { margin: 0 0 16px; }
 }
 
 /* ---- Reveal (handled by motion.css) ---- */
+
+/* ---- Mitos vs Realidad block ---- */
+.mitos-grid > article {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 24px 22px;
+}
+.mitos-grid .mito-block { border-left: 3px solid var(--warn); }
+.mitos-grid .realidad-block { border-left: 3px solid var(--gold); }
+.mito-label,
+.realidad-label {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.mito-label { color: var(--warn); }
+.realidad-label { color: var(--gold); }
+@media (max-width: 720px) {
+  .mitos-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ---- Lo que NO hacemos block ---- */
+.no-nos-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px 22px;
+  border-left: 3px solid var(--gold);
+}
+.no-nos-item h3 { color: var(--text-faint); }
+.no-nos-item .small { color: var(--text-muted); }
+@media (max-width: 720px) {
+  .no-nos-list { grid-template-columns: 1fr !important; }
+}
