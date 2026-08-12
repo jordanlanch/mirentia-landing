@@ -61,7 +61,7 @@
   left: 0;
   width: 10px;
   height: 10px;
-  background: #FFD700;
+  background: var(--gold);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
@@ -89,13 +89,16 @@
   margin-right: 0.18em;
 }
 .word-stagger .word:last-child { margin-right: 0; }
+.word-stagger .word--accent { color: var(--gold); }
 @keyframes word-up {
   to { opacity: 1; transform: translateY(0); }
 }
+/* .hero-stagger > .word-stagger sits as first item and inherits .hero-stagger > * { opacity: 0 }.
+   Override without important flag — selector specificity (0,2,0) beats .hero-stagger > * (0,1,0). */
 .hero-stagger > .word-stagger {
-  opacity: 1 !important;
-  transform: none !important;
-  animation: none !important;
+  opacity: 1;
+  transform: none;
+  animation: none;
 }
 @media (prefers-reduced-motion: reduce) {
   .word-stagger .word {
@@ -126,7 +129,7 @@
   display: inline-block;
   width: 8px;
   height: 8px;
-  background: #FFD700;
+  background: var(--gold);
   border-radius: 50%;
   margin-left: 2px;
 }
@@ -135,7 +138,7 @@
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: #FFD700;
+  background: var(--gold);
   animation: live-ring 1.8s ease-out infinite;
   z-index: -1;
 }
@@ -156,10 +159,10 @@
 .marquee {
   overflow: hidden;
   white-space: nowrap;
-  border-top: 1px solid #1a1a1a;
-  border-bottom: 1px solid #1a1a1a;
+  border-top: 1px solid var(--bg-input);
+  border-bottom: 1px solid var(--bg-input);
   padding: 18px 0;
-  background: #050505;
+  background: var(--bg-elev);
   position: relative;
 }
 .marquee::before,
@@ -172,8 +175,8 @@
   z-index: 2;
   pointer-events: none;
 }
-.marquee::before { left: 0; background: linear-gradient(to right, #050505, transparent); }
-.marquee::after { right: 0; background: linear-gradient(to left, #050505, transparent); }
+.marquee::before { left: 0; background: linear-gradient(to right, var(--bg-elev), transparent); }
+.marquee::after { right: 0; background: linear-gradient(to left, var(--bg-elev), transparent); }
 .marquee-track {
   display: inline-flex;
   gap: 40px;
@@ -181,11 +184,11 @@
   font-size: 14px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #888;
+  color: var(--text-dim);
   font-weight: 700;
 }
-.marquee-track .dot-sep { color: #FFD700; }
-.marquee-track .highlight { color: #FFD700; }
+.marquee-track .dot-sep { color: var(--gold); }
+.marquee-track .highlight { color: var(--gold); }
 @keyframes marquee-scroll {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }

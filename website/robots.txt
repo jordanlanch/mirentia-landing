@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Block any orphan / private paths
+Disallow: /assets/.cache/
+Disallow: /*.json$
+
+# Sitemap location
+Sitemap: https://mirentia.com/sitemap.xml

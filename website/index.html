@@ -12,249 +12,27 @@
   <meta property="og:url" content="https://mirentia.com" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230a0a0a'/><text x='50' y='68' font-size='62' font-family='Inter,Helvetica,Arial,sans-serif' font-weight='900' text-anchor='middle' fill='%23FFD700'>M</text></svg>" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      background: #0a0a0a;
-      color: #ffffff;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
-      font-size: 18px;
-      line-height: 1.55;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    a { color: inherit; text-decoration: none; }
-    .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
-    .accent { color: #FFD700; }
-    .eyebrow {
-      font-size: 13px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #FFD700;
-      font-weight: 700;
-      margin-bottom: 16px;
-    }
-    h1 {
-      font-size: clamp(36px, 7vw, 64px);
-      line-height: 1.05;
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      margin: 0 0 24px;
-    }
-    h2 {
-      font-size: clamp(28px, 5vw, 44px);
-      line-height: 1.1;
-      font-weight: 900;
-      letter-spacing: -0.015em;
-      margin: 0 0 32px;
-    }
-    h3 {
-      font-size: 22px;
-      font-weight: 800;
-      margin: 0 0 8px;
-      letter-spacing: -0.01em;
-    }
-    p { margin: 0 0 16px; }
-    .lead { font-size: clamp(18px, 2.4vw, 22px); color: #c9c9c9; margin-bottom: 32px; }
-    .section { padding: 80px 0; border-top: 1px solid #1a1a1a; }
-    .section--dark { background: #050505; }
-    .grid { display: grid; gap: 16px; }
-    .grid-3 { grid-template-columns: repeat(3, 1fr); }
-    .grid-4 { grid-template-columns: repeat(4, 1fr); }
-    @media (max-width: 720px) {
-      .grid-3 { grid-template-columns: 1fr; }
-      .grid-4 { grid-template-columns: 1fr 1fr; }
-      .section { padding: 56px 0; }
-    }
-    .card {
-      background: #131313;
-      border: 1px solid #232323;
-      border-radius: 14px;
-      padding: 28px 24px;
-    }
-    .card--highlight { border-color: #FFD700; background: #1a1300; }
-    .card .price {
-      font-size: 28px;
-      font-weight: 900;
-      color: #FFD700;
-      margin-bottom: 8px;
-    }
-    .card .price-note {
-      font-size: 13px;
-      color: #888;
-      margin-bottom: 16px;
-    }
-    .card ul {
-      margin: 0 0 16px;
-      padding: 0 0 0 20px;
-      color: #c9c9c9;
-      font-size: 15px;
-    }
-    .card ul li { margin-bottom: 8px; }
-    .bul {
-      padding: 16px 0 16px 28px;
-      border-bottom: 1px solid #1a1a1a;
-      position: relative;
-      color: #e5e5e5;
-    }
-    .bul:last-child { border-bottom: 0; }
-    .bul::before {
-      content: "✗";
-      position: absolute;
-      left: 0;
-      top: 16px;
-      color: #ff5151;
-      font-weight: 800;
-    }
-    .num {
-      font-size: clamp(56px, 12vw, 96px);
-      line-height: 1;
-      font-weight: 900;
-      color: #FFD700;
-      letter-spacing: -0.04em;
-      margin: 0 0 8px;
-    }
-    .num-label { font-size: 18px; color: #e5e5e5; font-weight: 600; }
-    .cta {
-      display: inline-block;
-      background: #FFD700;
-      color: #0a0a0a;
-      padding: 22px 40px;
-      font-size: 20px;
-      font-weight: 800;
-      border-radius: 12px;
-      letter-spacing: 0.01em;
-      border: 0;
-      cursor: pointer;
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
-      box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4);
-    }
-    .cta:hover, .cta:focus {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 32px -8px rgba(255, 215, 0, 0.45);
-      outline: 0;
-    }
-    .cta--full { display: block; width: 100%; text-align: center; }
-    .cta--ghost {
-      background: transparent;
-      color: #FFD700;
-      border: 2px solid #FFD700;
-      box-shadow: none;
-    }
-    .cta--ghost:hover { background: #FFD700; color: #0a0a0a; }
-    .footer {
-      padding: 40px 0 60px;
-      color: #888;
-      font-size: 14px;
-      text-align: center;
-      border-top: 1px solid #1a1a1a;
-    }
-    .footer a { color: #FFD700; }
-    .pill {
-      display: inline-block;
-      padding: 6px 14px;
-      background: #1a1a1a;
-      border-radius: 999px;
-      font-size: 13px;
-      color: #c9c9c9;
-      margin-right: 8px;
-      margin-bottom: 8px;
-    }
-    .hero-meta {
-      margin-top: 28px;
-      color: #888;
-      font-size: 14px;
-    }
-    .cta-row {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    @media (max-width: 720px) {
-      .cta-row { flex-direction: column; align-items: stretch; }
-      .cta { width: 100%; text-align: center; }
-    }
-    .nav {
-      padding: 20px 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #1a1a1a;
-    }
-    .brand { font-weight: 900; font-size: 20px; letter-spacing: -0.02em; }
-    .brand .dot { color: #FFD700; }
-    .nav-cta {
-      font-size: 14px;
-      color: #FFD700;
-      font-weight: 700;
-    }
-    .proof-meta { margin-top: 12px; font-size: 14px; color: #888; }
-    .guarantee {
-      border: 2px solid #FFD700;
-      border-radius: 16px;
-      padding: 36px 32px;
-      background: #131000;
-    }
-    .guarantee h2 { color: #FFD700; }
-    .small { font-size: 14px; color: #888; }
-    .cta-micro { color: #888; font-size: 13px; margin-top: 12px; }
-    .center { text-align: center; }
-    .hero-cta-wrap { margin-top: 24px; }
-    .arrow { font-weight: 900; }
-    .social-links {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-top: 16px;
-    }
-    .social-links a {
-      color: #FFD700;
-      font-weight: 700;
-      font-size: 15px;
-      border: 1px solid #FFD700;
-      padding: 8px 16px;
-      border-radius: 8px;
-      transition: background 0.15s, color 0.15s;
-    }
-    .social-links a:hover { background: #FFD700; color: #0a0a0a; }
-    .proof-stats {
-      display: flex;
-      gap: 32px;
-      flex-wrap: wrap;
-      margin-top: 24px;
-      padding-top: 24px;
-      border-top: 1px solid #1a1a1a;
-    }
-    .proof-stats .stat { text-align: left; }
-    .proof-stats .stat-num {
-      font-size: 32px;
-      font-weight: 900;
-      color: #FFD700;
-      letter-spacing: -0.02em;
-    }
-    .proof-stats .stat-label { font-size: 13px; color: #888; margin-top: 2px; }
-    .card-meta { margin-top: 12px; font-size: 14px; color: #888; }
-    .badge {
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      font-weight: 700;
-      background: #FFD700;
-      color: #0a0a0a;
-    }
-    .badge--ghost { background: transparent; color: #FFD700; border: 1px solid #FFD700; }
-    .pricing-card { display: flex; flex-direction: column; }
-    .pricing-card .cta { margin-top: auto; }
-    .section-header { margin-bottom: 40px; }
-  </style>
+  <link rel="canonical" href="https://mirentia.com/" />
+  <link rel="preload" as="script" href="https://unpkg.com/three@0.169.0/build/three.module.js" crossorigin />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Mirentia",
+    "url": "https://mirentia.com",
+    "logo": "https://mirentia.com/icon.svg",
+    "description": "AI-native agency. Construimos agentes que ejecutan tu trabajo. Fundadores de Bailante, Findink y LitigIA.",
+    "email": "hola@mirentia.com",
+    "sameAs": [
+      "https://x.com/JodanLive",
+      "https://linkedin.com/in/jordanlanch",
+      "https://github.com/jordanlanch"
+    ]
+  }
+  </script>
   <link rel="stylesheet" href="/assets/motion.css" />
   <link rel="stylesheet" href="/assets/orb.css" />
+  <link rel="stylesheet" href="/assets/base.css" />
   <script type="importmap">
     {
       "imports": {
@@ -265,6 +43,8 @@
   </script>
 </head>
 <body>
+
+  <a class="skip-link" href="#main">Saltar al contenido</a>
 
   <canvas id="orb-canvas" aria-hidden="true">
     <noscript>
@@ -285,13 +65,13 @@
   </canvas>
 
   <header class="wrap">
-    <nav class="nav">
+    <nav class="nav" aria-label="Navegación principal">
       <div class="brand brand-wipe" style="view-transition-name: mirentia-brand;">mirentia<span class="dot live-pulse"></span></div>
       <a class="nav-cta" href="mailto:hola@mirentia.com">Diagnóstico →</a>
     </nav>
   </header>
 
-  <main>
+  <main id="main">
 
     <!-- HERO -->
     <section class="wrap" style="padding: 72px 24px 64px;">

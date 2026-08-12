@@ -5,6 +5,8 @@ COPY index.html /usr/share/nginx/html/index.html
 COPY assets/ /usr/share/nginx/html/assets/
 COPY cases/ /usr/share/nginx/html/cases/
 COPY okrs/ /usr/share/nginx/html/okrs/
+COPY robots.txt /usr/share/nginx/html/robots.txt
+COPY sitemap.xml /usr/share/nginx/html/sitemap.xml
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80

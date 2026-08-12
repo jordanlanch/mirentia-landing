@@ -1,0 +1,292 @@
+/* mirentia — base styles. Variables, resets, typography, layout, components.
+   Loaded last so its :root defaults win over motion/orb where they collide. */
+
+:root {
+  /* Brand */
+  --gold: #FFD700;
+  --gold-soft: #fff4a8;
+  --gold-deep: #7a5a00;
+  --bg: #0a0a0a;
+  --bg-elev: #050505;
+  --bg-card: #131313;
+  --bg-input: #1a1a1a;
+  --gold-bg-soft: #1a1300;
+  --text: #ffffff;
+  --text-muted: #c9c9c9;
+  --text-dim: #888888;
+  --text-faint: #e5e5e5;
+  --border: #232323;
+  --warn: #ff5151;
+  /* Type */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+  /* Radius */
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-md: 14px;
+  --radius-lg: 16px;
+  /* Spacing */
+  --container: 880px;
+}
+
+/* ---- Accessibility ---- */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--gold);
+  color: var(--bg);
+  padding: 12px 16px;
+  font-weight: 700;
+  z-index: 10000;
+  text-decoration: none;
+  border-radius: 0 0 var(--radius) 0;
+  transition: top 0.2s ease;
+}
+.skip-link:focus { top: 0; }
+*:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ---- Resets & base ---- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+.accent { color: var(--gold); }
+.eyebrow {
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+h1 {
+  font-size: clamp(36px, 7vw, 64px);
+  line-height: 1.05;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  margin: 0 0 24px;
+}
+h2 {
+  font-size: clamp(28px, 5vw, 44px);
+  line-height: 1.1;
+  font-weight: 900;
+  letter-spacing: -0.015em;
+  margin: 0 0 32px;
+}
+h3 {
+  font-size: 22px;
+  font-weight: 800;
+  margin: 0 0 8px;
+  letter-spacing: -0.01em;
+}
+p { margin: 0 0 16px; }
+.lead { font-size: clamp(18px, 2.4vw, 22px); color: var(--text-muted); margin-bottom: 32px; }
+.section { padding: 80px 0; border-top: 1px solid var(--bg-input); }
+.section--dark { background: var(--bg-elev); }
+.grid { display: grid; gap: 16px; }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 720px) {
+  .grid-3 { grid-template-columns: 1fr; }
+  .grid-4 { grid-template-columns: 1fr 1fr; }
+  .section { padding: 56px 0; }
+}
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 28px 24px;
+}
+.card--highlight { border-color: var(--gold); background: var(--gold-bg-soft); }
+.card .price {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.card .price-note {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-bottom: 16px;
+}
+.card ul {
+  margin: 0 0 16px;
+  padding: 0 0 0 20px;
+  color: var(--text-muted);
+  font-size: 15px;
+}
+.card ul li { margin-bottom: 8px; }
+.bul {
+  padding: 16px 0 16px 28px;
+  border-bottom: 1px solid var(--bg-input);
+  position: relative;
+  color: var(--text-faint);
+}
+.bul:last-child { border-bottom: 0; }
+.bul::before {
+  content: "✗";
+  position: absolute;
+  left: 0;
+  top: 16px;
+  color: var(--warn);
+  font-weight: 800;
+}
+.num {
+  font-size: clamp(56px, 12vw, 96px);
+  line-height: 1;
+  font-weight: 900;
+  color: var(--gold);
+  letter-spacing: -0.04em;
+  margin: 0 0 8px;
+}
+.num-label { font-size: 18px; color: var(--text-faint); font-weight: 600; }
+.cta {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--bg);
+  padding: 22px 40px;
+  font-size: 20px;
+  font-weight: 800;
+  border-radius: var(--radius);
+  letter-spacing: 0.01em;
+  border: 0;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4);
+}
+/* :focus:not(:focus-visible) so keyboard nav still triggers the gold outline from :focus-visible above. */
+.cta:hover, .cta:focus:not(:focus-visible) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px -8px rgba(255, 215, 0, 0.45);
+  outline: 0;
+}
+.cta--full { display: block; width: 100%; text-align: center; }
+.cta--ghost {
+  background: transparent;
+  color: var(--gold);
+  border: 2px solid var(--gold);
+  box-shadow: none;
+}
+.cta--ghost:hover { background: var(--gold); color: var(--bg); }
+.footer {
+  padding: 40px 0 60px;
+  color: var(--text-dim);
+  font-size: 14px;
+  text-align: center;
+  border-top: 1px solid var(--bg-input);
+}
+.footer a { color: var(--gold); }
+.pill {
+  display: inline-block;
+  padding: 6px 14px;
+  background: var(--bg-input);
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+.hero-meta {
+  margin-top: 28px;
+  color: var(--text-dim);
+  font-size: 14px;
+}
+.cta-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+@media (max-width: 720px) {
+  .cta-row { flex-direction: column; align-items: stretch; }
+  .cta { width: 100%; text-align: center; }
+}
+.nav {
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--bg-input);
+}
+.brand { font-weight: 900; font-size: 20px; letter-spacing: -0.02em; }
+.brand .dot { color: var(--gold); }
+.nav-cta {
+  font-size: 14px;
+  color: var(--gold);
+  font-weight: 700;
+}
+.proof-meta { margin-top: 12px; font-size: 14px; color: var(--text-dim); }
+.guarantee {
+  border: 2px solid var(--gold);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  background: var(--gold-bg-soft);
+}
+.guarantee h2 { color: var(--gold); }
+.small { font-size: 14px; color: var(--text-dim); }
+.cta-micro { color: var(--text-dim); font-size: 13px; margin-top: 12px; }
+.center { text-align: center; }
+.hero-cta-wrap { margin-top: 24px; }
+.arrow { font-weight: 900; }
+.social-links {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+.social-links a {
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 15px;
+  border: 1px solid var(--gold);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  transition: background 0.15s, color 0.15s;
+}
+.social-links a:hover { background: var(--gold); color: var(--bg); }
+.proof-stats {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--bg-input);
+}
+.proof-stats .stat { text-align: left; }
+.proof-stats .stat-num {
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--gold);
+  letter-spacing: -0.02em;
+}
+.proof-stats .stat-label { font-size: 13px; color: var(--text-dim); margin-top: 2px; }
+.card-meta { margin-top: 12px; font-size: 14px; color: var(--text-dim); }
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 700;
+  background: var(--gold);
+  color: var(--bg);
+}
+.badge--ghost { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
+.pricing-card { display: flex; flex-direction: column; }
+.pricing-card .cta { margin-top: auto; }
+.section-header { margin-bottom: 40px; }
