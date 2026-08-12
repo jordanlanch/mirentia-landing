@@ -7,6 +7,8 @@ COPY cases/ /usr/share/nginx/html/cases/
 COPY okrs/ /usr/share/nginx/html/okrs/
 COPY robots.txt /usr/share/nginx/html/robots.txt
 COPY sitemap.xml /usr/share/nginx/html/sitemap.xml
+COPY og-image.svg /usr/share/nginx/html/og-image.svg
+COPY og-image.png /usr/share/nginx/html/og-image.png
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80

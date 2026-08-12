@@ -4,6 +4,82 @@
 (() => {
   const prefersReduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // --- Scroll progress bar ---
+  if (!prefersReduce) {
+    const bar = document.createElement('div');
+    bar.className = 'scroll-progress';
+    bar.setAttribute('role', 'progressbar');
+    bar.setAttribute('aria-label', 'Progreso de scroll');
+    bar.setAttribute('aria-valuemin', '0');
+    bar.setAttribute('aria-valuemax', '100');
+    document.body.prepend(bar);
+
+    let ticking = false;
+    function updateScrollProgress() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? scrollTop / docHeight : 0;
+      bar.style.transform = `scaleX(${pct})`;
+      bar.setAttribute('aria-valuenow', Math.round(pct * 100));
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(updateScrollProgress);
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+
+  // --- Magnetic CTA ---
+  if (!prefersReduce && !matchMedia('(pointer: coarse)').matches) {
+    document.querySelectorAll('.cta.primary').forEach((cta) => {
+      let targetX = 0, targetY = 0, currentX = 0, currentY = 0;
+      let active = false;
+      let raf = null;
+
+      cta.addEventListener('pointermove', (e) => {
+        const rect = cta.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dx = e.clientX - cx;
+        const dy = e.clientY - cy;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const maxPull = 8;
+        if (dist < 80) {
+          const pull = Math.max(0, (80 - dist) / 80) * maxPull;
+          targetX = dist > 0 ? (dx / dist) * pull : 0;
+          targetY = dist > 0 ? (dy / dist) * pull : 0;
+          active = true;
+          cta.classList.add('magnetic');
+          if (!raf) raf = requestAnimationFrame(magneticTick);
+        } else {
+          targetX = 0; targetY = 0;
+          active = false;
+        }
+      });
+
+      cta.addEventListener('pointerleave', () => {
+        targetX = 0; targetY = 0;
+        active = false;
+        cta.classList.remove('magnetic');
+      });
+
+      function magneticTick() {
+        currentX += (targetX - currentX) * 0.3;
+        currentY += (targetY - currentY) * 0.3;
+        if (active || Math.abs(currentX) > 0.5 || Math.abs(currentY) > 0.5) {
+          cta.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+          raf = requestAnimationFrame(magneticTick);
+        } else {
+          cta.style.transform = '';
+          raf = null;
+        }
+      }
+    });
+  }
+
   // --- Reveal on scroll ---
   const revealEls = document.querySelectorAll('.reveal');
   if (prefersReduce || !('IntersectionObserver' in window) || !revealEls.length) {
@@ -83,6 +159,57 @@
     document.querySelectorAll('a, button, .cta, .card').forEach((el) => {
       el.addEventListener('mouseenter', () => dot.classList.add('is-hover'));
       el.addEventListener('mouseleave', () => dot.classList.remove('is-hover'));
+    });
+  }
+
+  // --- FAQ accordion (single-open) ---
+  const faqItems = document.querySelectorAll('.faq-item details');
+  if (faqItems.length) {
+    // Close all other details when one opens
+    faqItems.forEach((details) => {
+      details.addEventListener('toggle', () => {
+        if (details.hasAttribute('open')) {
+          faqItems.forEach((other) => {
+            if (other !== details) other.removeAttribute('open');
+          });
+          // Update URL anchor for deep-linking
+          const id = details.closest('.faq-item')?.id;
+          if (id) history.replaceState(null, '', '#' + id);
+        }
+      });
+    });
+
+    // Open on anchor load
+    if (window.location.hash) {
+      const target = document.querySelector(window.location.hash);
+      if (target?.tagName === 'DETAILS') target.setAttribute('open', '');
+    }
+  }
+
+  // --- Newsletter handler ---
+  const newsletterForm = document.getElementById('newsletter-form');
+  const newsletterSuccess = document.getElementById('newsletter-success');
+  const newsletterError = document.getElementById('newsletter-error');
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const emailInput = newsletterForm.querySelector('input[type="email"]');
+      const email = emailInput?.value.trim();
+      const honeypot = newsletterForm.querySelector('input[name="b_honey"]');
+
+      // Honeypot check
+      if (honeypot && honeypot.value) return;
+
+      // Email validation
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        newsletterError.classList.add('is-visible');
+        newsletterSuccess.classList.remove('is-visible');
+        return;
+      }
+
+      newsletterError.classList.remove('is-visible');
+      newsletterSuccess.classList.add('is-visible');
+      newsletterForm.style.display = 'none';
     });
   }
 

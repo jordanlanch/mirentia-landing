@@ -1,0 +1,14 @@
+# Hot-reload dev compose. Mounts the repo into nginx so any file edit shows on refresh.
+# Usage: docker compose -f docker-compose.dev.yml up
+# Stop:   docker compose -f docker-compose.dev.yml down
+
+services:
+  landing:
+    image: nginx:alpine
+    container_name: mirentia-landing-dev
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/usr/share/nginx/html:ro
+      - ./nginx.dev.conf:/etc/nginx/conf.d/default.conf:ro
+    restart: unless-stopped

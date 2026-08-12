@@ -50,6 +50,8 @@ if (!hasWebGL()) {
   const c = document.getElementById('orb-canvas');
   if (c) c.style.display = 'none';
 } else {
+  const canvas = document.getElementById('orb-canvas');
+  if (canvas) canvas.classList.add('is-loading');
   bootScene();
 }
 
@@ -285,7 +287,12 @@ function bootScene() {
   // -------- Render loop --------
   const ndc = new THREE.Vector3();
   const v = new THREE.Vector3();
+  let firstFrame = true;
   function tick(now) {
+    if (firstFrame) {
+      firstFrame = false;
+      if (canvas) canvas.classList.remove('is-loading');
+    }
     const dt = Math.min((now - (tick.last || now)) / 1000, 0.05);
     tick.last = now;
     orbUniforms.uTime.value += dt;

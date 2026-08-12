@@ -1,12 +1,15 @@
-# dev artifacts
-website/nginx.dev.conf
-website/docker-compose.dev.yml
-website/assets/.cache/
+# gstack session artifacts
 .playwright-mcp/
-.env
+*.playwright-mcp/
+/playwright-mcp/
 
-# sibling project (separate repo)
-blog/
+# Test screenshots
+hero-after-refactor.png
+hero-final.png
+scrolled-mid.png
+scrolled-pricing.png
+skip-link-focused.png
 
-# IDE / OS
-.vscode/ .idea/ *.swp .DS_Store Thumbs.db
+# Dev artifacts
+*.log
+.DS_Store

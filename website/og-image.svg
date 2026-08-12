@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <radialGradient id="bgGlow" cx="70%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#1a1300"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </radialGradient>
+    <radialGradient id="orbGrad" cx="38%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#fff4a8"/>
+      <stop offset="55%" stop-color="#FFD700"/>
+      <stop offset="100%" stop-color="#7a5a00"/>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  <rect width="1200" height="630" fill="url(#bgGlow)"/>
+
+  <!-- Subtle grid lines -->
+  <g stroke="#1a1a1a" stroke-width="1" opacity="0.5">
+    <line x1="0" y1="157" x2="1200" y2="157"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/>
+    <line x1="0" y1="473" x2="1200" y2="473"/>
+    <line x1="300" y1="0" x2="300" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="900" y1="0" x2="900" y2="630"/>
+  </g>
+
+  <!-- Wordmark top-left -->
+  <text x="60" y="80" font-family="Inter, -apple-system, Helvetica, Arial, sans-serif" font-size="36" font-weight="900" fill="#FFD700" letter-spacing="-1">mirentia</text>
+  <circle cx="210" cy="67" r="5" fill="#FFD700">
+    <animate attributeName="opacity" values="1;0.4;1" dur="1.8s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Headline -->
+  <text x="60" y="250" font-family="Inter, -apple-system, Helvetica, Arial, sans-serif" font-size="64" font-weight="900" fill="#ffffff" letter-spacing="-2">Construimos</text>
+  <text x="60" y="330" font-family="Inter, -apple-system, Helvetica, Arial, sans-serif" font-size="64" font-weight="900" fill="#ffffff" letter-spacing="-2">agentes que</text>
+  <text x="60" y="410" font-family="Inter, -apple-system, Helvetica, Arial, sans-serif" font-size="64" font-weight="900" fill="#FFD700" letter-spacing="-2">ejecutan tu trabajo</text>
+
+  <!-- Subhead -->
+  <text x="60" y="480" font-family="Inter, -apple-system, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#888888" letter-spacing="0.5">AI-native agency · Colombia</text>
+
+  <!-- Orb visual on right -->
+  <g transform="translate(920, 340)" filter="url(#glow)">
+    <!-- Outer glow ring -->
+    <circle cx="0" cy="0" r="140" fill="none" stroke="#FFD700" stroke-width="1" opacity="0.2"/>
+    <circle cx="0" cy="0" r="160" fill="none" stroke="#FFD700" stroke-width="0.5" opacity="0.1"/>
+    <!-- Main orb -->
+    <circle cx="0" cy="0" r="100" fill="url(#orbGrad)"/>
+    <!-- Highlight -->
+    <ellipse cx="-30" cy="-40" rx="35" ry="18" fill="#ffffff" opacity="0.25"/>
+    <!-- Cross rings -->
+    <ellipse cx="0" cy="0" rx="120" ry="18" fill="none" stroke="#FFD700" stroke-width="1.5" opacity="0.5"/>
+    <ellipse cx="0" cy="0" rx="18" ry="120" fill="none" stroke="#FFD700" stroke-width="1.5" opacity="0.5"/>
+    <ellipse cx="0" cy="0" rx="120" ry="18" fill="none" stroke="#FFD700" stroke-width="1.5" opacity="0.5" transform="rotate(45)"/>
+    <ellipse cx="0" cy="0" rx="18" ry="120" fill="none" stroke="#FFD700" stroke-width="1.5" opacity="0.5" transform="rotate(45)"/>
+  </g>
+
+  <!-- Particles (static decorative) -->
+  <g fill="#FFD700" opacity="0.6">
+    <circle cx="780" cy="200" r="3"/>
+    <circle cx="820" cy="160" r="2"/>
+    <circle cx="1050" cy="220" r="4"/>
+    <circle cx="1000" cy="180" r="2"/>
+    <circle cx="760" cy="280" r="2"/>
+    <circle cx="1080" cy="300" r="3"/>
+    <circle cx="750" cy="400" r="2"/>
+    <circle cx="1100" cy="400" r="2"/>
+    <circle cx="800" cy="480" r="3"/>
+    <circle cx="1040" cy="460" r="2"/>
+  </g>
+
+  <!-- Bottom bar -->
+  <rect x="0" y="600" width="1200" height="30" fill="#050505"/>
+  <text x="60" y="622" font-family="Inter, -apple-system, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#FFD700" letter-spacing="3" text-transform="uppercase">AI-NATIVE AGENCY</text>
+  <text x="1140" y="622" font-family="Inter, -apple-system, Helvetica, Arial, sans-serif" font-size="14" font-weight="400" fill="#888888">mirentia.com</text>
+</svg>
