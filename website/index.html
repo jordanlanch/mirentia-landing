@@ -254,8 +254,35 @@
     .section-header { margin-bottom: 40px; }
   </style>
   <link rel="stylesheet" href="/assets/motion.css" />
+  <link rel="stylesheet" href="/assets/orb.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.169.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.169.0/examples/jsm/"
+      }
+    }
+  </script>
 </head>
 <body>
+
+  <canvas id="orb-canvas" aria-hidden="true">
+    <noscript>
+      <div class="orb-fallback" aria-hidden="true">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="g" cx="38%" cy="35%" r="65%">
+              <stop offset="0%" stop-color="#fff4a8"/>
+              <stop offset="55%" stop-color="#FFD700"/>
+              <stop offset="100%" stop-color="#7a5a00"/>
+            </radialGradient>
+          </defs>
+          <circle cx="100" cy="100" r="80" fill="url(#g)"/>
+          <ellipse cx="78" cy="76" rx="26" ry="14" fill="#fff" opacity="0.35"/>
+        </svg>
+      </div>
+    </noscript>
+  </canvas>
 
   <header class="wrap">
     <nav class="nav">
@@ -546,5 +573,6 @@
     });
   </script>
   <script src="/assets/motion.js" defer></script>
+  <script type="module" src="/assets/orb.js"></script>
 </body>
 </html>
