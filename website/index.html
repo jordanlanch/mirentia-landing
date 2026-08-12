@@ -46,6 +46,14 @@
       "@type": "SearchAction",
       "target": "https://mirentia.com/?q={search_term_string}",
       "query-input": "required name=search_term_string"
+    },
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "xpath": [
+        "/html/body//h1",
+        "/html/body//section[@id='faq']//details//p",
+        "/html/body//section[@id='faq']//details//summary"
+      ]
     }
   }
   </script>

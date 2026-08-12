@@ -199,9 +199,17 @@
 
 /* ---- Scroll progress bar ---- */
 .scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 2px;
+  background: var(--gold);
   transform: scaleX(0);
   transform-origin: left center;
   will-change: transform;
+  z-index: 9999;
+  pointer-events: none;
 }
 
 /* ---- Magnetic CTA pull ---- */

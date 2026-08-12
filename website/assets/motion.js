@@ -179,10 +179,14 @@
       });
     });
 
-    // Open on anchor load
+    // Open on anchor load (FAQ section's <details> is the actual target,
+    // not the wrapping <section> element)
     if (window.location.hash) {
       const target = document.querySelector(window.location.hash);
-      if (target?.tagName === 'DETAILS') target.setAttribute('open', '');
+      const details = target?.tagName === 'DETAILS'
+        ? target
+        : target?.querySelector('details');
+      if (details) details.setAttribute('open', '');
     }
   }
 
