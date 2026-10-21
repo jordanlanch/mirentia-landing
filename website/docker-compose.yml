@@ -1,33 +1,35 @@
-# Mirentia landing — produccion.
+# Mirentia landing — produccion (Dokploy).
 #
 # El sitio es estatico: nginx sirve los archivos horneados en la imagen
 # jordanlanch/mirentia-landing (ver website/Dockerfile).
 #
 # La unica pieza dinamica es el proxy /api/ hacia el backend Go, para que el
-# form del funnel POSTe a /api/funnel/capture en el mismo origen (que es lo
-# que el CSP del sitio ya asume con connect-src 'self'). El destino se
-# inyecta por variable de entorno: la config de nginx va como TEMPLATE y la
-# renderiza el entrypoint de la imagen oficial (ver docker-nginx.conf.template
-# para por que `env` no sirve y por que hace falta el filtro).
+# form del funnel POSTe a /api/funnel/capture en el mismo origen (lo que el
+# CSP del sitio ya asume con connect-src 'self'). El destino se inyecta por
+# variable de entorno: la config de nginx va como TEMPLATE y la renderiza el
+# entrypoint de la imagen oficial (ver docker-nginx.conf.template).
 #
-# API_UPSTREAM es el alias de red estable de la API (lo define el compose del
-# backend), no el nombre de contenedor autogenerado por Dokploy.
+# API_UPSTREAM es el alias de red "mirentia-backend" que define el compose del
+# backend. NO puede llamarse igual que un servicio de Traefik: Traefik arma un
+# servicio por cada alias, con el puerto EXPOSE de la imagen, y ese le gana al
+# del label, dejando el router apuntando a un puerto donde nadie escucha.
+#
+# VALORES LITERALES, sin ${...}: el compose raw de Dokploy no interpola y el
+# valor llega literal al contenedor. Ademas el template de nginx se renderiza
+# en el contenedor con envsubst, y un placeholder ahi queda metido en la config
+# de nginx: nginx no arranca ("the closing bracket in API_UPSTREAM variable is
+# missing"), el contenedor queda en crash-loop y el router se queda sin
+# backend, que es un 404 sin cuerpo para cada visitante.
 #
 # Para publicar un cambio del sitio:
 #   cd website
 #   TAG="prod-$(date -u +%Y-%m-%d)-$(git rev-parse --short HEAD)"
 #   docker build -t "jordanlanch/mirentia-landing:$TAG" .
 #   docker push "jordanlanch/mirentia-landing:$TAG"
-#   # y actualizar IMAGE aca (o via el env de Dokploy) y redeployar.
+#   # y actualizar IMAGE aca y redeployar.
 #
 # El loop local usa docker-compose.dev.yml.
 
-# Dokploy's raw compose does NOT interpolate ${...}: the `env` string is not
-# rendered into the file, the value reaches the container verbatim. A
-# placeholder here ends up inside the nginx config literally and nginx dies
-# with `the closing bracket in "API_UPSTREAM" variable is missing`, so the
-# container crash-loops and the router has no backend (404 with no body).
-# Every value in this file is therefore LITERAL.
 networks:
   dokploy-network:
     external: true
@@ -35,7 +37,7 @@ networks:
 
 services:
   landing:
-    image: ${IMAGE:-jordanlanch/mirentia-landing:prod-2026-10-21-914a263-r2}
+    image: jordanlanch/mirentia-landing:prod-2026-10-21-914a263-r2
     pull_policy: always
     restart: unless-stopped
     # NO published port on purpose. Dokploy's Traefik reaches the container
@@ -45,23 +47,15 @@ services:
     expose:
       - "80"
     environment:
-      # Literal on purpose: see the note about ${...} above.
       API_UPSTREAM: mirentia-backend:8090
     networks:
       - dokploy-network
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.mirentia-landing.rule=Host(`mirentia.com`)"
-      - "traefik.http.routers.mirentia-landing.entrypoints=websecure"
-      - "traefik.http.routers.mirentia-landing.tls.certresolver=letsencrypt"
-      - "traefik.http.services.mirentia-landing.loadbalancer.server.port=80"
-      # Los dos composes que rutean bien en esta instancia (omnirouter y
-      # bailante-web) declaran la red explicitamente. Sin esto, Traefik
-      # toma la primera red del contenedor y el router queda sin backend.
+      # La red explicita: es lo que hacen los composes que rutean bien en
+      # esta instancia (omnirouter, bailante-web).
       - "traefik.docker.network=dokploy-network"
       - "traefik.http.routers.mirentia-landing.rule=Host(`mirentia.com`) || Host(`www.mirentia.com`)"
-      # .service explicito: es el patron que usa el omnirouter (que si
-      # rutea bien) y deja de depender de la inferencia de Traefik.
       - "traefik.http.routers.mirentia-landing.service=mirentia-landing"
       - "traefik.http.routers.mirentia-landing.entrypoints=websecure"
       - "traefik.http.routers.mirentia-landing.tls.certresolver=letsencrypt"
