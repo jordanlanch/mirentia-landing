@@ -45,6 +45,9 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.mirentia-landing.rule=Host(`mirentia.com`) || Host(`www.mirentia.com`)"
+      # .service explicito: es el patron que usa el omnirouter (que si
+      # rutea bien) y deja de depender de la inferencia de Traefik.
+      - "traefik.http.routers.mirentia-landing.service=mirentia-landing"
       - "traefik.http.routers.mirentia-landing.entrypoints=websecure"
       - "traefik.http.routers.mirentia-landing.tls.certresolver=letsencrypt"
       - "traefik.http.services.mirentia-landing.loadbalancer.server.port=80"
