@@ -22,10 +22,16 @@
 #
 # El loop local usa docker-compose.dev.yml.
 
+# Dokploy's raw compose does NOT interpolate ${...}: the `env` string is not
+# rendered into the file, the value reaches the container verbatim. A
+# placeholder here ends up inside the nginx config literally and nginx dies
+# with `the closing bracket in "API_UPSTREAM" variable is missing`, so the
+# container crash-loops and the router has no backend (404 with no body).
+# Every value in this file is therefore LITERAL.
 networks:
   dokploy-network:
     external: true
-    name: ${DOKPLOY_NETWORK:-dokploy-network}
+    name: dokploy-network
 
 services:
   landing:
@@ -39,7 +45,8 @@ services:
     expose:
       - "80"
     environment:
-      API_UPSTREAM: ${API_UPSTREAM:-mirentia-api:8090}
+      # Literal on purpose: see the note about ${...} above.
+      API_UPSTREAM: mirentia-api:8090
     networks:
       - dokploy-network
     labels:
