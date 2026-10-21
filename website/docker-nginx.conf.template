@@ -17,6 +17,12 @@
 
 server {
     listen 80;
+    # El entrypoint de la imagen de nginx agrega `listen [::]:80;` al
+    # conf.d empaquetado, pero este template se renderiza DESPUES y lo
+    # reemplaza. Sin esta linea nginx queda escuchando solo IPv4, Traefik
+    # conecta por la IPv6 del contenedor y el router se queda sin backend:
+    # un 404 con el cuerpo vacio para cada visitante.
+    listen [::]:80;
     server_name _;
     root /usr/share/nginx/html;
     index index.html;

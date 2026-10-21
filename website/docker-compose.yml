@@ -35,7 +35,7 @@ networks:
 
 services:
   landing:
-    image: ${IMAGE:-jordanlanch/mirentia-landing:prod-2026-10-21-b35c871}
+    image: ${IMAGE:-jordanlanch/mirentia-landing:prod-2026-10-21-914a263-r2}
     pull_policy: always
     restart: unless-stopped
     # NO published port on purpose. Dokploy's Traefik reaches the container
@@ -46,11 +46,19 @@ services:
       - "80"
     environment:
       # Literal on purpose: see the note about ${...} above.
-      API_UPSTREAM: mirentia-api:8090
+      API_UPSTREAM: mirentia-backend:8090
     networks:
       - dokploy-network
     labels:
       - "traefik.enable=true"
+      - "traefik.http.routers.mirentia-landing.rule=Host(`mirentia.com`)"
+      - "traefik.http.routers.mirentia-landing.entrypoints=websecure"
+      - "traefik.http.routers.mirentia-landing.tls.certresolver=letsencrypt"
+      - "traefik.http.services.mirentia-landing.loadbalancer.server.port=80"
+      # Los dos composes que rutean bien en esta instancia (omnirouter y
+      # bailante-web) declaran la red explicitamente. Sin esto, Traefik
+      # toma la primera red del contenedor y el router queda sin backend.
+      - "traefik.docker.network=dokploy-network"
       - "traefik.http.routers.mirentia-landing.rule=Host(`mirentia.com`) || Host(`www.mirentia.com`)"
       # .service explicito: es el patron que usa el omnirouter (que si
       # rutea bien) y deja de depender de la inferencia de Traefik.
