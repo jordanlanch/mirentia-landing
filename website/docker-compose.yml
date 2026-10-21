@@ -1,63 +1,32 @@
-# Mirentia landing — produccion (Dokploy).
+# Mirentia landing — static site behind nginx, on Dokploy.
 #
-# El sitio es estatico: nginx sirve los archivos horneados en la imagen
-# jordanlanch/mirentia-landing (ver website/Dockerfile).
+# The image is BUILT here rather than running the stock nginx image with
+# bind mounts, because:
+#   1. /etc/nginx/conf.d/default.conf is a symlink in the official nginx
+#      image, so neither a bind mount nor a COPY can target it.
+#   2. The site config is a TEMPLATE: the nginx entrypoint envsubsts it at
+#      boot so $API_UPSTREAM reaches proxy_pass. That only works for files
+#      under /etc/nginx/templates/, which is a copy-time concern, not a
+#      mount-time one.
+#   3. Baking the site means Dokploy needs nothing but the git repo.
 #
-# La unica pieza dinamica es el proxy /api/ hacia el backend Go, para que el
-# form del funnel POSTe a /api/funnel/capture en el mismo origen (lo que el
-# CSP del sitio ya asume con connect-src 'self'). El destino se inyecta por
-# variable de entorno: la config de nginx va como TEMPLATE y la renderiza el
-# entrypoint de la imagen oficial (ver docker-nginx.conf.template).
-#
-# API_UPSTREAM es el alias de red "mirentia-backend" que define el compose del
-# backend. NO puede llamarse igual que un servicio de Traefik: Traefik arma un
-# servicio por cada alias, con el puerto EXPOSE de la imagen, y ese le gana al
-# del label, dejando el router apuntando a un puerto donde nadie escucha.
-#
-# VALORES LITERALES, sin ${...}: el compose raw de Dokploy no interpola y el
-# valor llega literal al contenedor. Ademas el template de nginx se renderiza
-# en el contenedor con envsubst, y un placeholder ahi queda metido en la config
-# de nginx: nginx no arranca ("the closing bracket in API_UPSTREAM variable is
-# missing"), el contenedor queda en crash-loop y el router se queda sin
-# backend, que es un 404 sin cuerpo para cada visitante.
-#
-# Para publicar un cambio del sitio:
-#   cd website
-#   TAG="prod-$(date -u +%Y-%m-%d)-$(git rev-parse --short HEAD)"
-#   docker build -t "jordanlanch/mirentia-landing:$TAG" .
-#   docker push "jordanlanch/mirentia-landing:$TAG"
-#   # y actualizar IMAGE aca y redeployar.
-#
-# El loop local usa docker-compose.dev.yml.
-
-networks:
-  dokploy-network:
-    external: true
-    name: dokploy-network
+# API_UPSTREAM points at the Go backend. Until that backend is deployed the
+# proxy answers 502 and the capture form falls back to its WhatsApp
+# message — the page still renders, it just cannot capture.
 
 services:
   landing:
-    image: jordanlanch/mirentia-landing:prod-2026-10-21-914a263-r2
-    pull_policy: always
+    build:
+      context: .
+      dockerfile: Dockerfile
     restart: unless-stopped
-    # NO published port on purpose. Dokploy's Traefik reaches the container
-    # over the docker network, and publishing any host port is a liability:
-    # a conflict with an existing service kills the landing (the site goes
-    # down) and nothing else.
-    expose:
-      - "80"
+    ports:
+      - "80:80"
     environment:
-      API_UPSTREAM: mirentia-backend:8090
-    networks:
-      - dokploy-network
-    labels:
-      - "traefik.enable=true"
-      # La red explicita: es lo que hacen los composes que rutean bien en
-      # esta instancia (omnirouter, bailante-web).
-      - "traefik.docker.network=dokploy-network"
-      - "traefik.http.routers.mirentia-landing.rule=Host(`mirentia.com`) || Host(`www.mirentia.com`)"
-      - "traefik.http.routers.mirentia-landing.service=mirentia-landing"
-      - "traefik.http.routers.mirentia-landing.entrypoints=websecure"
-      - "traefik.http.routers.mirentia-landing.tls.certresolver=letsencrypt"
-      - "traefik.http.services.mirentia-landing.loadbalancer.server.port=80"
-# ponytail: single static page, no CMS. Add CMS when copy needs to change weekly.
+      API_UPSTREAM: ${API_UPSTREAM:-mirentia-api:8080}
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1/"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 10s

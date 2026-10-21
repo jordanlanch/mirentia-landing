@@ -1,58 +1,45 @@
-# nginx config for the Mirentia landing — TEMPLATE, not a plain conf.
+# nginx config for the Mirentia landing.
 #
-# This file is mounted into /etc/nginx/templates/default.conf.template so the
-# stock nginx image's own /docker-entrypoint.d/20-envsubst-on-templates.sh
-# renders it into /etc/nginx/conf.d/default.conf at container start.
+# Two jobs: serve the static site correctly, and forward the funnel capture
+# endpoint to the Go backend so the form works from the same origin (which
+# is what the CSP in the site already assumes — connect-src includes 'self').
 #
-# WHY A TEMPLATE: nginx's `env` directive is `main` context ONLY, so it cannot
-# go inside this file (conf.d/*.conf is included from inside `http {}`).
-# Declaring `env API_UPSTREAM;` in `server {}` fails at parse time with:
-#     [emerg] "env" directive is not allowed here in .../default.conf:16
-# and the container never starts. envsubst is the supported way to get an
-# environment variable into a conf.d fragment.
-#
-# NGINX_ENVSUBST_FILTER must stay set (see docker-compose.yml). Without it the
-# entrypoint substitutes EVERY environment variable and would eat nginx's own
-# $host / $uri / $scheme / $remote_addr.
+# This file is copied into /etc/nginx/conf.d/ by the Dockerfile, NOT bind
+# mounted: /etc/nginx/conf.d/default.conf is a symlink in the official nginx
+# image and both a mount and a COPY onto it fail.
 
 server {
     listen 80;
-    # El entrypoint de la imagen de nginx agrega `listen [::]:80;` al
-    # conf.d empaquetado, pero este template se renderiza DESPUES y lo
-    # reemplaza. Sin esta linea nginx queda escuchando solo IPv4, Traefik
-    # conecta por la IPv6 del contenedor y el router se queda sin backend:
-    # un 404 con el cuerpo vacio para cada visitante.
-    listen [::]:80;
     server_name _;
     root /usr/share/nginx/html;
     index index.html;
 
+    # NOTE ON $API_UPSTREAM
+    # This file is a TEMPLATE. The nginx entrypoint runs envsubst over
+    # /etc/nginx/templates/*.template at boot and writes the result to
+    # /etc/nginx/conf.d/, substituting ONLY the variables present in the
+    # container environment. That is why $API_UPSTREAM resolves here and
+    # the nginx runtime variables ($host, $remote_addr, $scheme) do not
+    # get clobbered.
+    #
+    # Two things that do NOT work, both tried and rejected:
+    #   - `env API_UPSTREAM;` in this server block:
+    #       '"env" directive is not allowed here' (it is main-context only,
+    #       and conf.d/*.conf is included from inside `http`).
+    #   - `env API_UPSTREAM;` at the top of nginx.conf:
+    #       still `unknown "api_upstream" variable`, because env only
+    #       preserves the variable for modules to read; it does not make it
+    #       substitutable inside the config text.
+
     charset utf-8;
 
-    # The site already sends a strict CSP in the panel's proxy; keep nginx
-    # from adding anything that would loosen it.
     add_header X-Content-Type-Options "nosniff" always;
     add_header Referrer-Policy "strict-origin-when-cross-origin" always;
 
-    # Docker's embedded DNS.
-    #
-    # nginx resolves a LITERAL upstream at startup and refuses to boot when the
-    # name does not resolve:
-    #     [emerg] host not found in upstream "mirentia-api-web-1"
-    # which crash-loops the whole landing (restart: unless-stopped) every time
-    # the backend compose is down, redeploying, or not yet attached to the
-    # shared network. Resolving through a variable defers the lookup to request
-    # time: the static site stays up and /api/ answers 502 until the backend is
-    # actually reachable. verified: site 200 + /api 502 with an unresolvable
-    # upstream, and 201 from the stub once it resolves.
-    resolver 127.0.0.11 valid=10s ipv6=off;
-    resolver_timeout 5s;
-
-    # The capture form. ${API_UPSTREAM} is substituted by the entrypoint, so
-    # the backend host lives in the environment, not in this file.
+    # The capture form. API_UPSTREAM comes from the container environment so
+    # the backend host is not hardcoded here.
     location /api/ {
-        set $api_upstream "${API_UPSTREAM}";
-        proxy_pass http://$api_upstream;
+        proxy_pass http://$API_UPSTREAM;
         proxy_http_version 1.1;
         proxy_set_header Host              $host;
         proxy_set_header X-Real-IP         $remote_addr;
@@ -77,12 +64,8 @@ server {
         try_files $uri $uri/ $uri/index.html =404;
     }
 
-    # Single-page-ish routing for the funnel anchors; index.html serves the
-    # whole page and the anchors are client-side.
     location / {
         add_header Cache-Control "no-cache";
         try_files $uri $uri/ /index.html;
     }
-
-    error_page 404 /index.html;
 }
