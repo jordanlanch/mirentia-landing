@@ -1,1001 +1,1509 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-CO">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0a0a0a" />
   <meta name="color-scheme" content="dark light" />
-  <meta name="robots" content="max-snippet: -1, max-image-preview: large, max-video-preview: -1" />
+  <meta name="robots" content="index, follow" />
   <meta name="author" content="Jordan Lanch" />
-  <link rel="alternate" hreflang="es" href="https://mirentia.com/" />
+
+  <title>Mirentia · Agentes de AI para Pymes de Latam</title>
+  <meta name="description" content="Agentes de IA que califican tus leads, los meten en tu CRM y los llevan hasta la venta por WhatsApp. Desde USD 1.500 de instalación. Los costos de plataforma van aparte." />
   <link rel="canonical" href="https://mirentia.com/" />
-  <title>Mirentia — Construimos agentes que ejecutan tu trabajo</title>
-  <meta name="description" content="AI-native agency en Colombia. Construimos agentes que ejecutan tu trabajo — no dashboards. Diagnóstico desde $990 USD. ROI en 90 días o devolvemos." />
-  <meta property="og:title" content="Mirentia — Construimos agentes que ejecutan tu trabajo" />
-  <meta property="og:description" content="Somos fundadores de Bailante, Findink y LitigIA. Llevamos 3 verticales a AI-native. Tu SME es el próximo." />
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230a0a0a'/><text x='50' y='68' font-size='62' font-family='Georgia,serif' font-weight='400' text-anchor='middle' fill='%23FFD700'>M</text></svg>" />
+
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://mirentia.com" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="og:site_name" content="Mirentia" />
+  <meta property="og:title" content="Mirentia · Agentes de AI para Pymes de Latam" />
+  <meta property="og:description" content="Dejá de perder clientes por responder tarde. Construyo el agente que califica, agenda y cierra — conectado a tus herramientas." />
+  <meta property="og:url" content="https://mirentia.com/" />
   <meta property="og:image" content="https://mirentia.com/og-image.png" />
+  <meta property="og:locale" content="es_CO" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mirentia · Agentes de AI para Pymes de Latam" />
+  <meta name="twitter:description" content="Dejá de perder clientes por responder tarde. Construyo el agente que califica, agenda y cierra — conectado a tus herramientas." />
   <meta name="twitter:image" content="https://mirentia.com/og-image.png" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230a0a0a'/><text x='50' y='68' font-size='62' font-family='Inter,Helvetica,Arial,sans-serif' font-weight='900' text-anchor='middle' fill='%23FFD700'>M</text></svg>" />
-  <link rel="preload" as="script" href="https://unpkg.com/three@0.169.0/build/three.module.js" crossorigin />
+  <meta name="twitter:site" content="@mirentia" />
+  <meta name="twitter:creator" content="@jordanlanch" />
+
+  <!--
+    Meta Pixel placeholder — INTENCIONALMENTE COMENTADO.
+
+    nginx.conf fija un CSP con `connect-src` limitado a n8n.mirentia.com y
+    beehiiv. Un pixel activo sería bloqueado por el navegador hasta que se
+    agregue Meta a `connect-src` y `script-src` en los 6 location blocks de
+    website/nginx.conf. Ese cambio es explícito del humano, no de este rebuild.
+    Descomentar solo después de ajustar el CSP.
+  -->
+  <!-- <script>/* Meta Pixel */</script> -->
+
+  <link rel="stylesheet" href="/assets/motion.min.css" />
+  <link rel="stylesheet" href="/assets/base.min.css" />
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Mirentia",
-    "url": "https://mirentia.com",
-    "logo": "https://mirentia.com/icon.svg",
-    "description": "AI-native agency. Construimos agentes que ejecutan tu trabajo. Fundadores de Bailante, Findink y LitigIA.",
+    "url": "https://mirentia.com/",
+    "logo": "https://mirentia.com/og-image.png",
+    "description": "Agentes de AI para Pymes de Latam. Bogotá, Colombia.",
     "email": "hola@mirentia.com",
+    "telephone": "+57-320-494-3638",
+    "founder": {
+      "@type": "Person",
+      "name": "Jordan Lanch"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bogotá",
+      "addressCountry": "CO"
+    },
     "sameAs": [
-      "https://x.com/JodanLive",
-      "https://linkedin.com/in/jordanlanch",
+      "https://www.linkedin.com/in/jordanlanch",
       "https://github.com/jordanlanch"
     ]
   }
   </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Mirentia",
-    "url": "https://mirentia.com",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://mirentia.com/?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    },
-    "speakable": {
-      "@type": "SpeakableSpecification",
-      "xpath": [
-        "/html/body//h1",
-        "/html/body//section[@id='faq']//details//p",
-        "/html/body//section[@id='faq']//details//summary"
-      ]
-    }
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Mini-Diagnóstico AI-Readiness",
-    "description": "Diagnóstico de un proceso automatizable con agentes AI. Incluye blueprint con ROI projection. 7 días. $990 USD.",
-    "provider": {
-      "@type": "Organization",
-      "name": "Mirentia",
-      "url": "https://mirentia.com"
-    },
-    "areaServed": "Latam",
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Servicios Mirentia",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Mini-Diagnóstico AI-Readiness"
-          },
-          "price": "990",
-          "priceCurrency": "USD"
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Sprint AI-Native"
-          },
-          "price": "18000",
-          "priceCurrency": "USD"
-        }
-      ]
-    }
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    "name": "Cómo trabajamos — 3 pasos del Mini-Diagnóstico al agente en producción",
-    "description": "El proceso de Mirentia: mapeo del proceso, blueprint con ROI, y roadmap priorizado.",
-    "provider": {
-      "@type": "Organization",
-      "name": "Mirentia",
-      "url": "https://mirentia.com"
-    },
-    "step": [
-      {
-        "@type": "HowToStep",
-        "position": 1,
-        "name": "Mapeo del proceso",
-        "text": "Identificamos el proceso manual que más horas consume en tu empresa. El que más copy-paste, más Excel, más WhatsApp."
-      },
-      {
-        "@type": "HowToStep",
-        "position": 2,
-        "name": "Blueprint con ROI projection",
-        "text": "Modelamos el proceso como agente AI. Calculamos inversión, tiempo de implementación y horas eliminadas. Si no tiene ROI en 90 días, te devolvemos el diagnóstico."
-      },
-      {
-        "@type": "HowToStep",
-        "position": 3,
-        "name": "Roadmap priorizado",
-        "text": "Te entregamos un roadmap de implementación con los primeros procesos priorizados por ROI. Vos decís cuándo arrancar."
-      }
-    ]
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Inicio",
-        "item": "https://mirentia.com/"
-      }
-    ]
-  }
-  </script>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-"mainEntity": [
+    "mainEntity": [
       {
         "@type": "Question",
-        "name": "Qué hace exactamente una agencia AI-native?",
+        "name": "¿Cuánto cuesta?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Una agencia AI-native diseña e implementa agentes de inteligencia artificial que ejecutan trabajo real — no dashboards, no chatbots de FAQ, no integrations genéricas. Construimos agentes que hacen el trabajo que hoy hace tu equipo en Excel, WhatsApp y CRMs. Nuestros agentes tienen acceso a herramientas reales, toman decisiones dentro de tu proceso, y producen outputs que tu equipo puede usar directamente sin revisión manual."
+          "text": "Depende del tamaño y el volumen. Pyme LATAM: USD 1.500-4.000 de instalación y USD 400-900 por mes. Empresa mediana o pyme de EE. UU.: USD 4.000-8.000 y USD 900-2.000. B2B o volumen: USD 8.000-15.000 y USD 2.000-4.000. Los costos de las plataformas van aparte y varían según el volumen que manejes."
         }
       },
       {
         "@type": "Question",
-        "name": "Cuánto cuesta implementar IA en mi empresa en Colombia?",
+        "name": "¿Cuánto tarda?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Un Mini-Diagnóstico de un proceso sale en $990 USD. Un Sprint completo está entre $18-22K USD. Una implementación Multi-Proceso entre $35-50K USD. Si el proceso no se paga solo en 90 días, te devolvemos el diagnóstico."
+          "text": "La instalación se cotiza según el alcance de las integraciones que necesita tu negocio. El primer agente entra en producción dentro de las primeras semanas; el resto se va sumando por etapas. Te paso el cronograma por escrito antes de empezar."
         }
       },
       {
         "@type": "Question",
-        "name": "Cuánto tiempo toma implementar agentes de AI?",
+        "name": "¿Y si no funciona?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "El Mini-Diagnóstico toma 7 días. Un Sprint completo (1 workflow en producción) toma 8-12 semanas, incluyendo diseño del agente, desarrollo, integración con tu stack, testing, y go-live."
+          "text": "Los primeros 90 días son de garantía: si el agente no entrega el resultado que acordamos por escrito, lo arreglo o te devuelvo la plata. Después seguís mes a mes y podés cancelar cuando quieras."
         }
       },
       {
         "@type": "Question",
-        "name": "Qué ROI puedo esperar de automatizar con AI?",
+        "name": "¿Suena robótico?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "El ROI más común en nuestros Sprint es eliminación de 15-25 horas/mes de trabajo manual. Eso equivale a $500-1500 USD/mes en tiempo recuperado. En 90 días el ROI típicamente supera 3x la inversión del Sprint."
+          "text": "No. El agente responde con el tono y los datos de tu negocio, no con plantillas genéricas. Antes de escribir nada probamos el tono con tus palabras reales."
         }
       },
       {
         "@type": "Question",
-        "name": "Construyen agentes de AI o solo consultan?",
+        "name": "¿Qué pasa si el agente no sabe responder?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Construimos. No hacemos decks de estrategia ni PPTs de Recommendations. El Sprint es implementación completa: diseño del agente, desarrollo, integración, y el agente corriendo en producción."
+          "text": "Escala a un humano. Definimos juntos las preguntas que el agente no debe intentar adivinar, y en esos casos le pasa la conversación a tu equipo con todo el contexto."
         }
       },
       {
         "@type": "Question",
-        "name": "Cómo funciona el Mini-Diagnóstico AI-Readiness?",
+        "name": "¿Funciona con mi CRM o mis herramientas?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Reservás por $990 USD. En 7 días te entregamos: proceso más automatizable mapeado, blueprint del agente con inversión y horas eliminadas, y ROI projection verificable. Si no identificamos ROI en 90 días, te devolvemos el pago."
+          "text": "Sí. Nos integramos con lo que ya usás — HubSpot, Google Calendar, Slack, Notion, tu base de datos. No te pedimos que migres de herramienta."
         }
       },
       {
         "@type": "Question",
-        "name": "Qué incluye el Sprint exactamente?",
+        "name": "¿Tengo que saber de AI?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Diseño del agente con acceso a tus herramientas reales, desarrollo, integración a tu stack existente, testing con datos reales, go-live, y documentación. El output es un agente funcionando en producción."
+          "text": "No. Vos entendés tu negocio. Yo me encargo de traducirlo a un agente que funcione y de mantenerlo después."
         }
       },
       {
         "@type": "Question",
-        "name": "Trabajan con empresas de cualquier tamaño?",
+        "name": "¿Qué pasa con mi data?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Trabajamos con founders y equipos de SMEs en Latam con procesos manuales repetibles. En el Mini-Diagnóstico determinamos si tu empresa es buen fit — si no lo sos, te devolvemos el diagnóstico."
+          "text": "Todo queda en tu cuenta. No entreno modelos con tu data. Si decidís irte, te llevás código, configs e integraciones."
         }
       },
       {
         "@type": "Question",
-        "name": "Cuánto cuesta implementar AI en mi empresa?",
+        "name": "¿Puedo cancelar cuando quiera?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "La ecuación de valor: si un empleado cuesta $1,500 USD/mes y un agente cuesta $200-500 USD/mes ejecutando el mismo trabajo repetible, el ROI arranca desde el primer mes. Rangos: Mini-Diagnóstico $990 USD, Sprint $18-22K USD, Multi-Proceso $35-50K USD, Retainer $3.5-8K USD/mes. El precio depende de la cantidad de procesos a automatizar y la complejidad de tu stack."
+          "text": "Sí. Mes a mes, sin lock-in y sin multa de cancelación. No te retenemos con contratos anuales."
         }
       },
       {
         "@type": "Question",
-        "name": "Cuánto tiempo toma implementar agentes de AI?",
+        "name": "¿Trabajás con empresas pequeñas?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "El Mini-Diagnóstico toma 7 días corridos. Un Sprint completo (1 workflow en producción) toma 8-12 semanas. La mayoría de nuestros clientes ven los primeros ahorros en la semana 4 del Sprint, no en el go-live final. No vendemos proyectos de más de 3 meses sin haber demostrado ROI en el primero."
+          "text": "Sí, si el proceso está claro y el volumen justifica el agente. La instalación empieza en USD 1.500 justamente para que un negocio pequeño pueda empezar sin comprometerse a un contrato grande."
         }
       },
       {
         "@type": "Question",
-        "name": "Qué incluye exactamente el Mini-Diagnóstico?",
+        "name": "¿Cómo sé que funciona?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Tres entregables en 7 días: (1) un proceso de tu empresa mapeado paso a paso con tiempos y costos actuales, (2) un blueprint del agente que lo automatizaría con arquitectura, herramientas y plan de integración, (3) un ROI projection con horas eliminadas, dólares recuperados y payback estimado. Si no identificamos ROI en 90 días, devolvemos los $990 USD."
+          "text": "Acordamos por escrito qué resultado concreto tiene que entregar el agente, y lo medimos durante los primeros 90 días. Si no lo cumple, aplica la garantía."
         }
       },
       {
         "@type": "Question",
-        "name": "Qué incluye exactamente el Sprint?",
+        "name": "¿Qué pasa después del Sprint?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Implementación completa de un workflow AI-native en producción: diseño del agente con acceso a tus herramientas reales, desarrollo, integración con tu stack, testing con datos reales, go-live supervisado, y documentación técnica + operativa. Duración típica: 8-12 semanas. No incluye horas de workshop ni consultorías sueltas."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Qué pasa con la seguridad y privacidad de mis datos?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Tus datos quedan en tu stack. Los modelos procesan pero no retienen ni entrenan con tu información. Para clientes con requisitos estrictos, ofrecemos deployment on-prem o en tu VPC privada. Firmamos NDA antes del Mini-Diagnóstico si lo necesitás. El código fuente de tu agente es tuyo: si te vas, te lo llevás."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Trabajan con empresas de cualquier tamaño? (con ejemplos)",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sí, con founders y equipos de SMEs en Latam (Colombia, México, Chile, Argentina). Trabajamos con empresas desde 3 hasta 200 personas. Lo que importa es tener procesos manuales repetibles: un equipo de 5 personas copiando datos es mejor fit que uno de 100 sin procesos definidos. En el Mini-Diagnóstico evaluamos el fit."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Puedo cancelar el contrato si no funciona?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sí, sin penalidad. No hay contratos a 12 meses ni cláusulas de salida. El Retainer es mes a mes. El Sprint es proyecto fijo: si cancelás antes del go-live, te cobramos sólo las horas trabajadas y te entregamos lo construido. El Mini-Diagnóstico tiene garantía de devolución si no identificamos ROI en 90 días."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Qué pasa después del Sprint?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Tres caminos posibles: (1) Retainer mensual ($3.5-8K USD) para soporte, monitoreo, iteración y nuevos casos de uso, (2) Multi-Proceso con descuento por bundle sobre 2-4 procesos adicionales, (3) Internalización con documentación + capacitación para que tu equipo opere los agentes. No hay un camino correcto: depende de tu capacidad interna y la urgencia del siguiente proceso."
+          "text": "Podés operar el agente con tu equipo — te entregamos documentación y handover — o contratar el plan mensual y lo seguimos optimizando con datos reales."
         }
       }
     ]
   }
   </script>
-  <link rel="stylesheet" href="/assets/orb.css" />
-  <link rel="stylesheet" href="/assets/base.css" />
-  <link rel="stylesheet" href="/assets/form.css" />
-  <script type="importmap">
-    {
-      "imports": {
-        "three": "https://unpkg.com/three@0.169.0/build/three.module.js",
-        "three/addons/": "https://unpkg.com/three@0.169.0/examples/jsm/"
-      }
-    }
-  </script>
 </head>
 <body>
 
-  <a class="skip-link" href="#main">Saltar al contenido</a>
+<a class="skip-link" href="#main">Saltar al contenido</a>
 
-  <canvas id="orb-canvas" aria-hidden="true">
-    <noscript>
-      <div class="orb-fallback" aria-hidden="true">
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <radialGradient id="g" cx="38%" cy="35%" r="65%">
-              <stop offset="0%" stop-color="#fff4a8"/>
-              <stop offset="55%" stop-color="#FFD700"/>
-              <stop offset="100%" stop-color="#7a5a00"/>
-            </radialGradient>
-          </defs>
-          <circle cx="100" cy="100" r="80" fill="url(#g)"/>
-          <ellipse cx="78" cy="76" rx="26" ry="14" fill="#fff" opacity="0.35"/>
-        </svg>
+<header class="wrap">
+  <nav class="nav" aria-label="Navegación principal">
+    <a class="brand" href="/" aria-label="Mirentia · inicio">
+      mirentia<span class="dot live-pulse" aria-hidden="true"></span>
+    </a>
+    <div class="nav__links">
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#casos">Casos</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a class="nav__cta" href="https://wa.me/573204943638?text=Hola%20Mirentia%2C%20quiero%20un%20Mini-Diagn%C3%B3stico." target="_blank" rel="noopener" aria-label="Cotizar por WhatsApp">Cotizar →</a>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- ============================================================
+       SECTION 1 — HERO
+       ============================================================ -->
+  <section class="wrap hero" aria-labelledby="hero-heading">
+    <canvas id="mesh-bg" aria-hidden="true"></canvas>
+    <div class="hero__inner">
+    <div class="eyebrow">AGENTES AI · BOGOTÁ · LATAM</div>
+
+    <h1 id="hero-heading" class="word-stagger-source">Dejá de perder clientes por responder tarde.</h1>
+
+    <p class="lead">Un agente que califica cada lead con un score de 0 a 100, lo mete solo en tu CRM y lo lleva por WhatsApp hasta que agenda o compra. Desde USD 1.500 de instalación.</p>
+
+    <div class="cta-row">
+      <a class="cta primary cta--lg" href="https://wa.me/573204943638?text=Hola%20Mirentia%2C%20quiero%20cotizar%20un%20agente%20para%20mis%20leads." target="_blank" rel="noopener">Quiero cotizar mi agente →</a>
+      <a class="cta cta--ghost cta--lg" href="https://wa.me/573204943638" target="_blank" rel="noopener">Hablar por WhatsApp</a>
+    </div>
+    <p class="cta-micro"><span class="pill">Sin compromiso · 30 min · 90 días de garantía</span></p>
+
+    <div class="hero__stats">
+      <span><strong>10+ h/mes</strong> ahorradas</span>
+      <span><strong>3 clientes</strong> en producción</span>
       </div>
-    </noscript>
-  </canvas>
 
-  <header class="wrap">
-    <nav class="nav" aria-label="Navegación principal">
-      <div class="brand brand-wipe" style="view-transition-name: mirentia-brand;">mirentia<span class="dot live-pulse"></span></div>
-      <a class="nav-cta" href="mailto:hola@mirentia.com">Diagnóstico →</a>
-    </nav>
-  </header>
+    <div class="hero__visual">
+      <!-- Chat snippet: WhatsApp-style -->
+      <div>
+        <p class="hero__caption">Así se ve un agente real. Producción. Cliente real (Bailante, Bogotá).</p>
+        <div class="chat" aria-label="Conversación de WhatsApp entre Laura y Bailante Agent">
+          <div class="chat__header">
+            <div class="chat__avatar" aria-hidden="true">B</div>
+            <div class="chat__title">
+              Bailante Agent
+              <small>en línea</small>
+            </div>
+          </div>
+          <div class="chat__body">
+            <div class="chat__meta">Usuario → Bailante Agent</div>
 
-  <main id="main">
+            <div class="chat__msg chat__msg--in">
+              ¿tienes clase mañana?
+              <span class="time">14:32</span>
+            </div>
 
-    <!-- HERO -->
-    <section class="wrap" style="padding: 72px 24px 64px;">
-      <h1 class="word-stagger">Construimos agentes que ejecutan tu trabajo — <span class="accent">no dashboards que tenés que aprender.</span></h1>
-      <div class="hero-stagger">
-        <div class="eyebrow">AI-native agency · 3 verticales en producción · Colombia</div>
-        <p class="lead">Somos fundadores de Bailante, Findink y LitigIA. Llevamos 3 verticales a AI-native en el último año. Tu SME es el próximo.</p>
-        <p style="font-size: 18px; color: var(--text-muted); margin-bottom: 24px;">Para founders y equipos de SMEs en Latam que quieren ejecutar trabajo con AI, no solo hacer demos.</p>
-        <div class="hero-cta-wrap">
-          <a class="cta primary" href="mailto:hola@mirentia.com?subject=Reserva%20Mini-Diagn%C3%B3stico&body=Hola%20Mirentia%2C%20quiero%20reservar%20un%20Mini-Diagn%C3%B3stico.">Reservar Mini-Diagnóstico — $990 USD</a>
-          <a class="cta cta--ghost" href="https://wa.me/573204943638?text=Hola%20Mirentia%2C%20quiero%20reservar%20un%20Mini-Diagn%C3%B3stico." rel="noopener" style="margin-left: 12px;">Hablar por WhatsApp</a>
-        </div>
-        <p class="cta-micro">Respondemos en menos de 24h · 0 commitment</p>
-        <div class="hero-meta">
-          <span class="pill">Bailante · Findink · LitigIA</span>
-          <span class="pill">3 verticales AI-native</span>
-          <span class="pill">7 años de dev experience</span>
+            <div class="chat__msg chat__msg--out">
+              Sí, salsa nivel intermedio mañana 7pm. ¿Confirmo con Valentina?
+              <span class="time">14:32</span>
+            </div>
+
+            <div class="chat__msg chat__msg--in">
+              Sí porfa
+              <span class="time">14:33</span>
+            </div>
+
+            <div class="chat__msg chat__msg--out">
+              Listo. Calendario actualizado. Mensaje a Valentina enviado.
+              <span class="time">14:33</span>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
 
-    <!-- MARQUEE -->
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee-track">
-        <span class="highlight">AI-native agency · Colombia</span>
-        <span class="dot-sep">✦</span>
-        <span>3 verticales AI-native</span>
-        <span class="dot-sep">✦</span>
-        <span>Bailante · Findink · LitigIA</span>
-        <span class="dot-sep">✦</span>
-        <span>7 años dev experience</span>
-        <span class="dot-sep">✦</span>
-        <span class="highlight">Mini-Diagnóstico $990 USD</span>
-        <span class="dot-sep">✦</span>
-        <span>ROI en 90 días o devolución</span>
-        <span class="dot-sep">✦</span>
-        <span>0 LinkedIn thought leadership</span>
-        <span class="dot-sep">✦</span>
-        <span class="highlight">AI-native agency · Colombia</span>
-        <span class="dot-sep">✦</span>
-        <span>3 verticales AI-native</span>
-        <span class="dot-sep">✦</span>
-        <span>Bailante · Findink · LitigIA</span>
-        <span class="dot-sep">✦</span>
-        <span>7 años dev experience</span>
-        <span class="dot-sep">✦</span>
-        <span class="highlight">Mini-Diagnóstico $990 USD</span>
-        <span class="dot-sep">✦</span>
-        <span>ROI en 90 días o devolución</span>
-        <span class="dot-sep">✦</span>
-        <span>0 LinkedIn thought leadership</span>
-        <span class="dot-sep">✦</span>
+      <!-- Code snippet: IDE-style -->
+      <div>
+        <p class="hero__caption">Y este es el código que lo hace funcionar.</p>
+        <div class="code" aria-label="Bloque de código Python">
+          <div class="code__bar">
+            <span class="code__dot" aria-hidden="true"></span>
+            <span class="code__dot" aria-hidden="true"></span>
+            <span class="code__dot" aria-hidden="true"></span>
+            <span class="code__name">bailante-agent / actions.py</span>
+          </div>
+<pre class="code__pre"><code><span class="tok-com"># bailante-agent / actions.py</span>
+<span class="tok-kw">async def</span> <span class="tok-fn">on_whatsapp_message</span>(user, message):
+    intent = <span class="tok-fn">classify</span>(message)  <span class="tok-com"># agendar, consultar, cancelar</span>
+    <span class="tok-kw">if</span> intent == <span class="tok-str">"agendar"</span>:
+        slot = <span class="tok-fn">find_available_slot</span>(team=<span class="tok-str">"salsa"</span>)
+        <span class="tok-kw">await</span> calendar.<span class="tok-fn">create_event</span>(slot)
+        <span class="tok-kw">await</span> <span class="tok-fn">notify_instructor</span>(slot.instructor)
+        <span class="tok-kw">return</span> <span class="tok-str">f"Listo. </span><span class="tok-var">{slot.day}</span><span class="tok-str"> </span><span class="tok-var">{slot.time}</span><span class="tok-str">"</span></code></pre>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 2 — PROBLEMA
+       ============================================================ -->
+  <section id="problema" class="wrap section reveal" aria-labelledby="problema-heading">
+    <div class="section-header">
+      <div class="eyebrow">EL PROBLEMA</div>
+      <h2 id="problema-heading" class="word-stagger-source">No es que no tengas leads. Es que llegás tarde.</h2>
+    </div>
+
+    <div class="entregables-grid reveal-stagger">
+      <article class="entregable-card reveal">
+        <svg class="entregable-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7 V12 L15 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <h3>El lead se enfría en minutos</h3>
+        <p>Cuando respondés tres horas tarde, ya llamó a otro. El cliente suele terminar con quien respondió primero — no con quien tiene mejor precio.</p>
+      </article>
+
+      <article class="entregable-card reveal">
+        <svg class="entregable-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 L21 8 L21 16 L12 21 L3 16 L3 8 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 12 L11.5 14.5 L15.5 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Tu vendedor pierde horas en leads sin presupuesto</h3>
+        <p>Calificar a mano cada consulta es trabajo caro que no produce ventas. Ese tiempo debería estar cerrando, no filtrando.</p>
+      </article>
+
+      <article class="entregable-card reveal">
+        <svg class="entregable-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 9 H21 M8 4 V9" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        <h3>Tu CRM está desactualizado</h3>
+        <p>Si el lead no se registra al instante, nadie lo retoma. El pipeline no se pierde de un día para otro: se filtra todos los días, un poco.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 3 — SERVICIOS
+       ============================================================ -->
+  <section id="servicios" class="wrap section" aria-labelledby="servicios-heading">
+    <div class="section-header reveal">
+      <div class="eyebrow">QUÉ HACEMOS</div>
+      <h2 id="servicios-heading" class="word-stagger-source">Tres planes. El precio depende de tu volumen.</h2>
+    </div>
+
+    <div class="services-grid reveal-stagger">
+      <article class="service-card reveal">
+        <p class="service-card__price">$1.500-4.000<small>USD · instalación</small></p>
+        <h3>Pyme LATAM</h3>
+        <p class="service-card__desc">Coaches, consultores y servicios locales. El agente califica, mete el lead en tu CRM y lo lleva por WhatsApp.</p>
+        <p class="service-card__price">$400-900 USD<small>por mes</small></p>
+        <a class="cta cta--ghost" href="https://wa.me/573204943638?text=Hola%2C%20me%20interesa%20el%20plan%20para%20pyme." target="_blank" rel="noopener">Hablar por WhatsApp →</a>
+      </article>
+
+      <article class="service-card reveal">
+        <p class="service-card__price">$4.000-8.000<small>USD · instalación</small></p>
+        <h3>Mediana</h3>
+        <p class="service-card__desc">Empresa mediana de LATAM o pyme de EE. UU. Más integraciones, más volumen, más automatizaciones encendidas.</p>
+        <p class="service-card__price">$900-2.000 USD<small>por mes</small></p>
+        <a class="cta cta--ghost" href="https://wa.me/573204943638?text=Hola%2C%20me%20interesa%20el%20plan%20mediana." target="_blank" rel="noopener">Hablar por WhatsApp →</a>
+      </article>
+
+      <article class="service-card reveal">
+        <p class="service-card__price">$8.000-15.000<small>USD · instalación</small></p>
+        <h3>B2B / Volumen</h3>
+        <p class="service-card__desc">Cliente de EE. UU. con volumen o B2B. Campañas, notetaker de llamadas y conexión con herramientas de pago.</p>
+        <p class="service-card__price">$2.000-4.000 USD<small>por mes</small></p>
+        <a class="cta cta--ghost" href="https://wa.me/573204943638?text=Hola%2C%20me%20interesa%20el%20plan%20B2B." target="_blank" rel="noopener">Hablar por WhatsApp →</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 4 — CÓMO TRABAJAMOS (entrega)
+       ============================================================ -->
+  <section id="proceso" class="wrap section reveal" aria-labelledby="proceso-heading">
+    <div class="section-header">
+      <div class="eyebrow">CÓMO TRABAJAMOS</div>
+      <h2 id="proceso-heading" class="word-stagger-source">Tres pasos. Sin misterio.</h2>
+    </div>
+
+    <div class="process reveal-stagger">
+      <div class="process-step reveal">
+        <div class="process-step__num num-counter" data-count="1" aria-hidden="true">0</div>
+        <div class="process-step__body">
+          <h3>Mapeo <span class="step-time">· 7 días</span></h3>
+          <p>Hablo con tu equipo. Mapeo tu operación. Entrego un plan priorizado con ROI estimado por automatización.</p>
+        </div>
+      </div>
+
+      <div class="process-step reveal">
+        <div class="process-step__num num-counter" data-count="2" aria-hidden="true">0</div>
+        <div class="process-step__body">
+          <h3>Instalamos <span class="step-time">· según tu alcance</span></h3>
+          <p>Construyo el agente. Lo conecto a WhatsApp, tu calendario, tu CRM, lo que uses. Lo lanzo en producción con casos reales de tu negocio.</p>
+        </div>
+      </div>
+
+      <div class="process-step reveal">
+        <div class="process-step__num num-counter" data-count="3" aria-hidden="true">0</div>
+        <div class="process-step__body">
+          <h3>Operamos <span class="step-time">· Ongoing</span></h3>
+          <p>Medimos resultados, iteramos cada mes. Si algo no funciona, lo cambiamos. Sin cobrarte extra por arreglar lo que prometí.</p>
+        </div>
       </div>
     </div>
 
-    <!-- PROBLEMA -->
-    <section class="section reveal">
-      <div class="wrap">
-        <div class="eyebrow">El problema</div>
-        <h2>Esto te suena familiar?</h2>
-        <div>
-          <div class="bul">Tu equipo copia datos entre Excel, WhatsApp y un CRM que nadie abre.</div>
-          <div class="bul">Cada nuevo cliente es más trabajo manual en vez de más revenue.</div>
-          <div class="bul">Querés usar IA pero no sabés por dónde, ni qué proceso mapear primero.</div>
+    <div class="video-placeholder" role="img" aria-label="Placeholder de video demo">
+      ▶ Demo del agente en acción (8-15s loop)
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 5 — CÓMO FUNCIONA EL AGENTE (4 pasos)
+       ============================================================ -->
+  <section id="como-funciona" class="wrap section reveal" aria-labelledby="como-funciona-heading">
+    <div class="section-header">
+      <div class="eyebrow">QUÉ HACE EL AGENTE</div>
+      <h2 id="como-funciona-heading" class="word-stagger-source">Del primer mensaje a la venta, sin que persigas a nadie.</h2>
+      <p class="lead">Cuatro pasos, todos automáticos. Tu equipo solo entra cuando hace falta.</p>
+    </div>
+
+    <div class="process reveal-stagger">
+      <div class="process-step reveal">
+        <div class="process-step__num num-counter" data-count="1" aria-hidden="true">0</div>
+        <div class="process-step__body">
+          <h3>Llega <span class="step-time">· desde tu web o Instagram</span></h3>
+          <p>El lead entra por un formulario corto o escribe directo por WhatsApp. Sin llamadas, sin formularios de 20 campos.</p>
         </div>
       </div>
-    </section>
 
-    <!-- OUTCOMES -->
-    <section class="section section--dark reveal">
-      <div class="wrap">
-        <div class="eyebrow">Lo que cambia</div>
-        <h2>Outcomes concretos. Sin buzzwords.</h2>
-        <div class="grid grid-3">
-          <div class="card reveal">
-            <div class="num num-counter" data-count="990">990</div>
-            <div class="num-label" style="font-size: 15px; margin-bottom: 12px;">USD / 1 proceso / 7 días</div>
-            <p class="small" style="margin: 0;">El Mini-Diagnóstico</p>
-          </div>
-          <div class="card reveal">
-            <div class="num num-counter" data-count="20" data-suffix="+">20+</div>
-            <div class="num-label" style="font-size: 15px; margin-bottom: 12px;">horas/mes eliminadas</div>
-            <p class="small" style="margin: 0;">En el Sprint</p>
-          </div>
-          <div class="card reveal">
-            <div class="num num-counter" data-count="24" data-suffix="/7">24/7</div>
-            <div class="num-label" style="font-size: 15px; margin-bottom: 12px;">sin errores humanos</div>
-            <p class="small" style="margin: 0;">Sistema que corre solo</p>
-          </div>
+      <div class="process-step reveal">
+        <div class="process-step__num num-counter" data-count="2" aria-hidden="true">0</div>
+        <div class="process-step__body">
+          <h3>Califica <span class="step-time">· score 0 a 100</span></h3>
+          <p>El agente pregunta presupuesto, necesidad, urgencia y encaje, y devuelve un puntaje en segundos. No adivina: pregunta.</p>
         </div>
       </div>
-    </section>
 
-    <!-- CÓMO TRABAJAMOS -->
-    <section class="section reveal" id="process">
-      <div class="wrap">
-        <div class="eyebrow">Cómo trabajamos</div>
-        <h2>3 pasos del Mini-Diagnóstico al agente en producción.</h2>
-        <div class="process-list">
-          <div class="process-step reveal">
-            <div class="step-number">1</div>
-            <div class="step-content">
-              <h3>Mapeo del proceso</h3>
-              <p>Identificamos el proceso manual que más horas consume en tu empresa. El que más copy-paste, más Excel, más WhatsApp.</p>
-            </div>
-          </div>
-          <div class="process-step reveal">
-            <div class="step-number">2</div>
-            <div class="step-content">
-              <h3>Blueprint con ROI projection</h3>
-              <p>Modelamos el proceso como agente AI. Calculamos inversión, tiempo de implementación y horas eliminadas. Si no tiene ROI en 90 días, te devolvemos el diagnóstico.</p>
-            </div>
-          </div>
-          <div class="process-step reveal">
-            <div class="step-number">3</div>
-            <div class="step-content">
-              <h3>Roadmap priorizado</h3>
-              <p>Te entregamos un roadmap de implementación con los primeros procesos priorizados por ROI. Vos decís cuándo arrancar.</p>
-            </div>
-          </div>
+      <div class="process-step reveal">
+        <div class="process-step__num num-counter" data-count="3" aria-hidden="true">0</div>
+        <div class="process-step__body">
+          <h3>Entra al CRM <span class="step-time">· con score, resumen y etiquetas</span></h3>
+          <p>El lead queda registrado solo, con su resumen y sus etiquetas. Nadie copia y pega. Tu pipeline está siempre al día.</p>
         </div>
       </div>
-    </section>
 
-    <!-- LO QUE NO HACEMOS -->
-    <section class="section reveal" id="lo-que-no-hacemos" aria-labelledby="no-nos-heading">
-      <div class="wrap">
-        <div class="eyebrow">Lo que NO hacemos</div>
-        <h2 id="no-nos-heading">Cero bullshit. Cero lock-in.</h2>
-        <p class="lead" style="margin-bottom: 32px;">Somos founders que ya quemamos con agencias. No vamos a venderte lo mismo que nos vendieron.</p>
-        <ul class="no-nos-list" style="list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; grid-template-columns: repeat(2, 1fr);">
-          <li class="no-nos-item">
-            <h3 style="font-size: 16px; margin-bottom: 6px;">No vendemos "AI strategy" sin implementación</h3>
-            <p class="small" style="margin: 0;">Si te entregamos un deck de 80 slides y nada más, te devolvemos el dinero. Entregamos agentes funcionando, no PDFs.</p>
+      <div class="process-step reveal">
+        <div class="process-step__num num-counter" data-count="4" aria-hidden="true">0</div>
+        <div class="process-step__body">
+          <h3>Cierra <span class="step-time">· agenda o compra</span></h3>
+          <p>Un agente lleva el lead por WhatsApp o email hasta que agenda o paga, y escala a un humano cuando la conversación lo requiere.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 6 — AGENT JOURNEY (scroll-scrubbed, 5 scenes)
+       PRESERVADO BYTE A BYTE: acoplado a assets/motion.js
+       ============================================================ -->
+  <section class="agent-journey" id="agent-journey" aria-label="El agente en acción">
+    <div class="agent-journey__intro">
+      <div class="eyebrow">EL AGENTE EN ACCIÓN</div>
+      <h2 class="word-stagger-source">Así trabaja un Sprint. Scrolleá para verlo.</h2>
+      <p class="lead">5 momentos. Producción real.</p>
+    </div>
+
+    <div class="agent-journey__shell">
+      <div class="agent-journey__stage" data-scene="0" aria-hidden="true">
+        <svg viewBox="0 0 700 500" xmlns="http://www.w3.org/2000/svg" class="scene-svg">
+          <rect x="120" y="50" width="460" height="400" rx="32" fill="#0f1a18" stroke="#1f2e2a" stroke-width="2"/>
+          <path d="M 120 86 L 120 82 Q 120 50 152 50 L 548 50 Q 580 50 580 82 L 580 106 L 120 106 Z" fill="#128C7E"/>
+          <circle cx="170" cy="78" r="4" fill="#25d366"/>
+          <text x="350" y="86" text-anchor="middle" fill="#fff" font-size="14" font-family="system-ui" font-weight="600">WhatsApp · Laura</text>
+          <text x="350" y="146" text-anchor="middle" fill="#5a8a82" font-size="11" letter-spacing="2">HOY · 14:32</text>
+
+          <g class="s1-bubble" style="transform-origin: 430px 240px; transform-box: fill-box;">
+            <path d="M 300 248 L 288 262 L 302 250 Z" fill="#DCF8C6"/>
+            <rect x="300" y="200" width="260" height="60" rx="12" fill="#DCF8C6"/>
+            <text x="430" y="232" text-anchor="middle" fill="#111" font-size="20" font-family="system-ui">¿tienes clase mañana?</text>
+            <text x="552" y="250" text-anchor="end" fill="#5a8a72" font-size="11">14:32</text>
+          </g>
+
+          <text class="s1-timestamp" x="350" y="340" text-anchor="middle" fill="#888" font-size="13" opacity="0">LLEGA UN WHATSAPP</text>
+        </svg>
+      </div>
+
+      <div class="agent-journey__stage" data-scene="1" aria-hidden="true">
+        <svg viewBox="0 0 700 500" xmlns="http://www.w3.org/2000/svg" class="scene-svg">
+          <text x="350" y="60" text-anchor="middle" fill="#888" font-size="12" letter-spacing="3">MENSAJE RECIBIDO</text>
+
+          <rect x="100" y="85" width="500" height="58" rx="10" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
+          <text x="350" y="123" text-anchor="middle" fill="#f3efe5" font-size="22" font-family="monospace">¿tienes clase mañana?</text>
+
+          <path d="M 350 165 L 350 200" stroke="#FFD700" stroke-width="2" opacity="0.7"/>
+          <path d="M 344 195 L 350 207 L 356 195" stroke="#FFD700" stroke-width="2" fill="none" opacity="0.7"/>
+
+          <text x="350" y="225" text-anchor="middle" fill="#888" font-size="12" letter-spacing="3">INTENT CANDIDATES</text>
+
+          <g class="s2-lines" font-family="monospace" font-size="18" text-anchor="middle">
+            <g class="s2-line s2-agendar">
+              <rect x="180" y="252" width="340" height="44" rx="6" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
+              <text x="350" y="280" fill="#f3efe5">agendar</text>
+            </g>
+            <g class="s2-line">
+              <rect x="180" y="306" width="340" height="44" rx="6" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
+              <text x="350" y="334" fill="#888">consultar</text>
+            </g>
+            <g class="s2-line">
+              <rect x="180" y="360" width="340" height="44" rx="6" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
+              <text x="350" y="388" fill="#888">cancelar</text>
+            </g>
+            <g class="s2-line">
+              <rect x="180" y="414" width="340" height="44" rx="6" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
+              <text x="350" y="442" fill="#888">confirmar</text>
+            </g>
+          </g>
+        </svg>
+      </div>
+
+      <div class="agent-journey__stage" data-scene="2" aria-hidden="true">
+        <svg viewBox="0 0 700 500" xmlns="http://www.w3.org/2000/svg" class="scene-svg">
+          <text x="350" y="50" text-anchor="middle" fill="#888" font-size="12" letter-spacing="3">DECISION TREE</text>
+
+          <circle cx="350" cy="110" r="42" fill="#1a1a1a" stroke="#FFD700" stroke-width="2"/>
+          <text x="350" y="106" text-anchor="middle" fill="#FFD700" font-size="11" font-family="monospace">INTENT</text>
+          <text x="350" y="124" text-anchor="middle" fill="#FFD700" font-size="13" font-family="monospace" font-weight="700">agendar</text>
+
+          <g class="s3-path" data-path="agendar">
+            <line x1="350" y1="152" x2="170" y2="220" stroke="#FFD700" stroke-width="2.5"/>
+            <rect x="50" y="220" width="240" height="78" rx="8" fill="#1a1a1a" stroke="#FFD700" stroke-width="1.5"/>
+            <text x="170" y="248" text-anchor="middle" fill="#FFD700" font-size="15" font-family="monospace" font-weight="700">agendar</text>
+            <text x="170" y="272" text-anchor="middle" fill="#888" font-size="11" font-family="monospace">calendar.create_event</text>
+            <text x="170" y="288" text-anchor="middle" fill="#666" font-size="10" font-family="monospace">notify_instructor</text>
+          </g>
+
+          <g class="s3-path" data-path="consultar">
+            <line x1="350" y1="152" x2="350" y2="220" stroke="#444" stroke-width="2"/>
+            <rect x="230" y="220" width="240" height="78" rx="8" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
+            <text x="350" y="248" text-anchor="middle" fill="#888" font-size="15" font-family="monospace">consultar</text>
+            <text x="350" y="272" text-anchor="middle" fill="#666" font-size="11" font-family="monospace">knowledge_base.lookup</text>
+          </g>
+
+          <g class="s3-path" data-path="cancelar">
+            <line x1="350" y1="152" x2="530" y2="220" stroke="#444" stroke-width="2"/>
+            <rect x="410" y="220" width="240" height="78" rx="8" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
+            <text x="530" y="248" text-anchor="middle" fill="#888" font-size="15" font-family="monospace">cancelar</text>
+            <text x="530" y="272" text-anchor="middle" fill="#666" font-size="11" font-family="monospace">booking.cancel</text>
+          </g>
+
+          <text x="350" y="380" text-anchor="middle" fill="#FFD700" font-size="13" font-family="monospace" opacity="0.8">→ ruta elegida</text>
+
+          <g class="s3-meta" font-family="monospace" font-size="11" fill="#888">
+            <text x="350" y="420" text-anchor="middle">Salsa · intermedio · 7pm</text>
+            <text x="350" y="438" text-anchor="middle">Instructor: Valentina</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="agent-journey__stage" data-scene="3" aria-hidden="true">
+        <svg viewBox="0 0 700 500" xmlns="http://www.w3.org/2000/svg" class="scene-svg">
+          <text x="350" y="60" text-anchor="middle" fill="#888" font-size="12" letter-spacing="3">GOOGLE CALENDAR · MIÉ 19:00</text>
+
+          <g class="s4-day-labels" font-family="monospace" font-size="11" fill="#666" text-anchor="middle">
+            <text x="195" y="110">LUN</text>
+            <text x="275" y="110">MAR</text>
+            <text x="355" y="110">MIÉ</text>
+            <text x="435" y="110">JUE</text>
+            <text x="515" y="110">VIE</text>
+          </g>
+
+          <g class="s4-grid">
+            <rect x="165" y="130" width="60" height="60" fill="#141414" stroke="#333"/>
+            <rect x="245" y="130" width="60" height="60" fill="#141414" stroke="#333"/>
+            <rect x="325" y="130" width="60" height="60" fill="#141414" stroke="#333"/>
+            <rect x="405" y="130" width="60" height="60" fill="#141414" stroke="#333"/>
+            <rect x="485" y="130" width="60" height="60" fill="#141414" stroke="#333"/>
+
+            <rect x="165" y="200" width="60" height="60" fill="#141414" stroke="#333"/>
+            <rect x="245" y="200" width="60" height="60" fill="#141414" stroke="#333"/>
+            <rect class="s4-target" x="325" y="200" width="60" height="60" fill="#141414" stroke="#FFD700" stroke-width="2"/>
+            <rect x="405" y="200" width="60" height="60" fill="#141414" stroke="#333"/>
+            <rect x="485" y="200" width="60" height="60" fill="#141414" stroke="#333"/>
+
+            <rect x="165" y="270" width="60" height="60" fill="#141414" stroke="#333"/>
+            <rect x="245" y="270" width="60" height="60" fill="#141414" stroke="#333"/>
+            <rect x="325" y="270" width="60" height="60" fill="#141414" stroke="#333"/>
+            <rect x="405" y="270" width="60" height="60" fill="#141414" stroke="#333"/>
+            <rect x="485" y="270" width="60" height="60" fill="#141414" stroke="#333"/>
+
+            <rect x="165" y="340" width="60" height="60" fill="#141414" stroke="#333"/>
+            <rect x="245" y="340" width="60" height="60" fill="#141414" stroke="#333"/>
+            <rect x="325" y="340" width="60" height="60" fill="#141414" stroke="#333"/>
+            <rect x="405" y="340" width="60" height="60" fill="#141414" stroke="#333"/>
+            <rect x="485" y="340" width="60" height="60" fill="#141414" stroke="#333"/>
+          </g>
+
+          <text class="s4-label" x="355" y="237" text-anchor="middle" fill="#FFD700" font-size="11" font-family="monospace" opacity="0">19:00</text>
+          <text class="s4-check" x="355" y="248" text-anchor="middle" fill="#FFD700" font-size="30" font-weight="700" font-family="system-ui" opacity="0">✓</text>
+        </svg>
+      </div>
+
+      <div class="agent-journey__stage" data-scene="4" aria-hidden="true">
+        <svg viewBox="0 0 700 500" xmlns="http://www.w3.org/2000/svg" class="scene-svg">
+          <text x="350" y="60" text-anchor="middle" fill="#888" font-size="12" letter-spacing="3">RESULTADO · 8 SEMANAS</text>
+
+          <text class="s5-counter" x="350" y="200" text-anchor="middle" fill="#FFD700" font-size="120" font-weight="400" font-family="Georgia, serif">0</text>
+          <text x="350" y="245" text-anchor="middle" fill="#888" font-size="13" letter-spacing="3">HORAS AHORRADAS</text>
+
+          <g class="s5-chart" transform="translate(140, 300)">
+            <line x1="0" y1="100" x2="420" y2="100" stroke="#333" stroke-width="1"/>
+            <line x1="0" y1="50" x2="420" y2="50" stroke="#222" stroke-width="1" stroke-dasharray="2 4"/>
+
+            <polyline class="s5-chart-line" points="0,90 60,82 120,75 180,55 240,58 300,40 360,28 420,15" fill="none" stroke="#FFD700" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+            <circle class="s5-chart-dot" cx="420" cy="15" r="5" fill="#FFD700" opacity="0"/>
+
+            <g font-family="monospace" font-size="11" fill="#666" text-anchor="middle">
+              <text x="0" y="125">S1</text>
+              <text x="60" y="125">S2</text>
+              <text x="120" y="125">S3</text>
+              <text x="180" y="125">S4</text>
+              <text x="240" y="125">S5</text>
+              <text x="300" y="125">S6</text>
+              <text x="360" y="125">S7</text>
+              <text x="420" y="125">S8</text>
+            </g>
+          </g>
+        </svg>
+      </div>
+
+      <div class="agent-journey__topbar">
+        <div class="agent-journey__brand">
+          <span class="agent-journey__brand-mark" aria-hidden="true"></span>
+          <span>Mirentia · Sprint en vivo</span>
+        </div>
+        <div class="agent-journey__chapter" data-chapter="01">01 · LLEGA</div>
+      </div>
+
+      <div class="agent-journey__copy">
+        <article class="agent-journey__copy-block is-active" data-scene="0">
+          <div class="agent-journey__kicker">01 · LLEGA</div>
+          <h3 class="agent-journey__title">Recibe un WhatsApp.</h3>
+          <p class="agent-journey__body">Laura escribe a las 14:32. El agente la lee en menos de un segundo.</p>
+        </article>
+        <article class="agent-journey__copy-block" data-scene="1" aria-hidden="true">
+          <div class="agent-journey__kicker">02 · ENTIENDE</div>
+          <h3 class="agent-journey__title">Clasifica el intent.</h3>
+          <p class="agent-journey__body">"agendar" no es lo mismo que "cancelar" o "consultar". El agente sabe cuál es cuál.</p>
+        </article>
+        <article class="agent-journey__copy-block" data-scene="2" aria-hidden="true">
+          <div class="agent-journey__kicker">03 · DECIDE</div>
+          <h3 class="agent-journey__title">Elige la acción.</h3>
+          <p class="agent-journey__body">Salsa intermedio, mañana 7pm. Hay slot libre. El instructor es Valentina.</p>
+        </article>
+        <article class="agent-journey__copy-block" data-scene="3" aria-hidden="true">
+          <div class="agent-journey__kicker">04 · EJECUTA</div>
+          <h3 class="agent-journey__title">Llama a tus herramientas.</h3>
+          <p class="agent-journey__body">Crea el evento en Google Calendar. Manda WhatsApp a Valentina. Confirma con Laura. Todo en paralelo.</p>
+        </article>
+        <article class="agent-journey__copy-block" data-scene="4" aria-hidden="true">
+          <div class="agent-journey__kicker">05 · APRENDE</div>
+          <h3 class="agent-journey__title">Mide, itera, mejora.</h3>
+          <p class="agent-journey__body">Cada semana medimos qué funcionó y qué no. Tu agente mejora con datos reales, no con teoría.</p>
+        </article>
+      </div>
+
+      <nav class="agent-journey__rail" aria-label="Capítulos del recorrido">
+        <button class="agent-journey__dot is-active" type="button" data-scene="0" aria-label="Capítulo 1: Recibe"></button>
+        <button class="agent-journey__dot" type="button" data-scene="1" aria-label="Capítulo 2: Entiende"></button>
+        <button class="agent-journey__dot" type="button" data-scene="2" aria-label="Capítulo 3: Decide"></button>
+        <button class="agent-journey__dot" type="button" data-scene="3" aria-label="Capítulo 4: Ejecuta"></button>
+        <button class="agent-journey__dot" type="button" data-scene="4" aria-label="Capítulo 5: Aprende"></button>
+      </nav>
+
+      <div class="agent-journey__footer">
+        <div class="agent-journey__scroll">
+          <i aria-hidden="true"></i>
+          <span>Scroll controla la cámara</span>
+        </div>
+        <div class="agent-journey__counter">
+          <span data-counter>01</span> / 05
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 7 — QUÉ INCLUYE
+       ============================================================ -->
+  <section id="incluye" class="wrap section reveal" aria-labelledby="incluye-heading">
+    <div class="section-header">
+      <div class="eyebrow">QUÉ INCLUYE</div>
+      <h2 id="incluye-heading" class="word-stagger-source">Cinco piezas que trabajan juntas.</h2>
+      <p class="lead">Cada una resuelve un punto donde hoy se cae un lead.</p>
+    </div>
+
+    <div class="entregables-grid reveal-stagger">
+      <article class="entregable-card reveal">
+        <svg class="entregable-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18 L9 12 L13 15 L20 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 6 H20 V11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Calificación instantánea</h3>
+        <p>Un score de 0 a 100 al instante, cruzando presupuesto, necesidad, urgencia y encaje. Tu equipo sabe a quién llamar primero.</p>
+      </article>
+
+      <article class="entregable-card reveal">
+        <svg class="entregable-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 C12 3 5 11 5 15 A7 7 0 0 0 19 15 C19 11 12 3 12 3 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+        <h3>Lead en el CRM solo</h3>
+        <p>Entra automáticamente con su score, su resumen y sus etiquetas. Sin copiar y pegar, sin pipeline que se evapora.</p>
+      </article>
+
+      <article class="entregable-card reveal">
+        <svg class="entregable-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5 A8.5 8.5 0 0 1 12.5 20 A8.5 8.5 0 0 1 3 11.5 A8.5 8.5 0 0 1 12 3 A8.5 8.5 0 0 1 21 11.5 Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 11.5 H21" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+        <h3>Un agente lleva el funnel</h3>
+        <p>WhatsApp o email, el canal que tu cliente ya usa, hasta que agenda o compra. Y si la conversación se pone densa, pasa a un humano.</p>
+      </article>
+
+      <article class="entregable-card reveal">
+        <svg class="entregable-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12 A9 9 0 1 1 3 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M21 4 V12 H13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Seguimiento y reactivación</h3>
+        <p>Campañas automáticas para los leads que quedaron fríos, sin depender de que alguien se acuerde de hacer el follow-up.</p>
+      </article>
+
+      <article class="entregable-card reveal">
+        <svg class="entregable-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3 H15 L18 6 V21 H6 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 11 H15 M9 15 H15 M9 7 H13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <h3>Llamadas y pagos</h3>
+        <p>El resumen de cada llamada de venta queda registrado, y el link de pago sale en el momento justo — no tres días después.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 8 — INTEGRACIONES Y CASOS DE USO
+       ============================================================ -->
+  <section id="integraciones" class="wrap section reveal" aria-labelledby="integraciones-heading">
+    <div class="section-header">
+      <div class="eyebrow">INTEGRACIONES Y CASOS DE USO</div>
+      <h2 id="integraciones-heading" class="word-stagger-source">Se conecta a lo que ya usás.</h2>
+      <p class="lead">No te pedimos que migres de herramienta. El agente entra donde tu equipo ya trabaja.</p>
+    </div>
+
+    <div class="tech-row">
+      Conectamos con:
+      <div class="tech-row__list">
+        <span>WhatsApp</span><span>·</span>
+        <span>Google Calendar</span><span>·</span>
+        <span>HubSpot</span><span>·</span>
+        <span>Slack</span><span>·</span>
+        <span>Notion</span><span>·</span>
+        <span>PostgreSQL</span><span>·</span>
+        <span>n8n</span><span>·</span>
+        <span>OpenAI</span><span>·</span>
+        <span>Anthropic</span>
+      </div>
+    </div>
+
+    <div class="entregables-grid reveal-stagger">
+      <article class="entregable-card reveal">
+        <h3>Agendar y confirmar citas</h3>
+        <p>Academia de baile: el agente agenda, confirma asistentes 24 horas antes y notifica a los instructores sin intervención humana.</p>
+      </article>
+
+      <article class="entregable-card reveal">
+        <h3>Calificar y filtrar leads</h3>
+        <p>Marketplace de tatuajes: matchea por estilo, ubicación, disponibilidad y presupuesto, y agenda la consulta.</p>
+      </article>
+
+      <article class="entregable-card reveal">
+        <h3>Preparar expedientes</h3>
+        <p>Legal: investigación jurisprudencial, borradores de demandas y tutelas, y resúmenes de expedientes.</p>
+      </article>
+
+      <article class="entregable-card reveal">
+        <h3>Reactivar leads fríos</h3>
+        <p>Los que dejaron de responder vuelven a una secuencia automática, con el contexto de la conversación original.</p>
+      </article>
+
+      <article class="entregable-card reveal">
+        <h3>Responder lo repetitivo</h3>
+        <p>Horarios, precios, cobertura, requisitos y ubicación: lo que tu equipo responde veinte veces por día.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 9 — CASOS
+       ============================================================ -->
+  <section id="casos" class="wrap section reveal" aria-labelledby="casos-heading">
+    <div class="section-header">
+      <div class="eyebrow">TRABAJO RECIENTE</div>
+      <h2 id="casos-heading" class="word-stagger-source">Tres clientes. Tres agentes en producción.</h2>
+    </div>
+
+    <div class="cases-grid reveal-stagger">
+
+      <article class="case-card reveal reveal--tilt">
+        <svg class="case-card__mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <circle cx="16" cy="20" r="5" stroke="currentColor" stroke-width="2"/>
+          <circle cx="32" cy="20" r="5" stroke="currentColor" stroke-width="2"/>
+          <line x1="16" y1="25" x2="14" y2="40" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="32" y1="25" x2="34" y2="40" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="16" y1="20" x2="32" y2="20" stroke="currentColor" stroke-width="2"/>
+          <line x1="20" y1="30" x2="28" y2="30" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <p class="case-card__meta">Academia de baile · Bogotá</p>
+        <h3 class="case-card__name">Bailante</h3>
+        <p class="case-card__desc">Agente de WhatsApp que agenda clases, confirma asistentes 24h antes y notifica a los instructores automáticamente. Reemplazó un ManyChat que se caía cada semana.</p>
+        <a class="case-card__link" href="/cases/bailante/">Ver caso</a>
+      </article>
+
+      <article class="case-card reveal reveal--tilt">
+        <svg class="case-card__mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <path d="M24 8 L40 38 L8 38 Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M24 18 L32 32 L16 32 Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" opacity="0.5"/>
+          <circle cx="24" cy="30" r="2" fill="currentColor"/>
+        </svg>
+        <p class="case-card__meta">Marketplace de tatuajes · Latam</p>
+        <h3 class="case-card__name">Findink</h3>
+        <p class="case-card__desc">Agente que matchea tatuadores con clientes según estilo, ubicación, disponibilidad y presupuesto. Maneja el primer contacto y agenda la consulta.</p>
+        <a class="case-card__link" href="/cases/findink/">Ver caso</a>
+      </article>
+
+      <article class="case-card reveal reveal--tilt">
+        <svg class="case-card__mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <line x1="24" y1="6" x2="24" y2="42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M10 14 L24 22 L38 14" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M16 38 L24 30 L32 38" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <circle cx="24" cy="22" r="2" fill="currentColor"/>
+        </svg>
+        <p class="case-card__meta">Legal AI · Colombia</p>
+        <h3 class="case-card__name">LitigIA</h3>
+        <p class="case-card__desc">Agente para abogados litigantes: investigación jurisprudencial, borradores de demandas y tutela, resumen de expedientes. Opera sobre archivos del cliente sin entrenar modelos con sus datos.</p>
+        <a class="case-card__link" href="/cases/litigia/">Ver caso</a>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 10 — TRUST
+       ============================================================ -->
+  <section id="trust" class="wrap section reveal" aria-labelledby="trust-heading">
+    <div class="section-header">
+      <div class="eyebrow">POR QUÉ CONFIAR</div>
+      <h2 id="trust-heading" class="word-stagger-source">Números que importan.</h2>
+    </div>
+
+    <div class="trust-stats reveal-stagger">
+      <div class="trust-stat reveal">
+        <div class="trust-stat__num-wrap"><span class="trust-stat__num num-counter" data-count="7" data-suffix="">0</span></div>
+        <div class="trust-stat__label">años construyendo software</div>
+      </div>
+      <div class="trust-stat reveal">
+        <div class="trust-stat__num-wrap"><span class="trust-stat__num num-counter" data-count="3" data-suffix="">0</span></div>
+        <div class="trust-stat__label">clientes activos en Latam</div>
+      </div>
+      <div class="trust-stat reveal">
+        <div class="trust-stat__num-wrap"><span class="trust-stat__num"><span class="num-counter" data-count="90" data-suffix="">0</span></span>días</div>
+        <div class="trust-stat__label">para ROI</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 11 — PARA QUIÉN ES / PARA QUIÉN NO ES
+       ============================================================ -->
+  <section id="para-quien" class="wrap section reveal" aria-labelledby="para-quien-heading">
+    <div class="section-header">
+      <div class="eyebrow">AJUSTE</div>
+      <h2 id="para-quien-heading" class="word-stagger-source">Esto es para vos si… y esto no.</h2>
+      <p class="lead">Preferimos que te digas que no antes de empezar.</p>
+    </div>
+
+    <div class="compare-grid reveal-stagger">
+      <div class="compare-col compare-col--us reveal reveal--scale">
+        <h3 class="compare-col__title">Es para vos si</h3>
+        <ul class="compare-list">
+          <li>
+            <svg class="compare-icon compare-icon--yes" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12 L10 17 L19 7" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+            <span>Tenés un proceso repetitivo que un humano hace a mano todos los días</span>
           </li>
-          <li class="no-nos-item">
-            <h3 style="font-size: 16px; margin-bottom: 6px;">No usamos testimonios falsos ni cases inventados</h3>
-            <p class="small" style="margin: 0;">Las únicas pruebas que mostramos son nuestros productos propios: Bailante, Findink, LitigIA. Construimos con AI, no la recomendamos desde afuera.</p>
+          <li>
+            <svg class="compare-icon compare-icon--yes" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12 L10 17 L19 7" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+            <span>Perdés consultas por no poder responder a tiempo</span>
           </li>
-          <li class="no-nos-item">
-            <h3 style="font-size: 16px; margin-bottom: 6px;">No hacemos "thought leadership" en LinkedIn</h3>
-            <p class="small" style="margin: 0;">No vas a ver posts motivacionales nuestros. Encontranos en GitHub, en commits, en código abierto. La evidencia está en el repo, no en el feed.</p>
+          <li>
+            <svg class="compare-icon compare-icon--yes" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12 L10 17 L19 7" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+            <span>Querés que el agente se conecte a tus herramientas y no al revés</span>
           </li>
-          <li class="no-nos-item">
-            <h3 style="font-size: 16px; margin-bottom: 6px;">No hay contratos a 12 meses ni lock-in</h3>
-            <p class="small" style="margin: 0;">Mes a mes. Si en 90 días no vemos ROI, te devolvemos el pago. Si después no queremos seguir, te llevás el código y los agentes.</p>
+          <li>
+            <svg class="compare-icon compare-icon--yes" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12 L10 17 L19 7" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+            <span>Podés dedicarte a cerrar en vez de a filtrar</span>
+          </li>
+          <li>
+            <svg class="compare-icon compare-icon--yes" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12 L10 17 L19 7" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+            <span>Querés medir el resultado, no el discurso</span>
           </li>
         </ul>
       </div>
-    </section>
 
-    <!-- FORMULARIO DE CONVERSIÓN -->
-    <section class="form-section reveal" id="contacto-form" aria-labelledby="form-heading">
-      <div class="wrap">
-        <div class="form-wrap">
-          <div class="eyebrow">Empezá hoy</div>
-          <h2 id="form-heading">¿Tenés un proceso que hoy es manual?</h2>
-          <p class="form-intro">Contanos un poco y te decimos en 24h si tiene sentido seguir. Sin compromiso, sin deck de 80 slides.</p>
-
-          <ol class="form-stepper" aria-label="Pasos del formulario">
-            <li class="is-active" aria-label="Paso 1 de 3"></li>
-            <li aria-label="Paso 2 de 3"></li>
-            <li aria-label="Paso 3 de 3"></li>
-          </ol>
-
-          <form id="lead-form" novalidate aria-describedby="form-live">
-            <div class="form-live" id="form-live" aria-live="polite" aria-atomic="true"></div>
-
-            <!-- STEP 1 -->
-            <div class="form-step is-active" data-step="0" aria-label="Paso 1: tus datos">
-              <div class="field">
-                <label class="field-label" for="f-name">Nombre<span class="req" aria-hidden="true">*</span></label>
-                <input class="field-input" type="text" id="f-name" name="name" required autocomplete="name" aria-required="true" />
-                <div class="field-error" role="alert"></div>
-              </div>
-              <div class="field">
-                <label class="field-label" for="f-email">Email de trabajo<span class="req" aria-hidden="true">*</span></label>
-                <input class="field-input" type="email" id="f-email" name="work_email" required autocomplete="email" aria-required="true" />
-                <div class="field-error" role="alert"></div>
-              </div>
-              <div class="field">
-                <label class="field-label" for="f-company">Empresa<span class="req" aria-hidden="true">*</span></label>
-                <input class="field-input" type="text" id="f-company" name="company" required autocomplete="organization" aria-required="true" />
-                <div class="field-error" role="alert"></div>
-              </div>
-              <!-- Honeypot: hidden, off-screen -->
-              <div class="hp-field" aria-hidden="true">
-                <label for="f-honey">No completar este campo</label>
-                <input type="text" id="f-honey" name="b_honey" tabindex="-1" autocomplete="off" />
-              </div>
-              <div class="form-actions">
-                <button type="button" class="btn-submit" data-action="next">Siguiente →</button>
-              </div>
-            </div>
-
-            <!-- STEP 2 -->
-            <div class="form-step" data-step="1" aria-label="Paso 2: tu contexto">
-              <div class="field">
-                <label class="field-label" for="f-role">Tu rol</label>
-                <select class="field-select" id="f-role" name="role">
-                  <option value="">Seleccioná tu rol</option>
-                  <option value="founder">Founder / CEO</option>
-                  <option value="cto">CTO / Head of Engineering</option>
-                  <option value="ops">Head of Operations</option>
-                  <option value="pm">Product Manager</option>
-                  <option value="other">Otro</option>
-                </select>
-              </div>
-              <div class="field">
-                <label class="field-label" for="f-team">Tamaño del equipo</label>
-                <select class="field-select" id="f-team" name="team_size">
-                  <option value="">¿Cuántas personas en el equipo?</option>
-                  <option value="1-10">1–10</option>
-                  <option value="11-50">11–50</option>
-                  <option value="51-200">51–200</option>
-                  <option value="200+">200+</option>
-                </select>
-              </div>
-              <div class="field">
-                <label class="field-label" for="f-pain">¿Cuál es el proceso más manual que tenés hoy?<span class="req" aria-hidden="true">*</span></label>
-                <textarea class="field-textarea" id="f-pain" name="biggest_pain" required placeholder="Ej: cada lunes copio 30 leads de WhatsApp a Hubspot, después mando emails uno por uno…" aria-required="true"></textarea>
-                <div class="field-error" role="alert"></div>
-              </div>
-              <div class="form-actions">
-                <button type="button" class="btn-back" aria-label="Volver al paso anterior">← Atrás</button>
-                <button type="button" class="btn-submit" data-action="next">Siguiente →</button>
-              </div>
-            </div>
-
-            <!-- STEP 3 (optional) -->
-            <div class="form-step" data-step="2" aria-label="Paso 3: presupuesto y timing">
-              <p class="form-intro" style="font-size: 14px;">Opcional. Nos ayuda a darte una respuesta más rápida.</p>
-
-              <div class="tier-badge" data-tier="frio" style="display: none;" aria-live="polite">
-                <span class="dot" aria-hidden="true"></span>
-                <span class="tier-label">Frío · te respondemos por email</span>
-              </div>
-
-              <div class="field">
-                <label class="field-label" for="f-budget">Presupuesto mensual aproximado (USD)</label>
-                <select class="field-select" id="f-budget" name="budget_range">
-                  <option value="">Elegí un rango</option>
-                  <option value="lt-1000">&lt; $1,000</option>
-                  <option value="1000-5000">$1,000–$5,000</option>
-                  <option value="5000">$5,000–$18,000</option>
-                  <option value="18000+">$18,000+</option>
-                </select>
-              </div>
-              <div class="field">
-                <label class="field-label" for="f-timeline">¿Cuándo querés arrancar?</label>
-                <select class="field-select" id="f-timeline" name="timeline">
-                  <option value="">Sin urgencia</option>
-                  <option value="immediate">Ahora / esta semana</option>
-                  <option value="1-month">Dentro de 1 mes</option>
-                  <option value="1-3-months">En 1–3 meses</option>
-                  <option value="no-timeline">Sin fecha</option>
-                </select>
-              </div>
-              <div class="form-actions">
-                <button type="button" class="btn-back" aria-label="Volver al paso anterior">← Atrás</button>
-                <button type="button" class="btn-submit" data-action="next">Enviar →</button>
-              </div>
-            </div>
-          </form>
-
-          <div class="form-result form-result--success" role="alert" aria-live="assertive">
-            <strong>Listo.</strong> Te llega un WhatsApp en los próximos minutos.
-          </div>
-          <div class="form-result form-result--error" role="alert" aria-live="assertive">
-            Algo falló. Probá de nuevo o escribinos a <a href="mailto:hola@mirentia.com">hola@mirentia.com</a>.
-          </div>
-
-          <p class="small" style="text-align: center; margin-top: 20px;">
-            ¿Prefieres email? <a class="accent" href="mailto:hola@mirentia.com">hola@mirentia.com</a> · <a class="accent" href="https://wa.me/573204943638" rel="noopener">WhatsApp</a>
-          </p>
-        </div>
+      <div class="compare-col compare-col--other reveal reveal--scale">
+        <h3 class="compare-col__title">No es para vos si</h3>
+        <ul class="compare-list">
+          <li>
+            <svg class="compare-icon compare-icon--no" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6 L18 18 M6 18 L18 6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+            <span>Querés un chatbot con respuestas fijas y cero integración</span>
+          </li>
+          <li>
+            <svg class="compare-icon compare-icon--no" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6 L18 18 M6 18 L18 6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+            <span>Buscás reemplazar a tu equipo el primer mes</span>
+          </li>
+          <li>
+            <svg class="compare-icon compare-icon--no" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6 L18 18 M6 18 L18 6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+            <span>Todavía no sabés qué proceso querés automatizar</span>
+          </li>
+          <li>
+            <svg class="compare-icon compare-icon--no" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6 L18 18 M6 18 L18 6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+            <span>Querés una demo en 48 horas sin mapa previo</span>
+          </li>
+          <li>
+            <svg class="compare-icon compare-icon--no" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6 L18 18 M6 18 L18 6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+            <span>El problema no es el proceso, es que nadie lo está midiendo</span>
+          </li>
+        </ul>
       </div>
-    </section>
-
-    <!-- POR QUÉ CONFIAR -->
-    <section class="section section--dark reveal" id="trust">
-      <div class="wrap">
-        <div class="eyebrow">Por qué confiar</div>
-        <h2>Somos founders que ya lo hicieron.</h2>
-        <div class="trust-grid">
-          <div class="trust-item reveal">
-            <h3>3 verticales en producción</h3>
-            <p>Bailante, Findink y LitigIA. Productos propios con agentes AI corriendo en producción, no demos ni PPTs.</p>
-            <div class="trust-stat">3</div>
-            <div class="trust-stat-label">verticales AI-native</div>
-          </div>
-          <div class="trust-item reveal">
-            <h3>7 años de dev experience</h3>
-            <p>Construimos software desde 2019. Sabemos la diferencia entre un agente que funciona y uno que falla en producción.</p>
-            <div class="trust-stat">7</div>
-            <div class="trust-stat-label">años dev experience</div>
-          </div>
-          <div class="trust-item reveal">
-            <h3>Build in public</h3>
-            <p>Sin LinkedIn thought leadership. Mostramos el código, los repos y los resultados reales en GitHub.</p>
-            <div class="trust-stat">4</div>
-            <div class="trust-stat-label">repos públicos</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CASOS -->
-    <section class="section section--dark reveal">
-      <div class="wrap">
-        <div class="eyebrow">Ya lo hicimos</div>
-        <h2>3 productos propios en producción.</h2>
-        <div class="grid grid-3">
-          <div class="card reveal">
-            <div class="badge">Live</div>
-            <h3 style="margin-top: 14px;">Bailante</h3>
-            <p class="small" style="margin: 0 0 12px;">Academia de baile, Bogotá. Web + captación + agenda conectados. JSON-LD Speakable, AEO, schema LocalBusiness.</p>
-            <p class="card-meta">50% reducción admin.</p>
-            <a href="/cases/bailante/" class="accent" style="font-weight: 700; font-size: 14px;">Ver caso →</a>
-          </div>
-          <div class="card reveal">
-            <div class="badge">Live</div>
-            <h3 style="margin-top: 14px;">Findink</h3>
-            <p class="small" style="margin: 0 0 12px;">Marketplace de tatuajes. Founder + CTO. Producto cross-platform con foco en portfolio y booking.</p>
-            <p class="card-meta">En producción.</p>
-            <a href="/cases/findink/" class="accent" style="font-weight: 700; font-size: 14px;">Ver caso →</a>
-          </div>
-          <div class="card card--highlight reveal">
-            <div class="badge badge--ghost">Stealth</div>
-            <h3 style="margin-top: 14px;">LitigIA</h3>
-            <p class="small" style="margin: 0 0 12px;">AI para abogados litigantes en Colombia. Service-as-a-Software con agentes que ejecutan el trabajo, no herramientas que el abogado usa.</p>
-            <p class="card-meta">Próximamente.</p>
-            <a href="/cases/litigia/" class="accent" style="font-weight: 700; font-size: 14px;">Ver caso →</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PREGUNTAS FRECUENTES -->
-    <section class="section reveal" id="faq">
-      <div class="wrap">
-        <div class="eyebrow">Preguntas frecuentes</div>
-        <h2>Lo que Founder y CTOs nos preguntan.</h2>
-        <div class="faq-list">
-          <div class="faq-item" id="faq-agencia-ai">
-            <details>
-              <summary>Qué hace exactamente una agencia AI-native?</summary>
-              <div class="faq-answer">
-                <p>Una agencia AI-native diseña e implementa agentes de inteligencia artificial que ejecutan trabajo real — no dashboards, no chatbots de FAQ, no integrations genéricas. Nosotros construimos agentes que hacen el trabajo que hoy hace tu equipo en Excel, WhatsApp y CRMs. Nuestros agentes tienen acceso a herramientas reales, toman decisiones dentro de tu proceso, y producen outputs que tu equipo puede usar directamente sin revisión manual.</p>
-              </div>
-            </details>
-          </div>
-          <div class="faq-item" id="faq-costo-colombia">
-            <details>
-              <summary>Cuánto cuesta implementar IA en mi empresa en Colombia?</summary>
-              <div class="faq-answer">
-                <p>Depende del scope. Un Mini-Diagnóstico de un proceso sale en $990 USD. Un Sprint completo — un workflow AI-native funcionando en tu stack — está entre $18-22K USD. Una implementación Multi-Proceso (2-4 workflows) está entre $35-50K USD. No damos precios de freelancer ni de agency genérica: cada precio incluye implementación real, integración al stack existente, y ROI projection verificable. Si el proceso no se paga solo en 90 días, te devolvemos el diagnóstico.</p>
-              </div>
-            </details>
-          </div>
-          <div class="faq-item" id="faq-tiempo">
-            <details>
-              <summary>Cuánto tiempo toma implementar agentes de AI?</summary>
-              <div class="faq-answer">
-                <p>El Mini-Diagnóstico toma 7 días — mapeamos el proceso, construimos el blueprint con ROI projection, y te entregamos el roadmap. Un Sprint completo (1 workflow funcionando en producción) toma 8-12 semanas. Eso incluye diseño del agente, desarrollo, integración con tu stack, testing, y go-live. No vendemos proyectos de más de 3 meses sin haber demostrado ROI en el primero.</p>
-              </div>
-            </details>
-          </div>
-          <div class="faq-item" id="faq-roi">
-            <details>
-              <summary>Qué ROI puedo esperar de automatizar con AI?</summary>
-              <div class="faq-answer">
-                <p>El ROI más común en nuestros Sprint es eliminación de 15-25 horas/mes de trabajo manual en el primer workflow. Eso equivale a $500-1500 USD/mes en tiempo recuperado, dependiendo del rol. En 90 días el ROI típicamente supera 3x la inversión del Sprint. No prometemos porcentajes inflados ni métricas genéricas: el ROI específico de tu proceso lo calculamos en el Mini-Diagnóstico con números reales de tu operación.</p>
-              </div>
-            </details>
-          </div>
-          <div class="faq-item" id="faq-construir-o-consultar">
-            <details>
-              <summary>Construyen agentes de AI o solo consultan?</summary>
-              <div class="faq-answer">
-                <p>Construimos. No hacemos decks de estrategia ni PPTs deRecommendations. Nuestro output es un agente funcionando en producción que hace el trabajo. Si después del Mini-Diagnóstico decidís no continuar, te llevás el blueprint y el ROI projection — esos son tuyos. Pero el Sprint es implementación completa: diseño, desarrollo, integración, y el agente corriendo.</p>
-              </div>
-            </details>
-          </div>
-          <div class="faq-item" id="faq-mini-diagnostico">
-            <details>
-              <summary>Cómo funciona el Mini-Diagnóstico AI-Readiness?</summary>
-              <div class="faq-answer">
-                <p>Reservás el Mini-Diagnóstico por $990 USD. En 7 días te entregamos: (1) el proceso más automatizable de tu empresa mapeado con detalle, (2) un blueprint del agente que lo automatizaría con inversión, timeline y horas eliminadas, (3) un ROI projection verificable. Si no identificamos al menos un proceso que se pague solo en 90 días, te devolvemos el pago completo. Es de bajo riesgo: si no hay ROI claro, no merece tu dinero.</p>
-              </div>
-            </details>
-          </div>
-          <div class="faq-item" id="faq-sprint">
-            <details>
-              <summary>Qué incluye el Sprint exactamente?</summary>
-              <div class="faq-answer">
-                <p>El Sprint incluye: diseño del agente con acceso a tus herramientas reales (Slack, CRM, base de datos, APIs), desarrollo del agente con tus procesos específicos, integración a tu stack existente, testing con datos reales, go-live, y documentación del agente. No incluimos servicios genéricos ni horas de "workshop". El output es un agente funcionando en producción. La duración típica es 8-12 semanas por workflow.</p>
-              </div>
-            </details>
-          </div>
-          <div class="faq-item" id="faq-tamano-empresa">
-            <details>
-              <summary>Trabajan con empresas de cualquier tamaño?</summary>
-              <div class="faq-answer">
-                <p>Trabajamos con founders y equipos de SMEs en Latam que tienen procesos manuales repetibles y pueden beneficiar más de un empleado del tiempo que el agente les recupera. No trabajamos con empresas que no tienen procesos definidos (primeros días de operación), ni con procesos que requieren juicio humano complejo que un agente no puede replicated actualmente. En el Mini-Diagnóstico determinamos si tu empresa es buen fit — si no lo sos, te devolvemos el diagnóstico.</p>
-              </div>
-            </details>
-          </div>
-          <div class="faq-item" id="faq-costo-hormozi">
-            <details>
-              <summary>Cuánto cuesta implementar AI en mi empresa?</summary>
-              <div class="faq-answer">
-                <p>La ecuación de valor es simple: si un empleado cuesta $1,500 USD/mes y un agente cuesta $200-500 USD/mes ejecutando el mismo trabajo repetible, el ROI arranca desde el primer mes. Nuestros rangos: Mini-Diagnóstico $990 USD, Sprint $18-22K USD, Multi-Proceso $35-50K USD, Retainer mensual $3.5-8K USD. Lo que determina el precio es la cantidad de procesos a automatizar y la complejidad de tu stack, no el tamaño de tu empresa. Una empresa de 8 personas con un proceso crítico es un cliente mejor que una de 200 con procesos no definidos.</p>
-              </div>
-            </details>
-          </div>
-          <div class="faq-item" id="faq-timeline-7d">
-            <details>
-              <summary>Cuánto tiempo toma implementar agentes de AI?</summary>
-              <div class="faq-answer">
-                <p>El Mini-Diagnóstico toma 7 días corridos: mapeamos tu proceso, construimos el blueprint con ROI projection, y te entregamos el roadmap. Un Sprint completo (un workflow en producción) toma 8-12 semanas — diseño del agente, desarrollo, integración con tu stack, testing con datos reales, y go-live. No vendemos proyectos de más de 3 meses sin haber demostrado ROI en el primero. La mayoría de nuestros clientes ven los primeros ahorros en la semana 4 del Sprint, no en el go-live final.</p>
-              </div>
-            </details>
-          </div>
-          <div class="faq-item" id="faq-mini-diagnostico-deliverables">
-            <details>
-              <summary>Qué incluye exactamente el Mini-Diagnóstico?</summary>
-              <div class="faq-answer">
-                <p>El Mini-Diagnóstico incluye tres entregables concretos en 7 días. (1) Un proceso de tu empresa mapeado paso a paso con tiempos y costos actuales por etapa. (2) Un blueprint del agente que lo automatizaría: arquitectura, herramientas necesarias, criterios de éxito, y plan de integración. (3) Un ROI projection con horas eliminadas, dólares recuperados y payback estimado. Si no identificamos al menos un proceso con ROI en 90 días, te devolvemos los $990 USD completos.</p>
-              </div>
-            </details>
-          </div>
-          <div class="faq-item" id="faq-sprint-deliverables">
-            <details>
-              <summary>Qué incluye exactamente el Sprint?</summary>
-              <div class="faq-answer">
-                <p>El Sprint es implementación completa de un workflow AI-native en producción. Incluye: diseño del agente con acceso a tus herramientas reales (Slack, CRM, base de datos, APIs internas), desarrollo del agente con tus procesos específicos, integración con tu stack existente, testing con datos reales de tu operación, go-live supervisado, y documentación técnica + operativa. No incluye horas de workshop, sesiones de descubrimiento adicionales, ni consultorías sueltas. La duración típica es 8-12 semanas por workflow.</p>
-              </div>
-            </details>
-          </div>
-          <div class="faq-item" id="faq-seguridad-privacidad">
-            <details>
-              <summary>Qué pasa con la seguridad y privacidad de mis datos?</summary>
-              <div class="faq-answer">
-                <p>Tus datos quedan en tu stack. Los modelos que usamos procesan la información pero no la retienen ni la usan para entrenar. Para clientes con requisitos estrictos, ofrecemos deployment on-prem o en tu VPC privada — el agente corre en tu infraestructura, no en la nuestra. No vendemos datos ni los compartimos con terceros. Firmamos NDA antes del Mini-Diagnóstico si lo necesitás. El código fuente de tu agente es tuyo: si te vas, te lo llevás.</p>
-              </div>
-            </details>
-          </div>
-          <div class="faq-item" id="faq-tamano-ejemplos">
-            <details>
-              <summary>Trabajan con empresas de cualquier tamaño?</summary>
-              <div class="faq-answer">
-                <p>Sí, con founders y equipos de SMEs en Latam (Colombia, México, Chile, Argentina principalmente). Trabajamos con empresas desde 3 personas hasta 200. Lo que importa no es el tamaño sino tener procesos manuales repetibles: un equipo de 5 personas copiando datos entre Excel y WhatsApp es mejor fit que uno de 100 sin procesos definidos. En el Mini-Diagnóstico evaluamos si tu empresa es buen fit. Si no lo es, te devolvemos el pago — preferimos perder $990 a arrastrar un cliente que no tiene ROI.</p>
-              </div>
-            </details>
-          </div>
-          <div class="faq-item" id="faq-cancelar-contrato">
-            <details>
-              <summary>Puedo cancelar el contrato si no funciona?</summary>
-              <div class="faq-answer">
-                <p>Sí, sin penalidad. No tenemos contratos a 12 meses ni cláusulas de salida. El Retainer es mes a mes: cancelás cuando quieras, sin justificar. El Sprint es proyecto fijo: si cancelás antes del go-live, te cobramos sólo las horas trabajadas y te entregamos lo que esté construido hasta ese punto. El Mini-Diagnóstico tiene garantía de devolución si no identificamos ROI en 90 días. Nuestro incentivo es que veas resultados, no que firmes lock-in.</p>
-              </div>
-            </details>
-          </div>
-          <div class="faq-item" id="faq-despues-sprint">
-            <details>
-              <summary>Qué pasa después del Sprint?</summary>
-              <div class="faq-answer">
-                <p>Después del Sprint tenés tres caminos. (1) Retainer mensual ($3.5-8K USD): soporte, monitoreo, iteración del agente, y agregado de nuevos casos de uso. (2) Multi-Proceso: aplicamos el mismo playbook a 2-4 procesos más en una sola tanda, con descuento por bundle. (3) Internalización: te entregamos documentación + capacitación y tu equipo opera los agentes sin nosotros. No hay un "camino correcto" — depende de tu capacidad interna y la urgencia del siguiente proceso.</p>
-              </div>
-            </details>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- MITOS VS REALIDAD -->
-    <section class="section section--dark reveal" id="mitos-realidad" aria-labelledby="mitos-heading">
-      <div class="wrap">
-        <div class="eyebrow">Mitos vs realidad</div>
-        <h2 id="mitos-heading">Lo que escuchamos vs lo que pasa.</h2>
-        <div class="mitos-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 24px;">
-          <article class="mito-block">
-            <div class="mito-label">Mito</div>
-            <h3 style="font-size: 18px;">"La IA va a reemplazar a mi equipo."</h3>
-            <p class="small" style="margin: 0;">Lo escuchamos cada semana. La realidad es otra: la IA ejecuta el trabajo repetitivo que hoy frena a tu equipo — copy-paste entre Excel y CRM, follow-ups de WhatsApp, qualification de leads, reportes semanales.</p>
-          </article>
-          <article class="realidad-block">
-            <div class="realidad-label">Realidad</div>
-            <h3 style="font-size: 18px;">La IA libera a tu equipo, no lo reemplaza.</h3>
-            <p class="small" style="margin: 0;">En nuestros Sprints, el equipo pasa de 70% operativo a 70% estratégico en 8 semanas. Nadie pierde su trabajo: ganan las 15-25 horas/mes que perdían en tareas que un agente hace mejor. Tu senior copywriter sigue escribiendo; el agente la libera de 200 emails de seguimiento.</p>
-          </article>
-
-          <article class="mito-block">
-            <div class="mito-label">Mito</div>
-            <h3 style="font-size: 18px;">"Ya uso ChatGPT Pro, no necesito una agencia."</h3>
-            <p class="small" style="margin: 0;">ChatGPT es una herramienta de productividad individual. Te ayuda a vos a escribir más rápido. No es lo mismo que un agente que ejecuta un proceso completo de tu empresa, accede a tus herramientas reales y toma decisiones sin tu input.</p>
-          </article>
-          <article class="realidad-block">
-            <div class="realidad-label">Realidad</div>
-            <h3 style="font-size: 18px;">Un prompt no es un agente.</h3>
-            <p class="small" style="margin: 0;">La diferencia entre usar ChatGPT y contratar Mirentia es la misma que entre usar Excel y tener un sistema contable. ChatGPT necesita a alguien copiando el prompt cada vez. Un agente corre solo, de lunes a lunes, sin que nadie lo opere. Eso es lo que construimos.</p>
-          </article>
-
-          <article class="mito-block">
-            <div class="mito-label">Mito</div>
-            <h3 style="font-size: 18px;">"Mi empresa es muy chica para AI."</h3>
-            <p class="small" style="margin: 0;">Otro clásico. "Somos 4 personas, ¿para qué un agente?" La respuesta: precisamente porque son 4 personas, cada hora que pierden en tareas manuales les duele más. Una agencia de marketing con 3 empleados pierde 40h/mes en reporting manual.</p>
-          </article>
-          <article class="realidad-block">
-            <div class="realidad-label">Realidad</div>
-            <h3 style="font-size: 18px;">El tamaño no importa. El proceso sí.</h3>
-            <p class="small" style="margin: 0;">Trabajamos con equipos de 3 personas y con empresas de 200. Lo que define el fit no es el headcount: es tener un proceso manual repetible que hoy te cuesta más de lo que debería. Si tu equipo hace el mismo flujo cada semana, hay ROI esperándonos.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- PRICING -->
-    <section class="section" id="pricing">
-      <div class="wrap">
-        <div class="eyebrow">Precios</div>
-        <h2>Simple. Sin sorpresas.</h2>
-        <div class="grid grid-4" style="gap: 20px;">
-          <div class="card pricing-card reveal">
-            <div class="eyebrow" style="margin-bottom: 8px;">Mini-Diagnóstico</div>
-            <div class="price">$990 USD</div>
-            <div class="price-note">~4M COP</div>
-            <ul>
-              <li>1 proceso mapeado</li>
-              <li>Blueprint con ROI projection</li>
-              <li>7 días</li>
-            </ul>
-            <a class="cta cta--full" href="mailto:hola@mirentia.com?subject=Mini-Diagn%C3%B3stico&body=Hola%20Mirentia%2C%20quiero%20agendar%20un%20Mini-Diagn%C3%B3stico.">Agendar →</a>
-          </div>
-          <div class="card pricing-card reveal">
-            <div class="eyebrow" style="margin-bottom: 8px;">Sprint</div>
-            <div class="price">$18-22K</div>
-            <div class="price-note">USD</div>
-            <ul>
-              <li>1 workflow AI-native completo</li>
-              <li>8–12 semanas</li>
-              <li>Integración a tu stack</li>
-            </ul>
-            <a class="cta cta--full cta--ghost" href="mailto:hola@mirentia.com?subject=Sprint&body=Hola%20Mirentia%2C%20quiero%20hablar%20de%20un%20Sprint.">Hablar →</a>
-          </div>
-          <div class="card pricing-card reveal">
-            <div class="eyebrow" style="margin-bottom: 8px;">Multi-Proceso</div>
-            <div class="price">$35-50K</div>
-            <div class="price-note">USD</div>
-            <ul>
-              <li>2–4 workflows</li>
-              <li>16–24 semanas</li>
-              <li>Integración completa</li>
-            </ul>
-            <a class="cta cta--full cta--ghost" href="mailto:hola@mirentia.com?subject=Multi-Proceso&body=Hola%20Mirentia%2C%20quiero%20hablar%20de%20Multi-Proceso.">Hablar →</a>
-          </div>
-          <div class="card pricing-card reveal">
-            <div class="eyebrow" style="margin-bottom: 8px;">Retainer</div>
-            <div class="price">$3.5-8K</div>
-            <div class="price-note">USD/mes</div>
-            <ul>
-              <li>Soporte + iteración</li>
-              <li>Upgrade de agentes</li>
-              <li>Mes a mes</li>
-            </ul>
-            <a class="cta cta--full cta--ghost" href="mailto:hola@mirentia.com?subject=Retainer&body=Hola%20Mirentia%2C%20quiero%20hablar%20de%20un%20Retainer.">Hablar →</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- GARANTÍA -->
-    <section class="section section--dark reveal">
-      <div class="wrap">
-        <div class="guarantee">
-          <div class="eyebrow">Garantía</div>
-          <h2>Si en el Mini-Diagnóstico no identificamos al menos 1 proceso automatizable que se pague solo en 90 días, te devolvemos el pago.</h2>
-          <p class="lead">Medimos lo que importa. Si el proceso no tiene ROI claro en 90 días, no merece tu dinero.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- NEWSLETTER -->
-    <section class="section section--dark reveal" id="newsletter">
-      <div class="wrap">
-        <div class="newsletter-wrap">
-          <div class="eyebrow">Newsletter</div>
-          <h3>Insights de AI-native en tu inbox.</h3>
-          <p>Sin spam. Sin weekly digest genérico. Solo lo que aprendemos construyendo agentes en producción, compartido en español.</p>
-          <!--
-            TASK-26 TODO: Replace YOUR_PUB_ID with your Beehiiv publishable ID.
-            Get it from: beehiiv.com → your publication → Settings → Integration → Publishable ID
-          -->
-          <form class="newsletter-form" id="newsletter-form" action="https://embeds.beehiiv.com/YOUR_PUB_ID/subscribe" method="POST" target="_blank" novalidate>
-            <input type="email" name="email" placeholder="tu@email.com" required aria-label="Tu email" />
-            <!-- Anti-spam honeypot -->
-            <input type="text" name="b_honey" tabindex="-1" autocomplete="off" style="display:none;" aria-hidden="true" />
-            <button type="submit" class="newsletter-submit">Suscribirme →</button>
-          </form>
-          <p class="newsletter-privacy">Sin spam. Unsubscribe en cualquier email. <a href="mailto:hola@mirentia.com">hola@mirentia.com</a></p>
-          <div class="newsletter-success" id="newsletter-success" role="alert">
-            Listo. Te llega un email de confirmación.
-          </div>
-          <div class="newsletter-error" id="newsletter-error" role="alert">
-            Algo falló. Probá de nuevo o escribinos a <a href="mailto:hola@mirentia.com">hola@mirentia.com</a>.
-          </div>
-          <noscript>
-            <p style="margin-top:16px;"><a href="mailto:hola@mirentia.com?subject=Suscripción%20Newsletter%20Mirentia&body=Hola%20Mirentia,%20quiero%20suscribirme%20al%20newsletter.">Escribinos por email para suscribirte →</a></p>
-          </noscript>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA FINAL -->
-    <section class="section" id="contacto">
-      <div class="wrap center">
-        <div class="eyebrow">Próximo paso</div>
-        <h2>Un diagnóstico. Un proceso. Cero especulación.</h2>
-        <p class="lead">Mapeamos un proceso de tu negocio que hoy es manual. Si tiene ROI claro, te decimos cómo automatizarlo. Si no, te devolvemos el diagnóstico.</p>
-        <div class="cta-row" style="justify-content: center; margin-top: 32px;">
-          <a class="cta" href="mailto:hola@mirentia.com?subject=Diagn%C3%B3stico%20AI-Readiness&body=Hola%20Mirentia%2C%20quiero%20agendar%20un%20Mini-Diagn%C3%B3stico.">Agendar diagnóstico →</a>
-          <a class="cta cta--ghost" href="https://wa.me/573204943638?text=Hola%20Mirentia%2C%20quiero%20agendar%20un%20Mini-Diagn%C3%B3stico." rel="noopener" style="margin-left: 12px;">WhatsApp</a>
-        </div>
-        <p class="cta-micro">Respondemos en menos de 24h.</p>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="footer">
-    <div class="wrap">
-      <div>Mirentia · IA-native agency · Colombia</div>
-      <div style="margin-top: 8px;">
-        <a href="mailto:hola@mirentia.com">hola@mirentia.com</a> ·
-        <a href="https://github.com/jordanlanch" rel="noopener">github.com/jordanlanch</a> ·
-        <a href="https://x.com/JodanLive" rel="noopener">x.com/JodanLive</a> ·
-        <a href="https://linkedin.com/in/jordanlanch" rel="noopener">linkedin.com/in/jordanlanch</a>
-      </div>
-      <div style="margin-top: 16px;">© 2026 Jordan · Mirentia.</div>
     </div>
-  </footer>
+  </section>
 
-  <!--
-  ============================================================
-  TASK-26 TODO: Newsletter signup form (Beehiiv)
-  ============================================================
-  Jordan needs to:
-    (a) Sign up at beehiiv.com (free tier ≤ 2.5k subs)
-    (b) Provide the publishable ID from Beehiiv dashboard
-    (c) Replace the placeholder below with the real embed form
+  <!-- ============================================================
+       SECTION 12 — PRICING
+       ============================================================ -->
+  <section id="pricing" class="wrap section reveal" aria-labelledby="pricing-heading">
+    <div class="section-header">
+      <div class="eyebrow">INVERSIÓN</div>
+      <h2 id="pricing-heading" class="word-stagger-source">Precios por volumen. Sin sorpresas.</h2>
+    </div>
 
-  Expected embed code (once Jordan provides PUB_ID):
-  <script async src="https://embeds.beehiiv.com/<PUB_ID>/subscribe.js"></script>
-  <iframe src="https://embeds.beehiiv.com/<PUB_ID>/subscribe"
-          data-test-id="beehiiv-embed" width="100%" height="320"
-          style="border: none;"></iframe>
+    <div class="pricing-grid reveal-stagger">
 
-  Placement: Add inside <section id="contacto"> after the .cta-row div,
-  or in the footer below the social links.
-  ============================================================
-  -->
+      <article class="pricing-card reveal reveal--scale">
+        <p class="pricing-card__name">Plan 1</p>
+        <p class="pricing-card__price">$1.500-4.000<small>· USD · instalación</small></p>
+        <h3>Pyme LATAM</h3>
 
-  <script>
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        const target = document.querySelector(a.getAttribute('href'));
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        <div class="pricing-card__block">
+          <p class="pricing-card__label">Para quién</p>
+          <p class="pricing-card__text">Coaches, consultores y servicios locales que reciben leads por WhatsApp, web o Instagram y hoy los pierden por responder tarde.</p>
+        </div>
+
+        <div class="pricing-card__block">
+          <p class="pricing-card__label">Qué incluye</p>
+          <ul class="pricing-card__list">
+            <li>Agente que califica con score 0-100 (presupuesto, necesidad, urgencia, encaje)</li>
+            <li>El lead entra solo a tu CRM con score, resumen y etiquetas</li>
+            <li>Secuencia de WhatsApp por tier: frío, tibio y caliente</li>
+            <li>Integración con WhatsApp y tu CRM</li>
+          </ul>
+        </div>
+
+        <div class="pricing-card__block">
+          <p class="pricing-card__label">Mensualidad</p>
+          <p class="pricing-card__text"><strong>USD 400-900</strong> por mes. Operamos, medimos y ajustamos el agente con datos reales.</p>
+        </div>
+
+        <div class="pricing-card__block">
+          <p class="pricing-card__label">Próximo paso</p>
+          <p class="pricing-card__text">30 minutos por WhatsApp. Te digo qué haría el agente con tus leads hoy mismo.</p>
+        </div>
+
+        <a class="cta cta--ghost" href="https://wa.me/573204943638?text=Hola%2C%20quiero%20cotizar%20un%20agente%20para%20mis%20leads." target="_blank" rel="noopener">Quiero cotizar mi agente →</a>
+      </article>
+
+      <article class="pricing-card pricing-card--featured pricing-card--featured--pulse reveal reveal--scale reveal--scale--featured">
+        <p class="pricing-card__name">Plan 2 · Más elegido</p>
+        <p class="pricing-card__price">$4.000-8.000<small>· USD · instalación</small></p>
+        <h3>Mediana</h3>
+
+        <div class="pricing-card__block">
+          <p class="pricing-card__label">Para quién</p>
+          <p class="pricing-card__text">Empresa mediana de LATAM o pyme de EE. UU. con más volumen, más herramientas y un equipo que ya usa CRM.</p>
+        </div>
+
+        <div class="pricing-card__block">
+          <p class="pricing-card__label">Qué incluye</p>
+          <ul class="pricing-card__list">
+            <li>Todo lo del Plan 1</li>
+            <li>Más integraciones: calendario, CRM, Slack, base de datos</li>
+            <li>Campañas de seguimiento y reactivación de leads fríos</li>
+            <li>Notetaker de las llamadas de venta</li>
+            <li>Handover y documentación para tu equipo</li>
+          </ul>
+        </div>
+
+        <div class="pricing-card__block">
+          <p class="pricing-card__label">Mensualidad</p>
+          <p class="pricing-card__text"><strong>USD 900-2.000</strong> por mes, según volumen e integraciones activas.</p>
+        </div>
+
+        <div class="pricing-card__block">
+          <p class="pricing-card__label">Próximo paso</p>
+          <p class="pricing-card__text">30 minutos por videollamada. Revisamos tu funnel actual y te digo por dónde entraría el agente.</p>
+        </div>
+
+        <a class="cta primary" href="https://wa.me/573204943638?text=Hola%2C%20quiero%20cotizar%20un%20agente%20para%20mis%20leads." target="_blank" rel="noopener">Quiero cotizar mi agente →</a>
+      </article>
+
+      <article class="pricing-card reveal reveal--scale">
+        <p class="pricing-card__name">Plan 3</p>
+        <p class="pricing-card__price">$8.000-15.000<small>· USD · instalación</small></p>
+        <h3>B2B / Volumen</h3>
+
+        <div class="pricing-card__block">
+          <p class="pricing-card__label">Para quién</p>
+          <p class="pricing-card__text">Cliente de EE. UU. con volumen alto o venta B2B, donde un lead bien workable puede valer miles.</p>
+        </div>
+
+        <div class="pricing-card__block">
+          <p class="pricing-card__label">Qué incluye</p>
+          <ul class="pricing-card__list">
+            <li>Todo lo del Plan 2</li>
+            <li>Notetaker conectado a las herramientas de pago</li>
+            <li>Reporte mensual con métricas del funnel</li>
+            <li>Soporte por WhatsApp &lt;24h hábiles</li>
+            <li>Acceso prioritario a mejoras y nuevos casos de uso</li>
+          </ul>
+        </div>
+
+        <div class="pricing-card__block">
+          <p class="pricing-card__label">Mensualidad</p>
+          <p class="pricing-card__text"><strong>USD 2.000-4.000</strong> por mes.</p>
+        </div>
+
+        <div class="pricing-card__block">
+          <p class="pricing-card__label">Próximo paso</p>
+          <p class="pricing-card__text">Hablemos por videollamada. Armamos el alcance a medida.</p>
+        </div>
+
+        <a class="cta cta--ghost" href="https://wa.me/573204943638?text=Hola%2C%20me%20interesa%20cotizar%20un%20agente." target="_blank" rel="noopener">Hablar por WhatsApp →</a>
+      </article>
+
+      <p class="text-muted" style="margin-top: 24px; max-width: 62ch;">
+        <strong>Los costos de las plataformas van aparte</strong> y varían según el volumen que manejes: API de WhatsApp, tokens de IA y notetaker se facturan al costo, sin markup. Te los detallamos por escrito antes de empezar.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 13 — ENTREGABLES
+       ============================================================ -->
+  <section id="entregables" class="wrap section reveal" aria-labelledby="entregables-heading">
+    <div class="section-header">
+      <div class="eyebrow">QUÉ INCLUYE UN SPRINT</div>
+      <h2 id="entregables-heading" class="word-stagger-source">Tu agente en producción. Y funcionando el primer mes.</h2>
+      <p class="lead">Esto es lo que recibís cuando arrancás un Sprint con nosotros. Sin sorpresas. Sin costos ocultos.</p>
+    </div>
+
+    <div class="entregables-grid reveal-stagger">
+      <article class="entregable-card reveal">
+        <svg class="entregable-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        <h3>Mapa de tu proceso</h3>
+        <p>Documentamos qué se repite, qué se puede automatizar, qué tiene ROI. 1 sesión de trabajo contigo.</p>
+      </article>
+
+      <article class="entregable-card reveal">
+        <svg class="entregable-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        <h3>Agente en producción</h3>
+        <p>WhatsApp, web, email — donde lo necesites. Conectado a tus herramientas (calendario, CRM, hojas de cálculo).</p>
+      </article>
+
+      <article class="entregable-card reveal">
+        <svg class="entregable-icon" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12,3 21,8 21,16 12,21 3,16 3,8" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+        <h3>Integración con tu stack</h3>
+        <p>Google Calendar, HubSpot, Slack, Notion, lo que uses. Sin pedirte que migres a otra herramienta.</p>
+      </article>
+
+      <article class="entregable-card reveal">
+        <svg class="entregable-icon" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12,3 22,21 2,21" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+        <h3>Documentación + handover</h3>
+        <p>Cómo opera el agente, cómo extenderlo, cómo diagnosticarlo. Tu equipo puede operarlo sin nosotros.</p>
+      </article>
+
+      <article class="entregable-card reveal">
+        <svg class="entregable-icon" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12,2 22,12 12,22 2,12" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+        <h3>30 días de ajustes gratis</h3>
+        <p>El primer mes post-lanzamiento, ajustamos lo que no funcione sin cobrarte extra. Sin tickets, sin sorpresas.</p>
+      </article>
+
+      <article class="entregable-card reveal">
+        <svg class="entregable-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 L20 6 V12 C20 17 16.5 20.5 12 22 C7.5 20.5 4 17 4 12 V6 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+        <h3>Garantía de devolución 90 días</h3>
+        <p>Si a los 90 días el agente no entrega el resultado que acordamos por escrito, lo arreglo o te devuelvo la plata.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 14 — SOBRE MÍ
+       ============================================================ -->
+  <section class="wrap section reveal" aria-labelledby="compromiso-heading">
+    <div class="section-header" style="text-align: center;">
+      <div class="eyebrow">EL COMPROMISO</div>
+      <h2 id="compromiso-heading" class="word-stagger-source">Por qué fundé esto.</h2>
+    </div>
+
+    <blockquote class="commitment reveal reveal--border-left">
+      <p>Llevo 7 años construyendo software. Me cansé de ver agencias que cobraban $50K por un deck de 80 slides y nunca entregaban nada.</p>
+      <p>Construyo agentes que tu equipo usa desde el día uno. Si a los 90 días no entregan el resultado que acordamos, te devuelvo la plata. Así de simple.</p>
+      <p>No vendo horas, vendo agentes funcionando. Por eso trabajo con pocos clientes a la vez.</p>
+      <cite>— Jordan Lanch, Founder · Bogotá</cite>
+    </blockquote>
+  </section>
+
+  <!-- ============================================================
+       SECTION 15 — COMPARE
+       ============================================================ -->
+  <section class="section section--dark reveal" id="compare">
+    <div class="wrap">
+      <div class="section-header" style="text-align: center;">
+        <div class="eyebrow">POR QUÉ NOSOTROS</div>
+        <h2 id="compare-heading" class="word-stagger-source">Otros te venden slides. Nosotros te entregamos agentes.</h2>
+        <p class="lead" style="margin-left: auto; margin-right: auto;">La diferencia no es "mejor servicio". Es un producto distinto.</p>
+      </div>
+
+      <div class="compare-grid reveal-stagger">
+        <div class="compare-col compare-col--other reveal reveal--left">
+          <h3 class="compare-col__title">Agencia típica</h3>
+          <ul class="compare-list">
+            <li>
+              <svg class="compare-icon compare-icon--no" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6 L18 18 M6 18 L18 6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+              <span>80-slide deck de strategy</span>
+            </li>
+            <li>
+              <svg class="compare-icon compare-icon--no" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6 L18 18 M6 18 L18 6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+              <span>3 meses de discovery</span>
+            </li>
+            <li>
+              <svg class="compare-icon compare-icon--no" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6 L18 18 M6 18 L18 6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+              <span>Cobran por horas</span>
+            </li>
+            <li>
+              <svg class="compare-icon compare-icon--no" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6 L18 18 M6 18 L18 6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+              <span>Lock-in de 12 meses</span>
+            </li>
+            <li>
+              <svg class="compare-icon compare-icon--no" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6 L18 18 M6 18 L18 6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+              <span>"Strategy" sin implementación</span>
+            </li>
+            <li>
+              <svg class="compare-icon compare-icon--no" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6 L18 18 M6 18 L18 6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+              <span>Equipo junior offshore</span>
+            </li>
+            <li>
+              <svg class="compare-icon compare-icon--no" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6 L18 18 M6 18 L18 6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+              <span>"Te respondemos pronto"</span>
+            </li>
+            <li>
+              <svg class="compare-icon compare-icon--no" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6 L18 18 M6 18 L18 6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+              <span>Cobran extra por cada cambio</span>
+            </li>
+          </ul>
+        </div>
+        <div class="compare-col compare-col--us reveal reveal--right">
+          <h3 class="compare-col__title">Mirentia</h3>
+          <ul class="compare-list">
+            <li>
+              <svg class="compare-icon compare-icon--yes" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12 L10 17 L19 7" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+              <span>Agente funcionando en producción</span>
+            </li>
+            <li>
+              <svg class="compare-icon compare-icon--yes" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12 L10 17 L19 7" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+              <span>Agente en producción en semanas</span>
+            </li>
+            <li>
+              <svg class="compare-icon compare-icon--yes" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12 L10 17 L19 7" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+              <span>Cobran por outcome</span>
+            </li>
+            <li>
+              <svg class="compare-icon compare-icon--yes" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12 L10 17 L19 7" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+              <span>Mes a mes, sin lock-in</span>
+            </li>
+            <li>
+              <svg class="compare-icon compare-icon--yes" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12 L10 17 L19 7" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+              <span>Construimos, deployamos, operamos</span>
+            </li>
+            <li>
+              <svg class="compare-icon compare-icon--yes" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12 L10 17 L19 7" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+              <span>Founder + 1-2 seniors</span>
+            </li>
+            <li>
+              <svg class="compare-icon compare-icon--yes" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12 L10 17 L19 7" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+              <span>WhatsApp &lt;24h hábiles</span>
+            </li>
+            <li>
+              <svg class="compare-icon compare-icon--yes" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12 L10 17 L19 7" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+              <span>90-day money-back guarantee</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 16 — FAQ (objeciones)
+       ============================================================ -->
+  <section id="faq" class="wrap section reveal" aria-labelledby="faq-heading">
+    <div class="section-header">
+      <div class="eyebrow">PREGUNTAS FRECUENTES</div>
+      <h2 id="faq-heading" class="word-stagger-source">Lo que siempre preguntan.</h2>
+    </div>
+
+    <div class="faq-list reveal-stagger faq-stagger-100">
+
+      <div class="faq-item reveal">
+        <details>
+          <summary>¿Cuánto cuesta?</summary>
+          <div class="faq-answer">Depende del tamaño y el volumen. Pyme LATAM: USD 1.500-4.000 de instalación y USD 400-900 por mes. Empresa mediana o pyme de EE. UU.: USD 4.000-8.000 y USD 900-2.000. B2B o volumen: USD 8.000-15.000 y USD 2.000-4.000. Los costos de las plataformas van aparte y varían según el volumen que manejes.</div>
+        </details>
+      </div>
+
+      <div class="faq-item reveal">
+        <details>
+          <summary>¿Cuánto tarda?</summary>
+          <div class="faq-answer">La instalación se cotiza según el alcance de las integraciones que necesita tu negocio. El primer agente entra en producción dentro de las primeras semanas; el resto se va sumando por etapas. Te paso el cronograma por escrito antes de empezar.</div>
+        </details>
+      </div>
+
+      <div class="faq-item reveal">
+        <details>
+          <summary>¿Y si no funciona?</summary>
+          <div class="faq-answer">Los primeros 90 días son de garantía: si el agente no entrega el resultado que acordamos por escrito, lo arreglo o te devuelvo la plata. Después seguís mes a mes y podés cancelar cuando quieras.</div>
+        </details>
+      </div>
+
+      <div class="faq-item reveal">
+        <details>
+          <summary>¿Suena robótico?</summary>
+          <div class="faq-answer">No. El agente responde con el tono y los datos de tu negocio, no con plantillas genéricas. Antes de escribir nada probamos el tono con tus palabras reales.</div>
+        </details>
+      </div>
+
+      <div class="faq-item reveal">
+        <details>
+          <summary>¿Qué pasa si el agente no sabe responder?</summary>
+          <div class="faq-answer">Escala a un humano. Definimos juntos las preguntas que el agente no debe intentar adivinar, y en esos casos le pasa la conversación a tu equipo con todo el contexto.</div>
+        </details>
+      </div>
+
+      <div class="faq-item reveal">
+        <details>
+          <summary>¿Funciona con mi CRM o mis herramientas?</summary>
+          <div class="faq-answer">Sí. Nos integramos con lo que ya usás — HubSpot, Google Calendar, Slack, Notion, tu base de datos. No te pedimos que migres de herramienta.</div>
+        </details>
+      </div>
+
+      <div class="faq-item reveal">
+        <details>
+          <summary>¿Tengo que saber de AI?</summary>
+          <div class="faq-answer">No. Vos entendés tu negocio. Yo me encargo de traducirlo a un agente que funcione y de mantenerlo después.</div>
+        </details>
+      </div>
+
+      <div class="faq-item reveal">
+        <details>
+          <summary>¿Qué pasa con mi data?</summary>
+          <div class="faq-answer">Todo queda en tu cuenta. No entreno modelos con tu data. Si decidís irte, te llevás código, configs e integraciones.</div>
+        </details>
+      </div>
+
+      <div class="faq-item reveal">
+        <details>
+          <summary>¿Puedo cancelar cuando quiera?</summary>
+          <div class="faq-answer">Sí. Mes a mes, sin lock-in y sin multa de cancelación. No te retenemos con contratos anuales.</div>
+        </details>
+      </div>
+
+      <div class="faq-item reveal">
+        <details>
+          <summary>¿Trabajás con empresas pequeñas?</summary>
+          <div class="faq-answer">Sí, si el proceso está claro y el volumen justifica el agente. La instalación empieza en USD 1.500 justamente para que un negocio pequeño pueda empezar sin comprometerse a un contrato grande.</div>
+        </details>
+      </div>
+
+      <div class="faq-item reveal">
+        <details>
+          <summary>¿Cómo sé que funciona?</summary>
+          <div class="faq-answer">Acordamos por escrito qué resultado concreto tiene que entregar el agente, y lo medimos durante los primeros 90 días. Si no lo cumple, aplica la garantía.</div>
+        </details>
+      </div>
+
+      <div class="faq-item reveal">
+        <details>
+          <summary>¿Qué pasa después del Sprint?</summary>
+          <div class="faq-answer">Podés operar el agente con tu equipo — te entregamos documentación y handover — o contratar el plan mensual y lo seguimos optimizando con datos reales.</div>
+        </details>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 17 — FINAL CTA + FORM
+       ============================================================ -->
+  <section id="contacto" class="wrap final-cta reveal" aria-labelledby="final-cta-heading">
+    <div class="eyebrow">HABLEMOS</div>
+    <h2 id="final-cta-heading" class="word-stagger-source">¿Listo para dejar de perder clientes?</h2>
+    <p class="lead">30 minutos. WhatsApp o videollamada. Sin deck, sin compromiso.</p>
+
+    <div class="cta-row">
+      <a class="cta primary cta--lg" href="https://wa.me/573204943638?text=Hola%20Mirentia%2C%20quiero%20hablar." target="_blank" rel="noopener">Hablar por WhatsApp →</a>
+      <a class="cta cta--ghost cta--lg" href="https://calendly.com/mirentia/intro" target="_blank" rel="noopener">Agendar llamada →</a>
+    </div>
+
+    <div class="final-cta__promises">
+      <span>Te respondemos en menos de 24h</span>
+      <span>Sin deck, sin compromiso</span>
+      <span>Diagnóstico honesto aunque no avancemos</span>
+    </div>
+
+    <!-- Funnel capture. Posts JSON to /api/funnel/capture (same origin, so
+         the CSP connect-src 'self' already allows it). The Go endpoint owns
+         qualification: the browser never sends a score or a tier. -->
+    <form class="form reveal-stagger-down reveal" id="funnel-capture" novalidate
+          aria-label="Diagnóstico gratis de tu funnel">
+      <div class="form__field reveal">
+        <label class="form__label" for="fc-name">Nombre</label>
+        <input class="form__input" id="fc-name" name="firstName" type="text"
+               autocomplete="name" placeholder="Tu nombre" />
+      </div>
+
+      <div class="form__field reveal">
+        <label class="form__label" for="fc-phone">WhatsApp <span class="text-dim">(con código de país)</span></label>
+        <input class="form__input" id="fc-phone" name="phone" type="tel" required
+               autocomplete="tel" inputmode="tel" placeholder="+57 300 123 4567" />
+      </div>
+
+      <div class="form__field reveal">
+        <label class="form__label" for="fc-email">Email <span class="text-dim">(opcional)</span></label>
+        <input class="form__input" id="fc-email" name="email" type="email"
+               autocomplete="email" placeholder="vos@empresa.com" />
+      </div>
+
+      <div class="form__field reveal">
+        <label class="form__label" for="fc-company">Empresa</label>
+        <input class="form__input" id="fc-company" name="company" type="text"
+               autocomplete="organization" placeholder="Nombre de tu negocio" />
+      </div>
+
+      <div class="form__field reveal">
+        <label class="form__label" for="fc-type">Tipo de negocio</label>
+        <select class="form__input" id="fc-type" name="businessType">
+          <option value="">Elegí una opción</option>
+          <option value="coaching">Coaching / consultoría</option>
+          <option value="servicios_locales">Servicios locales</option>
+          <option value="salud">Clínica / salud</option>
+          <option value="inmobiliaria">Inmobiliaria</option>
+          <option value="agencia">Agencia</option>
+          <option value="ecommerce">Ecommerce</option>
+          <option value="otro">Otro</option>
+        </select>
+      </div>
+
+      <div class="form__field reveal">
+        <label class="form__label" for="fc-leads">Leads por mes</label>
+        <select class="form__input" id="fc-leads" name="leadsPerMonth">
+          <option value="">Elegí un rango</option>
+          <option value="1-29">Menos de 30</option>
+          <option value="30-99">Entre 30 y 99</option>
+          <option value="100-500">Entre 100 y 500</option>
+          <option value="500+">Más de 500</option>
+        </select>
+      </div>
+
+      <div class="form__field reveal">
+        <label class="form__label" for="fc-budget">Presupuesto mensual aproximado</label>
+        <select class="form__input" id="fc-budget" name="budget">
+          <option value="">Elegí un rango</option>
+          <option value="400-900">USD 400 – 900</option>
+          <option value="900-2000">USD 900 – 2.000</option>
+          <option value="2000-4000">USD 2.000 – 4.000</option>
+          <option value="none">Todavía no tengo presupuesto</option>
+          <option value="unknown">No lo sé todavía</option>
+        </select>
+      </div>
+
+      <!-- Honeypot: hidden from humans, irresistible to bots. The endpoint
+           answers 201 and drops the row, so a bot learns nothing. -->
+      <input class="form__honeypot" type="text" name="website" tabindex="-1"
+             autocomplete="off" aria-hidden="true" />
+
+      <button class="cta primary form__submit" type="submit" id="fc-submit">
+        Quiero mi diagnóstico gratis
+      </button>
+
+      <p class="cta-micro" style="margin-top: 12px;">
+        <span class="pill">Sin compromiso · 30 min · 90 días de garantía</span>
+      </p>
+
+      <div class="form__status" role="status" aria-live="polite" id="fc-status"></div>
+    </form>
+
+    <div class="form__success" role="status" aria-live="polite" id="fc-success" hidden>
+      <h3>Listo. Ya estamos analizando tu caso.</h3>
+      <p class="text-muted">Te escribimos por WhatsApp en los próximos minutos con una idea concreta de qué haría el agente con tus leads.</p>
+      <p style="margin-top: 16px;">
+        <a class="cta cta--ghost" href="https://wa.me/573204943638" target="_blank" rel="noopener">Escribirnos ahora →</a>
+      </p>
+    </div>
+
+    <script>
+    (function () {
+      var form = document.getElementById('funnel-capture');
+      if (!form) return;
+      var statusEl = document.getElementById('fc-status');
+      var successEl = document.getElementById('fc-success');
+      var submit = document.getElementById('fc-submit');
+      var startedAt = Date.now();
+
+      function setStatus(msg, kind) {
+        statusEl.textContent = msg || '';
+        statusEl.className = 'form__status' + (kind ? ' form__status--' + kind : '');
+      }
+
+      // Mirrors server-side NormalizeE164: a bare national number cannot be
+      // routed to WhatsApp, so reject it before spending a round trip.
+      function normalisePhone(raw) {
+        var plus = raw.indexOf('+') >= 0;
+        var digits = raw.replace(/\D/g, '');
+        if (!plus || digits.length < 2 || digits.length > 15) return '';
+        return '+' + digits;
+      }
+
+      form.addEventListener('submit', function (ev) {
+        ev.preventDefault();
+        setStatus('');
+
+        var phone = normalisePhone(form.phone.value || '');
+        if (!phone) {
+          setStatus('Escribí tu WhatsApp con el código de país, por ejemplo +57 300 123 4567.', 'error');
+          form.phone.focus();
+          return;
         }
+        if (form.email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value)) {
+          setStatus('Revisá el email, parece incompleto.', 'error');
+          form.email.focus();
+          return;
+        }
+
+        var payload = {
+          phone: phone,
+          firstName: (form.firstName.value || '').trim(),
+          email: (form.email.value || '').trim(),
+          company: (form.company.value || '').trim(),
+          businessType: form.businessType.value,
+          leadsPerMonth: form.leadsPerMonth.value,
+          budget: form.budget.value,
+          website: form.website.value
+        };
+
+        // Sub-3s submissions are bots filling every field it can see.
+        if (Date.now() - startedAt < 3000 && payload.website) { return; }
+
+        submit.disabled = true;
+        submit.textContent = 'Enviando…';
+
+        fetch('/api/funnel/capture', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        }).then(function (res) {
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          form.hidden = true;
+          successEl.hidden = false;
+          successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }).catch(function () {
+          setStatus('No pudimos recibir el formulario. Escribinos por WhatsApp y lo hacemos a mano.', 'error');
+          submit.disabled = false;
+          submit.textContent = 'Quiero mi diagnóstico gratis';
+        });
       });
-    });
-  </script>
-  <script src="/assets/motion.js" defer></script>
-  <script src="/assets/form.js" defer></script>
-  <script type="module" src="/assets/orb.js"></script>
+    })();
+    </script>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     SECTION 18 — FOOTER
+     ============================================================ -->
+<section class="footer" role="contentinfo" aria-label="Pie de página">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a class="brand" href="/" aria-label="Mirentia · inicio">
+          mirentia<span class="dot live-pulse" aria-hidden="true"></span>
+        </a>
+        <p class="footer__tagline">Agentes de AI para Pymes de Latam.</p>
+      </div>
+
+      <div>
+        <p class="footer__heading">Contacto</p>
+        <ul class="footer__list">
+          <li><a href="mailto:hola@mirentia.com">hola@mirentia.com</a></li>
+          <li><a href="https://wa.me/573204943638" target="_blank" rel="noopener">+57 320 494 3638 (WhatsApp)</a></li>
+          <li><a href="https://www.linkedin.com/in/jordanlanch" target="_blank" rel="noopener">LinkedIn (Jordan Lanch)</a></li>
+          <li><a href="https://github.com/jordanlanch" target="_blank" rel="noopener">GitHub (Jordan Lanch)</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer__heading">Legal</p>
+        <ul class="footer__list">
+          <li><a href="/legal/terminos/">Términos</a></li>
+          <li><a href="/legal/privacidad/">Privacidad</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© 2026 Mirentia. Hecho en Bogotá, Colombia.</span>
+      <span class="footer__legal">
+        <a href="/legal/terminos/">Términos</a>
+        <a href="/legal/privacidad/">Privacidad</a>
+      </span>
+    </div>
+  </div>
+</section>
+
+<div class="cursor-trail" aria-hidden="true"></div>
+<div class="cursor-dot" aria-hidden="true"></div>
+<script src="/assets/motion.min.js?v=3" defer></script>
 </body>
 </html>
