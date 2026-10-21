@@ -1,21 +1,55 @@
+# Mirentia landing — static site behind nginx, on Dokploy.
+#
+# The repo (mirentia-landing) is PUBLIC, so Dokploy can clone it without a
+# deploy key — unlike mirentia-foundation, which is private and currently
+# blocks the API build.
+#
+# The proxy block is the reason this file exists rather than a bare
+# `nginx:alpine` with the files mounted: the capture form POSTs to
+# /api/funnel/capture (same origin), so the landing's own nginx has to
+# forward it to the Go backend. Until that backend is up, the proxy returns
+# 502 and the form falls back to its WhatsApp message — the page still
+# works, it just cannot capture.
+#
+# API_UPSTREAM is a compose-level variable so the backend host can change
+# without editing this file. The nginx image's entrypoint substitutes it into
+# the mounted template (see docker-nginx.conf.template for why it has to be
+# a template and not a plain conf.d file).
+#
+# The backend lives in a SEPARATE compose (mirentia-api), and neither compose
+# declares a network, so Docker DNS cannot resolve the backend name from here.
+# Both sides therefore have to join the same external network; Dokploy's is
+# `dokploy-network`. Override with DOKPLOY_NETWORK in the Dokploy env string
+# if that host names it differently.
+
 networks:
   dokploy-network:
     external: true
+    name: ${DOKPLOY_NETWORK:-dokploy-network}
 
 services:
   landing:
-    image: jordanlanch/mirentia-landing:latest
-    pull_policy: always
+    image: nginx:1.27-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
     networks:
       - dokploy-network
     labels:
       - traefik.enable=true
-    deploy:
-      restart_policy:
-        condition: any
-        delay: 5s
-      resources:
-        limits:
-          cpus: "0.25"
-          memory: 128M
+    volumes:
+      - ./:/usr/share/nginx/html:ro
+      - ./docker-nginx.conf.template:/etc/nginx/templates/default.conf.template:ro
+    environment:
+      API_UPSTREAM: ${API_UPSTREAM:-mirentia-api-web-1:8080}
+      # Only substitute API_UPSTREAM. Without this filter the entrypoint
+      # substitutes every environment variable and eats nginx's own
+      # $host / $uri / $scheme / $remote_addr.
+      NGINX_ENVSUBST_FILTER: ^API_UPSTREAM$
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1/"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
 # ponytail: single static page, no CMS. Add CMS when copy needs to change weekly.
