@@ -31,12 +31,20 @@ services:
   landing:
     image: nginx:1.27-alpine
     restart: unless-stopped
+    # NOT 80:80 — Dokploy's Traefik already owns host port 80 for the
+    # domain routing, so publishing 80 here fails with "port is already
+    # allocated" and the landing never starts. 8081 is a direct-IP fallback
+    # for debugging; the public route is the Traefik label below.
     ports:
-      - "80:80"
+      - "8081:80"
     networks:
       - dokploy-network
     labels:
-      - traefik.enable=true
+      - "traefik.enable=true"
+      - "traefik.http.routers.mirentia-landing.rule=Host(`mirentia.com`) || Host(`www.mirentia.com`)"
+      - "traefik.http.routers.mirentia-landing.entrypoints=websecure"
+      - "traefik.http.routers.mirentia-landing.tls.certresolver=letsencrypt"
+      - "traefik.http.services.mirentia-landing.loadbalancer.server.port=80"
     volumes:
       - ./:/usr/share/nginx/html:ro
       - ./docker-nginx.conf.template:/etc/nginx/templates/default.conf.template:ro
