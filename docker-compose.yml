@@ -1,0 +1,37 @@
+# Mirentia landing — root-level compose so Dokploy has one unambiguous
+# build context.
+#
+# Why this file exists at the repo ROOT instead of only in website/:
+# Dokploy clones the repo and builds with the repo root as the context
+# root. A compose living in website/ with `context: .` therefore resolves
+# to the REPO ROOT, where there is no Dockerfile, and the build dies with a
+# path error that never reaches the nginx config.
+#
+# Putting the compose at the root makes `context: ./website` correct under
+# either interpretation, so the build cannot silently drift again.
+#
+# The site config is a TEMPLATE. The nginx entrypoint envsubsts files under
+# /etc/nginx/templates/ at boot, substituting only variables present in the
+# container environment. That is the supported way to get $API_UPSTREAM into
+# proxy_pass: the `env` directive is main-context only and does not make a
+# variable substitutable in config text.
+
+services:
+  landing:
+    build:
+      context: ./website
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    environment:
+      # Points at the Go backend. Until that backend is deployed the proxy
+      # answers 502 and the capture form falls back to its WhatsApp
+      # message — the page renders, it just cannot capture.
+      API_UPSTREAM: ${API_UPSTREAM:-mirentia-api:8080}
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1/"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
